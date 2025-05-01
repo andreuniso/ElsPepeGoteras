@@ -6,7 +6,7 @@ Aquest projecte està format per tres components principals desenvolupats per di
 - 💻 **Client d’escriptori (WPF)** – desenvolupat per Elena Romeu
 - 🌐 **Client web** – desenvolupat per Ferran Morgades
 
----------------------------------------------------------
+---
 
 ## 📁 Estructura del projecte
 
