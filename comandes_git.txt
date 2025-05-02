@@ -1,0 +1,27 @@
+CANVIAR DE BRANCA:
+git checkout nom-de-la-branca
+
+GUARDAR CANVIS (EN LOCAL):
+git add .
+git commit -m "Missatge explicant el canvi"
+
+ENVIAR CANVIS A BRANCA:
+git push origin nom-de-la-branca
+
+ACTUALITZAR BRANCA AMB ELS CANVIS DE DEV:
+git checkout nom-de-la-branca
+git pull origin dev
+git push
+
+FER MERGE D'UNA BRANCA A DEV (una vegada acabat i provat):
+git checkout dev
+git merge nom-de-la-branca
+git push
+
+UN COP DEV ESTÀ ESTABLE -> PASSAR A MAIN:
+git checkout main
+git merge dev
+git push
+
+REVERTIR UN COMMIT:
+git revert ID_commit
