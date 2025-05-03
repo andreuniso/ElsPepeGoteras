@@ -22,3 +22,6 @@ git checkout main
 git pull origin main
 git merge dev
 git push origin main
+
+CLONAR REPOSITORI:
+git clone https://github.com/andreuniso/ElsPepeGoteras.git
