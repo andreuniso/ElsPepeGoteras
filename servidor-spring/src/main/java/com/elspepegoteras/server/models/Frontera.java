@@ -4,7 +4,7 @@ public class Frontera {
     private Pais pais1;
     private Pais pais2;
 
-    //Creació d'una frontera
+    //Creació - Recuperació d'una frontera
     public Frontera(Pais pais1, Pais pais2) {
         setPais1(pais1);
         setPais2(pais2);
