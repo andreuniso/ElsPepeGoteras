@@ -1,6 +1,5 @@
 package com.elspepegoteras.server.websocket;
 
-import com.elspepegoteras.server.models.Partida;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -12,7 +11,6 @@ import java.util.List;
 
 public class WebSocketHandler extends TextWebSocketHandler {
     private List<WebSocketSession> sessions = new ArrayList<>();
-    private List<Partida> partides = new ArrayList<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {

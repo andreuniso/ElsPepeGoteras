@@ -1,9 +1,13 @@
 package com.elspepegoteras.server.models;
 
+import org.springframework.web.socket.WebSocketSession;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Jugador {
+    private WebSocketSession session;
+
     private long id;
     private Usuari usuari;
     private Partida partida;
@@ -11,7 +15,8 @@ public class Jugador {
     private List<Carta> cartes;
 
     //Creació d'un jugador
-    public Jugador(Usuari usuari) {
+    public Jugador(WebSocketSession session, Usuari usuari) {
+        setSession(session);
         setUsuari(usuari);
         setCartes(new ArrayList<Carta>());
     }
@@ -23,6 +28,14 @@ public class Jugador {
         setPartida(partida);
         setNumero(numero);
         setCartes(cartes);
+    }
+
+    public WebSocketSession getSession() {
+        return session;
+    }
+
+    public void setSession(WebSocketSession session) {
+        this.session = session;
     }
 
     public long getId() {
