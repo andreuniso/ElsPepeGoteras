@@ -8,7 +8,6 @@ git add .
 git commit -m "Missatge explicant el canvi"
 
 PER PUJAR EL COMMIT DE LOCAL A LA VOSTRE BRANCA:
-git pull origin nom-de-la-vostra-branca
 git push origin nom-de-la-vostra-branca
 
 PER PUJAR LA VERSIÓ "ESTABLE" DEL VOSTRE PROGRAMA A DEV:
