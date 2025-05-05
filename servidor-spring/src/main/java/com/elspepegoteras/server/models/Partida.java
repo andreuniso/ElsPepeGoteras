@@ -1,6 +1,7 @@
 package com.elspepegoteras.server.models;
 
 import java.util.Date;
+import java.util.List;
 
 public class Partida {
     private long id;
@@ -8,6 +9,7 @@ public class Partida {
     private String nom;
     private String token;
     private int maxJugadors;
+    private List<Jugador> jugadors;
     private Jugador admin;
     private Jugador jugadorActual;
     private Estats estat;
@@ -22,12 +24,13 @@ public class Partida {
     }
 
     //Recuperació d'una partida
-    public Partida(long id, Date dataInici, String nom, String token, int maxJugadors, Jugador admin, Jugador jugadorActual, Estats estat) {
+    public Partida(long id, Date dataInici, String nom, String token, int maxJugadors, List<Jugador> jugadors, Jugador admin, Jugador jugadorActual, Estats estat) {
         setId(id);
         setDataInici(dataInici);
         setNom(nom);
         setToken(token);
         setMaxJugadors(maxJugadors);
+        setJugadors(jugadors);
         setAdmin(admin);
         setJugadorActual(jugadorActual);
         setEstat(estat);
@@ -71,6 +74,18 @@ public class Partida {
 
     public void setMaxJugadors(int maxJugadors) {
         this.maxJugadors = maxJugadors;
+    }
+
+    public void addJugador(Jugador jugador) {
+        this.jugadors.add(jugador);
+    }
+
+    public List<Jugador> getJugadors() {
+        return jugadors;
+    }
+
+    public void setJugadors(List<Jugador> jugadors) {
+        this.jugadors = jugadors;
     }
 
     public Jugador getAdmin() {

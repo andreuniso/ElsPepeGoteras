@@ -62,7 +62,7 @@ public interface IRiskManager {
      * @return true si l'usuari s'ha eliminat correctament, false en cas contrari
      * @throws RiskManagerException Excepció llançada en cas d'error
      */
-    boolean eliminarUsuari(int id) throws RiskManagerException;
+    boolean eliminarUsuari(long id) throws RiskManagerException;
 
     /**
      * Elimina una partida del sistema.
@@ -70,7 +70,7 @@ public interface IRiskManager {
      * @return true si la partida s'ha eliminat correctament, false en cas contrari
      * @throws RiskManagerException Excepció llançada en cas d'error
      */
-    boolean eliminarPartida(int id) throws RiskManagerException;
+    boolean eliminarPartida(long id) throws RiskManagerException;
 
     /**************************************SELECTS**************************************/
     /**
@@ -79,7 +79,7 @@ public interface IRiskManager {
      * @return Usuari amb les dades sol·licitades
      * @throws RiskManagerException Excepció llançada en cas d'error
      */
-    Usuari getUsuari(int id) throws RiskManagerException;
+    Usuari getUsuari(long id) throws RiskManagerException;
 
     /**
      * Obté l'avatar d'un usuari.
@@ -95,5 +95,5 @@ public interface IRiskManager {
      * @return Partida amb les dades sol·licitades
      * @throws RiskManagerException Excepció llançada en cas d'error
      */
-    Partida getPartida(int id) throws RiskManagerException;
+    Partida getPartida(long id) throws RiskManagerException;
 }
