@@ -10,8 +10,15 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.projectlombok:lombok:1.18.38" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.jdbc:ojdbc8:19.3.0.0" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-websocket:3.4.5" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:3.4.5" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.jdbc:ucp:23.5.0.24.07" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.security:oraclepki:23.5.0.24.07" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.security:osdt_cert:19.3.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.security:osdt_core:19.3.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.ha:simplefan:23.5.0.24.07" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.ha:ons:23.5.0.24.07" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-websocket:6.2.6" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-messaging:6.2.6" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-json:3.4.5" level="project" />

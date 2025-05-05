@@ -1,12 +1,8 @@
 package com.elspepegoteras.server.models;
 
-import org.springframework.web.socket.WebSocketSession;
-
 import java.util.Date;
 
 public class Partida {
-    private WebSocketSession session;
-
     private long id;
     private Date dataInici;
     private String nom;
@@ -17,8 +13,7 @@ public class Partida {
     private Estats estat;
 
     //Creació d'una partida
-    public Partida(WebSocketSession session, String nom, String token, int maxJugadors) {
-        setSession(session);
+    public Partida(String nom, String token, int maxJugadors) {
         setNom(nom);
         setToken(token);
         setMaxJugadors(maxJugadors);
@@ -36,14 +31,6 @@ public class Partida {
         setAdmin(admin);
         setJugadorActual(jugadorActual);
         setEstat(estat);
-    }
-
-    public WebSocketSession getSession() {
-        return session;
-    }
-
-    public void setSession(WebSocketSession session) {
-        this.session = session;
     }
 
     public long getId() {
