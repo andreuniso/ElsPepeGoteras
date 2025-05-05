@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿using RiskClient.Serveis;
 using System;
+=======
+﻿using System;
+>>>>>>> 0ee73eab525e45adc4986e3b0cbe15fd89680742
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +25,7 @@ namespace RiskClient.Models
     /// </summary>
     public partial class IniciSessioRegistre : Page
     {
+<<<<<<< HEAD
         private WebSocketClient _webSocketClient;
 
         public IniciSessioRegistre()
@@ -33,6 +38,11 @@ namespace RiskClient.Models
         private void BtnInicia_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new RiskClient.Pagines.PantallaPrincipal());
+=======
+        public IniciSessioRegistre()
+        {
+            InitializeComponent();
+>>>>>>> 0ee73eab525e45adc4986e3b0cbe15fd89680742
         }
     }
 }

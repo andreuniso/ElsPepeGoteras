@@ -10,6 +10,7 @@
       Title="IniciSessioRegistre">
 
     <Grid>
+<<<<<<< HEAD
         <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_portada.png" 
             Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
@@ -42,6 +43,31 @@
 
                     <!-- Enllaç registra -->
                     <TextBlock Text="No tens compte? Registra't" Foreground="#FFED7D31" FontSize="12" HorizontalAlignment="Center" Margin="0,10,0,0" Cursor="Hand"/>
+=======
+        <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_principal.png" 
+            Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+        <!-- Formulari petit, centrat a la part baixa -->
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,60">
+            <Border Background="#CC1A2233" CornerRadius="16" Padding="24,18" Effect="{x:Null}">
+                <StackPanel>
+                    <TextBlock Text="INICI SESSIÓ" FontSize="18" FontWeight="Bold" Foreground="#FFF6E7C1" HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                    <!-- Usuari -->
+                    <TextBlock Text="usuari:" Foreground="#FFF6E7C1" FontSize="13" Margin="0,0,0,2"/>
+                    <Border CornerRadius="8" BorderBrush="#FFED7D31" BorderThickness="1.5" Background="#33FFFFFF" Margin="0,0,0,10">
+                        <TextBox Width="180" Height="28" Background="Transparent" BorderThickness="0" Padding="6,0" Foreground="#FFF6E7C1"/>
+                    </Border>
+                    <!-- Contrasenya -->
+                    <TextBlock Text="contrasenya:" Foreground="#FFF6E7C1" FontSize="13" Margin="0,0,0,2"/>
+                    <Border CornerRadius="8" BorderBrush="#FFED7D31" BorderThickness="1.5" Background="#33FFFFFF" Margin="0,0,0,16">
+                        <PasswordBox Width="180" Height="28" Background="Transparent" BorderThickness="0" Padding="6,0" Foreground="#FFF6E7C1"/>
+                    </Border>
+                    <!-- Botó Inicia -->
+                    <Button Width="180" Height="32" Content="INICIA" HorizontalAlignment="Center" 
+                            Background="#FFED7D31" Foreground="#FF1A2233" FontWeight="Bold" FontSize="15" BorderThickness="0" Margin="0,0,0,6"/>
+                    <!-- Enllaç registra -->
+                    <TextBlock Text="registra" Foreground="#FFED7D31" FontSize="12" HorizontalAlignment="Center" Margin="0,6,0,0" Cursor="Hand"/>
+>>>>>>> 0ee73eab525e45adc4986e3b0cbe15fd89680742
                 </StackPanel>
             </Border>
         </Grid>

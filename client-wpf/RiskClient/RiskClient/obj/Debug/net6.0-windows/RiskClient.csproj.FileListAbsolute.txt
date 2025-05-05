@@ -42,7 +42,10 @@ E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\refint\RiskClie
 E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.pdb
 E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.genruntimeconfig.cache
 E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\ref\RiskClient.dll
+<<<<<<< HEAD
 E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\PantallaPrincipal.g.cs
 E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\PantallaPrincipal.baml
 E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\ConfiguracioPartida.g.cs
 E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\ConfiguracioPartida.baml
+=======
+>>>>>>> 0ee73eab525e45adc4986e3b0cbe15fd89680742

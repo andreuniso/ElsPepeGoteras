@@ -12,6 +12,10 @@
     <Folder Include="Imatges\" />
     <Folder Include="Models\" />
     <Folder Include="Utils\" />
+<<<<<<< HEAD
+=======
+    <Folder Include="Serveis\" />
+>>>>>>> 0ee73eab525e45adc4986e3b0cbe15fd89680742
   </ItemGroup>
 
 </Project>
