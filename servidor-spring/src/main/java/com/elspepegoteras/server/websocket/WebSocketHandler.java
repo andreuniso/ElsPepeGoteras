@@ -1,6 +1,10 @@
 package com.elspepegoteras.server.websocket;
 
+import com.elspepegoteras.server.database.RiskManagerJDBC;
+import com.elspepegoteras.server.interfaces.IRiskManager;
+import com.elspepegoteras.server.interfaces.RiskManagerException;
 import com.elspepegoteras.server.managers.GameManager;
+import com.elspepegoteras.server.models.Jugador;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -13,36 +17,49 @@ import java.util.List;
 import java.util.Map;
 
 public class WebSocketHandler extends TextWebSocketHandler {
+    private static IRiskManager gBD = new RiskManagerJDBC();
+
     private final GameManager gameManager = GameManager.getInstance();
-    private List<WebSocketSession> sessions = new ArrayList<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
-        //Afegir sessió a la llista
-        sessions.add(session);
         System.out.println("Nova connexió: " + session.getId());
+
+        //Recollir paràmetres de la connexió
+        Map<String, String> params = getQueryParams(session.getUri().getQuery());
+        String idPartida = params.getOrDefault("idPartida",null);
+        String idJugador = params.getOrDefault("idJugador", null);
+
+        if (idPartida == null || idJugador == null) {
+            //Si no s'han especificat idPartida o idJugador, no es pot afegir el jugador a la partida
+            System.out.println("Error: idPartida o idJugador no especificats");
+            return;
+        } else {
+            //Afegir el jugador a la partida
+            try {
+                gameManager.afegirJugadorAPartida(
+                    Long.parseLong(idPartida),
+                    new Jugador(session, gBD.getUsuari(Long.parseLong(idJugador)))
+                );
+            } catch (NumberFormatException e) {
+                System.out.println("Error: idPartida o idJugador no son números vàlids");
+                return;
+            } catch (RiskManagerException e) {
+                System.out.println("Error: No s'ha pogut obtenir l'usuari amb id " + idJugador);
+            }
+        }
     }
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
         //Gestió del missatge rebut
         System.out.println("Missatge rebut: " + message.getPayload());
-
-        for (WebSocketSession s : sessions) {
-            if (s.isOpen()) {
-                try {
-                    s.sendMessage(new TextMessage("Missatge rebut: " + message.getPayload()));
-                } catch (IOException e) {
-                    System.out.println("Error enviant el missatge. Més informació: " + e.getMessage());
-                }
-            }
-        }
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
         //Eliminar sessió de la llista
-        sessions.remove(session);
+        gameManager.eliminarJugador(session);
         System.out.println("Connexió tancada: " + session.getId());
     }
 

@@ -38,4 +38,22 @@ public class GameManager {
             //Creem una nova partida i afegim el jugador com administrador
         }
     }
+
+    public void eliminarJugador(WebSocketSession session) {
+        System.out.println("Eliminant jugador de la partida");
+        for (Partida partida : games) {
+            boolean jugadorTrobat = false;
+            for(Jugador jugador : partida.getJugadors()) {
+                if (jugador.getSession().equals(session)) {
+                    partida.getJugadors().remove(jugador);
+                    jugadorTrobat = true;
+                    break;
+                }
+            }
+            if (jugadorTrobat) {
+                //Si el jugador ha estat trobat, sortim del bucle
+                break;
+            }
+        }
+    }
 }
