@@ -1,0 +1,48 @@
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient_MarkupCompile.cache
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient_MarkupCompile.lref
+C:\Users\Elena\source\repos\RiskClient\RiskClient\bin\Debug\net6.0-windows\RiskClient.exe
+C:\Users\Elena\source\repos\RiskClient\RiskClient\bin\Debug\net6.0-windows\RiskClient.deps.json
+C:\Users\Elena\source\repos\RiskClient\RiskClient\bin\Debug\net6.0-windows\RiskClient.runtimeconfig.json
+C:\Users\Elena\source\repos\RiskClient\RiskClient\bin\Debug\net6.0-windows\RiskClient.dll
+C:\Users\Elena\source\repos\RiskClient\RiskClient\bin\Debug\net6.0-windows\RiskClient.pdb
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.g.resources
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.AssemblyInfoInputs.cache
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.AssemblyInfo.cs
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.csproj.CoreCompileInputs.cache
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.dll
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\refint\RiskClient.dll
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.pdb
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.genruntimeconfig.cache
+C:\Users\Elena\source\repos\RiskClient\RiskClient\obj\Debug\net6.0-windows\ref\RiskClient.dll
+E:\M13 - PROJECTE\RiskClient\RiskClient\bin\Debug\net6.0-windows\RiskClient.exe
+E:\M13 - PROJECTE\RiskClient\RiskClient\bin\Debug\net6.0-windows\RiskClient.deps.json
+E:\M13 - PROJECTE\RiskClient\RiskClient\bin\Debug\net6.0-windows\RiskClient.runtimeconfig.json
+E:\M13 - PROJECTE\RiskClient\RiskClient\bin\Debug\net6.0-windows\RiskClient.dll
+E:\M13 - PROJECTE\RiskClient\RiskClient\bin\Debug\net6.0-windows\RiskClient.pdb
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\MainWindow.g.cs
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\IniciSessioRegistre.g.cs
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\Mapa.g.cs
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\App.g.cs
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient_MarkupCompile.cache
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient_MarkupCompile.lref
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\MainWindow.baml
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\IniciSessioRegistre.baml
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\Mapa.baml
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.g.resources
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.GeneratedMSBuildEditorConfig.editorconfig
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.AssemblyInfoInputs.cache
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.AssemblyInfo.cs
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.csproj.CoreCompileInputs.cache
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.dll
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\refint\RiskClient.dll
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.pdb
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\RiskClient.genruntimeconfig.cache
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\ref\RiskClient.dll
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\PantallaPrincipal.g.cs
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\PantallaPrincipal.baml
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\ConfiguracioPartida.g.cs
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\ConfiguracioPartida.baml

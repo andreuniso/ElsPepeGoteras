@@ -1,0 +1,20 @@
+﻿RiskClient
+1.0.0.0
+
+winexe
+C#
+.cs
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\
+RiskClient
+none
+false
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+E:\M13 - PROJECTE\RiskClient\RiskClient\App.xaml
+6513092029
+
+12-674730565
+194370617981
+MainWindow.xaml;Pagines\ConfiguracioPartida.xaml;Pagines\IniciSessioRegistre.xaml;Pagines\Mapa.xaml;Pagines\PantallaPrincipal.xaml;UserControls\UCPartida.xaml;
+
+True
+
