@@ -98,7 +98,7 @@
 
                 <!-- Botons Confirmar/Cancel·lar -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0">
-                    <Button Content="Crear" Width="200" Height="80" Background="#84b6f4" Foreground="#222" FontWeight="Bold" FontSize="28" BorderThickness="0">
+                    <Button x:Name="btnCrearPartida" Content="Crear" Width="200" Height="80" Background="#84b6f4" Foreground="#222" FontWeight="Bold" FontSize="28" BorderThickness="0" Click="btnCrearPartida_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" CornerRadius="40">

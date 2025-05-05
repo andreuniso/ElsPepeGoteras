@@ -1,11 +1,10 @@
 ﻿
 
 FE:\M13 - PROJECTE\RiskClient\RiskClient\MainWindow.xaml;;
+FE:\M13 - PROJECTE\RiskClient\RiskClient\Pagines\ConfiguracioPartida.xaml;;
 FE:\M13 - PROJECTE\RiskClient\RiskClient\Pagines\IniciSessioRegistre.xaml;;
 FE:\M13 - PROJECTE\RiskClient\RiskClient\Pagines\Mapa.xaml;;
-<<<<<<< HEAD
 FE:\M13 - PROJECTE\RiskClient\RiskClient\Pagines\PantallaPrincipal.xaml;;
-FE:\M13 - PROJECTE\RiskClient\RiskClient\Pagines\ConfiguracioPartida.xaml;;
-=======
->>>>>>> 0ee73eab525e45adc4986e3b0cbe15fd89680742
+FE:\M13 - PROJECTE\RiskClient\RiskClient\Pagines\SalaEspera.xaml;;
+FE:\M13 - PROJECTE\RiskClient\RiskClient\UserControls\UCPartida.xaml;;
 

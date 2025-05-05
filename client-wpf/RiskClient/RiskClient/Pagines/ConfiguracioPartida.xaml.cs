@@ -43,5 +43,9 @@ namespace RiskClient.Pagines
             }
         }
 
+        private void btnCrearPartida_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new RiskClient.Pagines.SalaEspera());
+        }
     }
 }

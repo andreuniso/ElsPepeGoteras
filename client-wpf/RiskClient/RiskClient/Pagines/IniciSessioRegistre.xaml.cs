@@ -1,22 +1,8 @@
-<<<<<<< HEAD
-﻿using RiskClient.Serveis;
+﻿using RiskClient.Models;
+using RiskClient.Serveis;
 using System;
-=======
-﻿using System;
->>>>>>> 0ee73eab525e45adc4986e3b0cbe15fd89680742
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RiskClient.Models
 {
@@ -25,24 +11,69 @@ namespace RiskClient.Models
     /// </summary>
     public partial class IniciSessioRegistre : Page
     {
-<<<<<<< HEAD
         private WebSocketClient _webSocketClient;
+        private readonly UserService _userService;
 
         public IniciSessioRegistre()
         {
             InitializeComponent();
-            _webSocketClient = new WebSocketClient();
-            _webSocketClient.ConnectarAsync();
+            // Instanciem el servei HTTP amb la URL base del servidor
+            _userService = new UserService("http://localhost:8080");
         }
 
-        private void BtnInicia_Click(object sender, RoutedEventArgs e)
+        private async void BtnInicia_Click(object sender, RoutedEventArgs e)
         {
+            // Deshabilitem el botó per evitar múltiples clics
+            BtnInicia.IsEnabled = false;
+
+            // Recollim les credencials de la UI
+            string login = TxtUsuari.Text;
+            string password = TxtContrasenya.Password;
+
+            // Creem l'usuari i fem login
+            var usuari = new Usuari(login, password);
+            bool loginOk;
+            try
+            {
+                loginOk = await _userService.LoginAsync(usuari);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error de connexió: {ex.Message}");
+                BtnInicia.IsEnabled = true;
+                return;
+            }
+
+            if (!loginOk)
+            {
+                MessageBox.Show("Credencials incorrectes");
+                BtnInicia.IsEnabled = true;
+                return;
+            }
+
+            // Un cop login OK, connectem via WebSocket
+            _webSocketClient = new WebSocketClient();
+            await _webSocketClient.ConnectarAsync();
+
+            // Naveguem a la pantalla principal
             NavigationService?.Navigate(new RiskClient.Pagines.PantallaPrincipal());
-=======
-        public IniciSessioRegistre()
+        }
+
+        private void RegistraText_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            InitializeComponent();
->>>>>>> 0ee73eab525e45adc4986e3b0cbe15fd89680742
+            LoginPanel.Visibility = Visibility.Collapsed;
+            RegistrePanel.Visibility = Visibility.Visible;
+        }
+
+        private void IniciaSessioText_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            RegistrePanel.Visibility = Visibility.Collapsed;
+            LoginPanel.Visibility = Visibility.Visible;
+        }
+
+        private async void BtnRegistrar_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
