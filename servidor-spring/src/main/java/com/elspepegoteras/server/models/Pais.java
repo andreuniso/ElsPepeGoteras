@@ -1,7 +1,8 @@
 package com.elspepegoteras.server.models;
 
-import java.awt.*;
+import jakarta.persistence.*;
 
+@Entity
 public class Pais {
     private long id;
     private String nom;

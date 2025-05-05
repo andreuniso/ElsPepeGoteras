@@ -82,14 +82,6 @@ public interface IRiskManager {
     Usuari getUsuari(long id) throws RiskManagerException;
 
     /**
-     * Obté l'avatar d'un usuari.
-     * @param usuari Usuari del qual es vol obtenir l'avatar
-     * @return byte[] amb la imatge d'usuari
-     * @throws RiskManagerException Excepció llançada en cas d'error
-     */
-    byte[] getAvatarUsuari(Usuari usuari) throws RiskManagerException;
-
-    /**
      * Obté les dades d'una partida.
      * @param id ID de la partida
      * @return Partida amb les dades sol·licitades

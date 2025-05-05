@@ -5,8 +5,6 @@ import com.elspepegoteras.server.interfaces.RiskManagerException;
 import com.elspepegoteras.server.models.Jugador;
 import com.elspepegoteras.server.models.Partida;
 import com.elspepegoteras.server.models.Usuari;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 
 public class RiskManagerJDBC implements IRiskManager {
 
@@ -48,11 +46,6 @@ public class RiskManagerJDBC implements IRiskManager {
     @Override
     public Usuari getUsuari(long id) throws RiskManagerException {
         return null;
-    }
-
-    @Override
-    public byte[] getAvatarUsuari(Usuari usuari) throws RiskManagerException {
-        return new byte[0];
     }
 
     @Override

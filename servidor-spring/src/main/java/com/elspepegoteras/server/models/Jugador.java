@@ -1,10 +1,12 @@
 package com.elspepegoteras.server.models;
 
+import jakarta.persistence.*;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Jugador {
     private WebSocketSession session;
 
@@ -13,21 +15,24 @@ public class Jugador {
     private Partida partida;
     private int numero;
     private List<Carta> cartes;
+    private List<Okupa> paisosOkupats;
 
     //Creació d'un jugador
     public Jugador(WebSocketSession session, Usuari usuari) {
         setSession(session);
         setUsuari(usuari);
         setCartes(new ArrayList<Carta>());
+        setPaisosOkupats(new ArrayList<Okupa>());
     }
 
     //Recuperació d'un jugador
-    public Jugador(long id, Usuari usuari, Partida partida, int numero, List<Carta> cartes) {
+    public Jugador(long id, Usuari usuari, Partida partida, int numero, List<Carta> cartes, List<Okupa> paisosOkupats) {
         setId(id);
         setUsuari(usuari);
         setPartida(partida);
         setNumero(numero);
         setCartes(cartes);
+        setPaisosOkupats(paisosOkupats);
     }
 
     public WebSocketSession getSession() {
@@ -76,5 +81,13 @@ public class Jugador {
 
     public void setCartes(List<Carta> cartes) {
         this.cartes = cartes;
+    }
+
+    public List<Okupa> getPaisosOkupats() {
+        return paisosOkupats;
+    }
+
+    public void setPaisosOkupats(List<Okupa> paisosOkupats) {
+        this.paisosOkupats = paisosOkupats;
     }
 }
