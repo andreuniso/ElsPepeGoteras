@@ -1,0 +1,27 @@
+ABANS DE PROGRAMAR (Per tenir la última versió desenvolupada):
+git checkout nom-de-la-vostra-branca
+git pull origin dev
+
+PER FER COMMIT:
+git status
+git add .
+git commit -m "Missatge explicant el canvi"
+
+PER PUJAR EL COMMIT DE LOCAL A LA VOSTRE BRANCA:
+git pull origin nom-de-la-vostra-branca
+git push origin nom-de-la-vostra-branca
+
+PER PUJAR LA VERSIÓ "ESTABLE" DEL VOSTRE PROGRAMA A DEV:
+git checkout dev
+git pull origin dev
+git merge nom-de-la-vostra-branca
+git push origin dev
+
+UN COP DEV ESTÀ ESTABLE -> PASSAR A MAIN:
+git checkout main
+git pull origin main
+git merge dev
+git push origin main
+
+CLONAR REPOSITORI:
+git clone https://github.com/andreuniso/ElsPepeGoteras.git
