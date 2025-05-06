@@ -2,7 +2,6 @@ package com.elspepegoteras.server.models;
 
 import jakarta.persistence.*;
 
-@Entity
 public class Carta {
     private long id;
     private TipusCarta tipusCarta;

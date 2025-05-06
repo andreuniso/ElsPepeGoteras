@@ -20,7 +20,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class GameManager {
-    private final List<Partida> games = new ArrayList<>();
+    /*private final List<Partida> games = new ArrayList<>();
 
     private static final GameManager instance = new GameManager();
     public static GameManager getInstance() {
@@ -55,5 +55,5 @@ public class GameManager {
                 break;
             }
         }
-    }
+    }*/
 }

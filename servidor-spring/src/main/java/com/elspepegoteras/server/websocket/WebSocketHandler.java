@@ -17,13 +17,13 @@ import java.util.List;
 import java.util.Map;
 
 public class WebSocketHandler extends TextWebSocketHandler {
-    private static IRiskManager gBD = new RiskManagerJDBC();
+    //private static IRiskManager gBD = new RiskManagerJDBC();
 
-    private final GameManager gameManager = GameManager.getInstance();
+    //private final GameManager gameManager = GameManager.getInstance();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
-        System.out.println("Nova connexió: " + session.getId());
+        /*System.out.println("Nova connexió: " + session.getId());
 
         //Recollir paràmetres de la connexió
         Map<String, String> params = getQueryParams(session.getUri().getQuery());
@@ -47,7 +47,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             } catch (RiskManagerException e) {
                 System.out.println("Error: No s'ha pogut obtenir l'usuari amb id " + idJugador);
             }
-        }
+        }*/
     }
 
     @Override
@@ -59,7 +59,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
         //Eliminar sessió de la llista
-        gameManager.eliminarJugador(session);
+        //gameManager.eliminarJugador(session);
         System.out.println("Connexió tancada: " + session.getId());
     }
 

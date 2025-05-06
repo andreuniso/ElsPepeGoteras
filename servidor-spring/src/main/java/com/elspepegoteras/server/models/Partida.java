@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import jakarta.persistence.*;
 
-@Entity
 public class Partida {
     private long id;
     private Date dataInici;

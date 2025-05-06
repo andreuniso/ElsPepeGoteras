@@ -246,6 +246,6 @@ INSERT INTO Frontera (pais1_id, pais2_id) VALUES (40, 42);
 INSERT INTO Frontera (pais1_id, pais2_id) VALUES (41, 42);
 
 --For testing!
-INSERT INTO Usuaris (id, nom, login, password, avatar, wins, games) VALUES (1, 'Andreu Niso', 'aniso', 'aniso', 'placeholder.png', 1000, 1000);
-INSERT INTO Usuaris (id, nom, login, password, avatar, wins, games) VALUES (2, 'Elena Romeu', 'eromeu', 'eromeu', 'placeholder.png', 1000, 1000);
-INSERT INTO Usuaris (id, nom, login, password, avatar, wins, games) VALUES (3, 'Ferran Morgades', 'fmorgades', 'fmorgades', 'placeholder.png', 1000, 1000);
+INSERT INTO Usuari (id, nom, login, password, avatar, wins, games) VALUES (1, 'Andreu Niso', 'aniso', 'aniso', 'placeholder.png', 1000, 1000);
+INSERT INTO Usuari (id, nom, login, password, avatar, wins, games) VALUES (2, 'Elena Romeu', 'eromeu', 'eromeu', 'placeholder.png', 1000, 1000);
+INSERT INTO Usuari (id, nom, login, password, avatar, wins, games) VALUES (3, 'Ferran Morgades', 'fmorgades', 'fmorgades', 'placeholder.png', 1000, 1000);

@@ -6,10 +6,7 @@ import org.springframework.web.socket.WebSocketSession;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 public class Jugador {
-    private WebSocketSession session;
-
     private long id;
     private Usuari usuari;
     private Partida partida;
@@ -18,8 +15,7 @@ public class Jugador {
     private List<Okupa> paisosOkupats;
 
     //Creació d'un jugador
-    public Jugador(WebSocketSession session, Usuari usuari) {
-        setSession(session);
+    public Jugador(Usuari usuari) {
         setUsuari(usuari);
         setCartes(new ArrayList<Carta>());
         setPaisosOkupats(new ArrayList<Okupa>());
@@ -33,14 +29,6 @@ public class Jugador {
         setNumero(numero);
         setCartes(cartes);
         setPaisosOkupats(paisosOkupats);
-    }
-
-    public WebSocketSession getSession() {
-        return session;
-    }
-
-    public void setSession(WebSocketSession session) {
-        this.session = session;
     }
 
     public long getId() {
