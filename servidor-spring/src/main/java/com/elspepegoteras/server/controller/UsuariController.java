@@ -6,6 +6,7 @@ import com.elspepegoteras.server.models.Usuari;
 import com.elspepegoteras.server.service.UsuariService;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/usuari")
 public class UsuariController {
