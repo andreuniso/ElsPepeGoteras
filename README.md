@@ -26,8 +26,8 @@ main → Versió estable del projecte (mai fer commit si no es estable!)
 dev → Zona per fer merge de les branques de desenvolupament i fer proves abans de passar-ho a main
 
 feat-servidor-andreu → Desenvolupament del servidor  
-feat-cliente-wpf-elena → Desenvolupament del client WPF  
-feat-cliente-web-ferran → Desenvolupament del client web
+feat-client-wpf-elena → Desenvolupament del client WPF  
+feat-client-web-ferran → Desenvolupament del client web
 
 ---
 
