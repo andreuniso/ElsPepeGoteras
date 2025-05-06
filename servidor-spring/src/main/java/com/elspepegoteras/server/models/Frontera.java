@@ -1,5 +1,7 @@
 package com.elspepegoteras.server.models;
 
+import jakarta.persistence.*;
+
 public class Frontera {
     private Pais pais1;
     private Pais pais2;

@@ -1,5 +1,7 @@
 package com.elspepegoteras.server.models;
 
+import jakarta.persistence.*;
+
 public class Continent {
     private long id;
     private String nom;

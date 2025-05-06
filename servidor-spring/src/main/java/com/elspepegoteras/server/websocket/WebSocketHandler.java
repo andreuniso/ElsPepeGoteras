@@ -1,39 +1,36 @@
 package com.elspepegoteras.server.websocket;
 
-import com.elspepegoteras.server.managers.GameManager;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class WebSocketHandler extends TextWebSocketHandler {
-    private final GameManager gameManager = GameManager.getInstance();
-    private List<WebSocketSession> sessions = new ArrayList<>();
+    private final ConcurrentHashMap<String, WebSocketSession> sessions = new ConcurrentHashMap<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
-        //Afegir sessió a la llista
-        sessions.add(session);
-        System.out.println("Nova connexió: " + session.getId());
+        String userId = session.getId();
+        sessions.put(userId, session);
+        System.out.println("🔗 Usuari connectat: " + userId);
     }
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
-        //Gestió del missatge rebut
-        System.out.println("Missatge rebut: " + message.getPayload());
+        System.out.println("📩 Missatge rebut: " + message.getPayload());
 
-        for (WebSocketSession s : sessions) {
+        //Exemple de com enviar un missatge a tots els clients connectats
+        for (WebSocketSession s : sessions.values()) {
             if (s.isOpen()) {
                 try {
-                    s.sendMessage(new TextMessage("Missatge rebut: " + message.getPayload()));
+                    s.sendMessage(new TextMessage("🔄 Echo: " + message.getPayload()));
                 } catch (IOException e) {
-                    System.out.println("Error enviant el missatge. Més informació: " + e.getMessage());
+                    System.out.println("❌ Error enviant missatge: " + e.getMessage());
                 }
             }
         }
@@ -41,9 +38,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
-        //Eliminar sessió de la llista
-        sessions.remove(session);
-        System.out.println("Connexió tancada: " + session.getId());
+        sessions.remove(session.getId());
+        System.out.println("❌ Usuari desconnectat: " + session.getId());
     }
 
     private Map<String, String> getQueryParams(String query) {

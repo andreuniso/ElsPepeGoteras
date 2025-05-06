@@ -1,20 +1,30 @@
 package com.elspepegoteras.server.models;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Usuari {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nom;
+
+    @Column(unique = true)
     private String login;
     private String password;
     private String avatar;
     private int wins;
     private int games;
 
+    //Constructor per defecte
+    public Usuari() {}
+
     //Creació d'un usuari
-    public Usuari(String nom, String login, String password, String avatar) {
+    public Usuari(String nom, String login, String password) {
         setNom(nom);
         setLogin(login);
         setPassword(password);
-        setAvatar(avatar);
+        setAvatar(null);
         setWins(0);
         setGames(0);
     }
@@ -33,7 +43,6 @@ public class Usuari {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -41,7 +50,6 @@ public class Usuari {
     public String getNom() {
         return nom;
     }
-
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -49,7 +57,6 @@ public class Usuari {
     public String getLogin() {
         return login;
     }
-
     public void setLogin(String login) {
         this.login = login;
     }
@@ -57,7 +64,6 @@ public class Usuari {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -65,15 +71,17 @@ public class Usuari {
     public String getAvatar() {
         return avatar;
     }
-
     public void setAvatar(String avatar) {
-        this.avatar = avatar;
+        if (avatar == null || avatar.isEmpty()) {
+            this.avatar = "default_avatar.png";
+        } else {
+            this.avatar = avatar;
+        }
     }
 
     public Integer getWins() {
         return wins;
     }
-
     public void setWins(Integer wins) {
         this.wins = wins;
     }
@@ -81,7 +89,6 @@ public class Usuari {
     public Integer getGames() {
         return games;
     }
-
     public void setGames(Integer games) {
         this.games = games;
     }

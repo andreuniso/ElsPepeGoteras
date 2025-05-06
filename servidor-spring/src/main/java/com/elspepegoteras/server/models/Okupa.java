@@ -1,5 +1,7 @@
 package com.elspepegoteras.server.models;
 
+import jakarta.persistence.*;
+
 public class Okupa {
     private Pais pais;
     private Jugador jugador;

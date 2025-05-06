@@ -1,6 +1,6 @@
 package com.elspepegoteras.server.models;
 
-import java.awt.*;
+import jakarta.persistence.*;
 
 public class Pais {
     private long id;
