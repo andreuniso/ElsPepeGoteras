@@ -19,17 +19,15 @@ public class UsuariService {
     }
 
     public boolean login(String login, String password) {
-        /*Usuari usuari = usuariRepository.findByLogin(login);
+        if (login == null || password == null) {
+            return false;
+        }
+
+        Usuari usuari = usuariRepository.findByLogin(login);
         if (usuari != null) {
             return usuari.getPassword().equals(password);
         }
-        return false;*/
-
-        if (login.equals("admin") && password.equals("admin")) {
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     public Usuari register(String nom, String login, String password) {
