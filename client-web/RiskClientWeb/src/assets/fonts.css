@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'MasterTitol';
+    src: url('@/assets/fonts/RusselSquareOpti.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
