@@ -4,22 +4,49 @@ import java.util.Date;
 import java.util.List;
 import jakarta.persistence.*;
 
+@Entity
 public class Partida {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, name = "data_inici")
     private Date dataInici;
+
+    @Column(nullable = false)
     private String nom;
+
+    @Column(unique = true)
     private String token;
+
+    @Column(nullable = false, name = "max_jugadors")
     private int maxJugadors;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "partida_id")
     private List<Jugador> jugadors;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "admin_id")
     private Jugador admin;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "jugador_actual_id")
     private Jugador jugadorActual;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Estats estat;
 
+    //Constructor per defecte
+    public Partida() {}
+
     //Creació d'una partida
-    public Partida(String nom, String token, int maxJugadors) {
+    public Partida(String nom, String token, int maxJugadors, Jugador admin) {
         setNom(nom);
         setToken(token);
         setMaxJugadors(maxJugadors);
+        setAdmin(admin);
         setDataInici(new Date());
         setEstat(Estats.ESPERA);
     }

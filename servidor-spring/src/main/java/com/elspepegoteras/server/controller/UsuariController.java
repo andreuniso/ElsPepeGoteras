@@ -6,6 +6,8 @@ import com.elspepegoteras.server.models.Usuari;
 import com.elspepegoteras.server.service.UsuariService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/usuari")
 public class UsuariController {
@@ -19,6 +21,18 @@ public class UsuariController {
     @GetMapping("/{login}")
     public Usuari getUsuari(@PathVariable String login) {
         return usuariService.getUsuari(login);
+    }
+
+    //Recuperar l'avatar de l'usuari per login
+    @GetMapping("/{login}/avatar")
+    public String getAvatar(@PathVariable String login) {
+        return usuariService.getAvatar(login);
+    }
+
+    //Recuperar tots els avatares disponibles
+    @GetMapping("/avatars")
+    public List<String> getAvatars() {
+        return usuariService.getAvatars();
     }
 
     //Validar credencials d'usuari

@@ -7,13 +7,23 @@ public class Usuari {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String nom;
 
     @Column(unique = true)
     private String login;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
     private String avatar;
+
+    @Column(nullable = false)
     private int wins;
+
+    @Column(nullable = false)
     private int games;
 
     //Constructor per defecte
@@ -24,7 +34,7 @@ public class Usuari {
         setNom(nom);
         setLogin(login);
         setPassword(password);
-        setAvatar(null);
+        setAvatar("default.png");
         setWins(0);
         setGames(0);
     }

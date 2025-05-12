@@ -64,11 +64,12 @@ CREATE TABLE Partida (
     id NUMBER(19) PRIMARY KEY,
     data_inici DATE NOT NULL,
     nom VARCHAR(255) NOT NULL,
-    token VARCHAR(255) NOT NULL,
+    token VARCHAR(255),
     max_players INT NOT NULL,
     admin_id NUMBER(19) NOT NULL,
     torn_player_id NUMBER(19) NOT NULL,
     estat_torn NUMBER(19) NOT NULL,
+	CONSTRAINT partida_token_uk UNIQUE (token),
     FOREIGN KEY (estat_torn) REFERENCES Estats(id)
 );
 
