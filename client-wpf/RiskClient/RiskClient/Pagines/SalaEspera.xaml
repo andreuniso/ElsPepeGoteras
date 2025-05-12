@@ -11,51 +11,71 @@
     <Grid>
         <!-- Fons de pantalla -->
         <Grid.Background>
-            <ImageBrush ImageSource="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\sala_espera.png"
-                        Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\sala_espera.png" Stretch="UniformToFill"/>
         </Grid.Background>
+        <Border Margin="80,40,80,40" Background="#AAFFFFFF" CornerRadius="16" BorderBrush="#DDD" BorderThickness="1" Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Títol -->
+                    <RowDefinition Height="*"/>
+                    <!-- Llista jugadors -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Botons -->
+                </Grid.RowDefinitions>
 
-        <Border Margin="80,40,80,40"
-                Background="#AAFFFFFF"
-                CornerRadius="16"
-                BorderBrush="#DDD"
-                BorderThickness="1">
-            <ListView x:Name="lvPlayers"
-                      ItemsSource="{Binding Usuaris}"
-                      Background="Transparent"
-                      BorderThickness="0"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Width="950"
-                      Height="680"
-                      Padding="20"
-                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <!-- Títol -->
+                <TextBlock Text="ESPERANT JUGADORS..." Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20"
+                           FontSize="40" FontWeight="Bold" Foreground="#004797" FontFamily="Comic Sans MS" TextWrapping="Wrap"/>
 
-                <!-- Layout en forma de quadrícula 2x3 amb separació -->
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Columns="2" Rows="3" Margin="10"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
+                <!-- Llistat d'usuaris -->
+                <ListView x:Name="lvPlayers" Grid.Row="1" ItemsSource="{Binding Usuaris}" Background="Transparent" BorderThickness="0"
+                          HorizontalAlignment="Center" VerticalAlignment="Top" Width="950" Height="680"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="2" Rows="3" Margin="10"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Margin" Value="10"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <uc:UCJugador usuaris="{Binding}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
-                <!-- Definim separació entre elements -->
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Margin" Value="10"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
+                <!-- Botons -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
+                    <Button x:Name="btnIniciar" Content="INICIAR" Width="220" Height="60" FontSize="24" Background="#004797" Foreground="White"
+                            BorderThickness="0" Padding="10" Cursor="Hand" Margin="0,0,20,0" Click="btnIniciar_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="30" Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
-                <!-- Cada element és un Usuari, passat al teu UserControl -->
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <uc:UCJugador usuaris="{Binding}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-            </ListView>
+                    <Button x:Name="btnCancelar" Content="Cancel·lar" Width="220" Height="60" FontSize="24" Background="White" Foreground="Black"
+                            BorderThickness="0" Padding="10" Cursor="Hand" Click="btnCancelar_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="30" Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </Page>

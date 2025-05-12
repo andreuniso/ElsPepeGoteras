@@ -8,25 +8,23 @@
     d:DesignHeight="450" d:DesignWidth="800"
     Title="PantallaPrincipal">
 
-  <Grid>
-      <!-- Fons -->
-      <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_inici.jpg" Stretch="Fill" />
+    <Grid>
+        <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_inici.jpg" Stretch="Fill" />
 
-      <Grid>
-          <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="2*" />
-              <ColumnDefinition Width="3*" />
-          </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
 
-          <Border Margin="190,30,190,30" Background="#AAFFFFFF" CornerRadius="16" BorderBrush="#DDD" BorderThickness="1" Grid.ColumnSpan="2">
-              <Grid Margin="40">
-                  <Grid.RowDefinitions>
-                      <RowDefinition Height="2*"/>
-                      <RowDefinition Height="*"/>
-                      <RowDefinition Height="*"/>
-                  </Grid.RowDefinitions>
+            <Border Margin="190,30,190,30" Background="#AAFFFFFF" CornerRadius="16" BorderBrush="#DDD" BorderThickness="1" Grid.ColumnSpan="2">
+                <Grid Margin="40">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                  <!-- Capçalera amb Avatar -->
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*" />
@@ -34,46 +32,48 @@
                             <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- Avatar gran -->
                         <Grid Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Border Width="250" Height="250" CornerRadius="125" BorderBrush="#222" BorderThickness="3" ClipToBounds="True" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <Image x:Name="AvatarGran" Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_inici.jpg" Stretch="UniformToFill"/>
+                            <Border Width="250" Height="250" ClipToBounds="True" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Image x:Name="AvatarGran" Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_inici.jpg" Stretch="UniformToFill">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="125,125" RadiusX="125" RadiusY="125"/>
+                                    </Image.Clip>
+                                </Image>
                             </Border>
                         </Grid>
 
-                        <!-- Selecció d'avatars petits -->
                         <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="AvatarSelector">
-                            <Border Width="50" Height="50" CornerRadius="25" BorderBrush="#222222" BorderThickness="2" Margin="0,10" MouseLeftButtonUp="AvatarMini_Click">
+                            <Border Width="50" Height="50" Margin="0,10" MouseLeftButtonUp="AvatarMini_Click">
                                 <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_inici.jpg" Stretch="UniformToFill" ClipToBounds="True">
                                     <Image.Clip>
-                                        <EllipseGeometry Center="25,25" RadiusX="50" RadiusY="50"/>
+                                        <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
                                     </Image.Clip>
                                 </Image>
                             </Border>
-                            <Border MouseLeftButtonUp="AvatarMini_Click" Width="50" Height="50" CornerRadius="25" BorderBrush="#84b6f4" BorderThickness="2" Margin="0,10">
-                                <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_principal.png" Stretch="UniformToFill" ClipToBounds="True">
+                            <Border Width="50" Height="50" Margin="0,10" MouseLeftButtonUp="AvatarMini_Click">
+                                <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\sala_espera.png" Stretch="UniformToFill" ClipToBounds="True">
                                     <Image.Clip>
-                                        <EllipseGeometry Center="25,25" RadiusX="50" RadiusY="50"/>
+                                        <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
                                     </Image.Clip>
                                 </Image>
                             </Border>
-                            <Border MouseLeftButtonUp="AvatarMini_Click" Width="50" Height="50" CornerRadius="25" BorderBrush="#84b6f4" BorderThickness="2" Margin="0,10">
+                            <Border Width="50" Height="50" Margin="0,10" MouseLeftButtonUp="AvatarMini_Click">
                                 <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_inici.jpg" Stretch="UniformToFill" ClipToBounds="True">
                                     <Image.Clip>
-                                        <EllipseGeometry Center="25,25" RadiusX="50" RadiusY="50"/>
+                                        <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
                                     </Image.Clip>
                                 </Image>
                             </Border>
-                            <Border MouseLeftButtonUp="AvatarMini_Click" Width="50" Height="50" CornerRadius="25" BorderBrush="#84b6f4" BorderThickness="2" Margin="0,10">
-                                <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_principal.png" Stretch="UniformToFill" ClipToBounds="True">
+                            <Border Width="50" Height="50" Margin="0,10" MouseLeftButtonUp="AvatarMini_Click">
+                                <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\sala_espera.png" Stretch="UniformToFill" ClipToBounds="True">
                                     <Image.Clip>
-                                        <EllipseGeometry Center="25,25" RadiusX="50" RadiusY="50"/>
+                                        <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
                                     </Image.Clip>
                                 </Image>
                             </Border>
                         </StackPanel>
 
-                        <!-- Dades d'usuari i botó d'editar -->
+                        <!-- Dades d'usuari i botó edita -->
                         <Grid Grid.Column="2" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="3*" />
@@ -83,74 +83,81 @@
                             <!-- Dades Usuari -->
                             <StackPanel Grid.Column="0" Margin="20,0,0,0" VerticalAlignment="Center">
                                 <!-- Nom Usuari -->
-                                <TextBlock x:Name="TxtNomUsuari" Text="Joan Garcia" FontWeight="Bold" FontSize="30" Visibility="Visible"/>
-                                <TextBox x:Name="EditNomUsuari" Text="Joan Garcia" FontSize="24" Visibility="Collapsed" Background="#f7318aCC" Foreground="White" BorderBrush="#84b6f4" BorderThickness="1" Padding="8,4" Margin="0,4,0,4" Width="300" Height="50"/>
+                                <TextBlock x:Name="TxtNomUsuari" Text="Joan Garcia" FontWeight="Bold" FontSize="36" Visibility="Visible"/>
+                                <TextBox x:Name="EditNomUsuari" Text="Joan Garcia" FontSize="28" Visibility="Collapsed" Background="#f7318aCC" Foreground="White" BorderBrush="#84b6f4" BorderThickness="1" Padding="8,4" Margin="0,4,0,4" Width="300" Height="50"/>
 
                                 <!-- Nickname -->
-                                <TextBlock x:Name="TxtNickname" Text="joan123" FontSize="24" Visibility="Visible"/>
-                                <TextBox x:Name="EditNickname" Text="joan123" FontSize="18" Visibility="Collapsed" Background="#f7318aCC" Foreground="White" BorderBrush="#84b6f4" BorderThickness="1" Padding="8,4" Margin="0,4,0,4" Width="300" Height="50"/>
+                                <TextBlock x:Name="TxtNickname" Text="joan123" FontSize="28" Visibility="Visible"/>
+                                <TextBox x:Name="EditNickname" Text="joan123" FontSize="24" Visibility="Collapsed" Background="#f7318aCC" Foreground="White" BorderBrush="#84b6f4" BorderThickness="1" Padding="8,4" Margin="0,4,0,4" Width="300" Height="50"/>
 
-                                <!-- Contrasenya -->
-                                <TextBlock x:Name="TxtContrasenya" Text="••••••" FontSize="24" Visibility="Visible"/>
-                                <PasswordBox x:Name="EditContrasenya" FontSize="18" Visibility="Collapsed" Background="#f7318aCC" Foreground="White" BorderBrush="#84b6f4" BorderThickness="1" Padding="8,4" Margin="0,4,0,4" Width="300" Height="50"/>
+                                <!-- Contrasenya (Només en edició!) -->
+                                <PasswordBox x:Name="EditContrasenya" FontSize="24" Visibility="Collapsed" Background="#f7318aCC" Foreground="White" BorderBrush="#84b6f4" BorderThickness="1" Padding="8,4" Margin="0,4,0,4" Width="300" Height="50"/>
                             </StackPanel>
 
-
-
-                            <!-- Botó Edita/Desa -->
+                            <!-- Botó edita/desa -->
                             <Button x:Name="BtnEditaDesa" Grid.Column="1" Width="44" Height="44" Background="Transparent" BorderThickness="0" Click="BtnEditaDesa_Click" VerticalAlignment="Top" Margin="10">
                                 <TextBlock x:Name="IconEditaDesa" Text="✎" FontSize="24" Foreground="White" HorizontalAlignment="Center" />
                             </Button>
                         </Grid>
                     </Grid>
 
-                  <!-- Botons crear/unir partida -->
-                  <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                      <Button x:Name="btnCrearPartida" Content="Crear Partida" Width="300" Height="100" 
-                              FontSize="30" FontWeight="Bold" Background="#84b6f4" Foreground="#222" 
-                              BorderThickness="0" Click="btnCrearPartida_Click">
-                          <Button.Template>
-                              <ControlTemplate TargetType="Button">
-                                  <Border Background="{TemplateBinding Background}" CornerRadius="50">
-                                      <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                  </Border>
-                              </ControlTemplate>
-                          </Button.Template>
-                      </Button>
+                    <!-- Botons Crear/Unir Partida -->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button x:Name="btnCrearPartida" Content="Crear Partida" Width="300" Height="100" FontSize="30" FontWeight="Bold" Background="#84b6f4" Foreground="#222" BorderThickness="0" Click="btnCrearPartida_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="50">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#f7318a"/>
+                                            <Setter TargetName="border" Property="Cursor" Value="Hand"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
                         <StackPanel Margin="30"/>
                         <Button Content="Unir-se Partida" Width="300" Height="100" Margin="10,0" FontSize="30" FontWeight="Bold" Background="#84b6f4" Foreground="#222" BorderThickness="0">
-                          <Button.Template>
-                              <ControlTemplate TargetType="Button">
-                                  <Border Background="{TemplateBinding Background}" CornerRadius="50">
-                                      <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                  </Border>
-                              </ControlTemplate>
-                          </Button.Template>
-                      </Button>
-                  </StackPanel>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="50">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#f7318a"/>
+                                            <Setter TargetName="border" Property="Cursor" Value="Hand"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
 
-                  <!-- Estadístiques -->
-                  <Grid Grid.Row="2" Margin="0,20,0,0" VerticalAlignment="Bottom">
-                      <Grid.ColumnDefinitions>
-                          <ColumnDefinition Width="*" />
-                          <ColumnDefinition Width="*" />
-                      </Grid.ColumnDefinitions>
+                    <!-- Estadístiques -->
+                    <Grid Grid.Row="2" Margin="0,20,0,0" VerticalAlignment="Bottom">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                      <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                          <TextBlock Text="🏆" FontSize="60" HorizontalAlignment="Center"/>
-                          <TextBlock Text="Partides Guanyades" FontSize="16" HorizontalAlignment="Center"/>
-                          <TextBlock x:Name="TxtPartidesGuanyades" Text="3" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
-                      </StackPanel>
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                            <TextBlock Text="🏆" FontSize="60" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Partides Guanyades" FontSize="18" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="TxtPartidesGuanyades" Text="3" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        </StackPanel>
 
-                      <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                          <TextBlock Text="🎮" FontSize="60" HorizontalAlignment="Center"/>
-                          <TextBlock Text="Partides Jugades" FontSize="16" HorizontalAlignment="Center"/>
-                          <TextBlock x:Name="TxtPartidesJugades" Text="15" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
-                      </StackPanel>
-                  </Grid>
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                            <TextBlock Text="🎮" FontSize="60" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Partides Jugades" FontSize="18" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="TxtPartidesJugades" Text="15" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
 
-              </Grid>
-          </Border>
-      </Grid>
-  </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
 </Page>

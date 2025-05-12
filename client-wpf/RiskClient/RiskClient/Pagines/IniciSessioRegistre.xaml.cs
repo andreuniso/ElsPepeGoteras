@@ -30,11 +30,20 @@ namespace RiskClient.Models
             string login = TxtUsuari.Text;
             string password = TxtContrasenya.Password;
 
+            // Validem que els camps no estiguin buits
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("El nom d'usuari i la contrasenya no poden estar buits.");
+                BtnInicia.IsEnabled = true;
+                return;
+            }
+
             // Creem l'usuari i fem login
             var usuari = new Usuari(login, password);
             bool loginOk;
             try
             {
+                // Comprovem si les credencials són vàlides
                 loginOk = await _userService.LoginAsync(usuari);
             }
             catch (Exception ex)
@@ -58,6 +67,7 @@ namespace RiskClient.Models
             // Naveguem a la pantalla principal
             NavigationService?.Navigate(new RiskClient.Pagines.PantallaPrincipal());
         }
+
 
         private void RegistraText_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

@@ -60,7 +60,7 @@ namespace RiskClient.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/RiskClient;component/usercontrols/ucjugador.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/RiskClient;V1.0.0.0;component/usercontrols/ucjugador.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UserControls\UCJugador.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

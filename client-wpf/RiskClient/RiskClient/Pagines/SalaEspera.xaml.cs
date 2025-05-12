@@ -35,5 +35,15 @@ namespace RiskClient.Pagines
             InitializeComponent();
             DataContext = this;
         }
+
+        private void btnIniciar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
