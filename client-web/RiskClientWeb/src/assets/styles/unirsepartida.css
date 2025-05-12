@@ -1,0 +1,60 @@
+.unirse-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 15px;
+    color: white;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .unirse-codi {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .unirse-codi input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .unirse-codi button {
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .llistat-partides {
+    margin-top: 1rem;
+  }
+  
+  .partides-scroll {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .partida-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .partida-card button {
+    margin-top: 0.5rem;
+    background-color: #3498db;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
