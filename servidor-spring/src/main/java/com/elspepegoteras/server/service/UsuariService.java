@@ -28,7 +28,6 @@ public class UsuariService {
         return usuariRepository.findByLogin(login);
     }
 
-    //Lògica per obtenir l'avatar de l'usuari
     public String getAvatar(String login) {
         Usuari usuari = usuariRepository.findByLogin(login);
 
@@ -38,7 +37,6 @@ public class UsuariService {
         return null;
     }
 
-    //Lògica per obtenir tots els avatares disponibles
     public List<String> getAvatars() {
         try (Stream<Path> paths = Files.walk(avatarsDirectory)) {
             return paths.filter(Files::isRegularFile)

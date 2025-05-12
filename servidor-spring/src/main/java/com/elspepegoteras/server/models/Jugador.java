@@ -1,18 +1,37 @@
 package com.elspepegoteras.server.models;
 
 import jakarta.persistence.*;
-import org.springframework.web.socket.WebSocketSession;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Jugador {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "skfUser_id")
     private Usuari usuari;
+
+    @ManyToOne
+    @JoinColumn(name = "skfPartida_id")
     private Partida partida;
+
+    @Column(name = "skfNumero")
     private int numero;
-    private List<Carta> cartes;
+
+    @OneToMany(mappedBy = "jugador")
     private List<Okupa> paisosOkupats;
+
+    @ManyToMany
+    @JoinTable(
+            name = "MA",
+            joinColumns = @JoinColumn(name = "jugador_id"),
+            inverseJoinColumns = @JoinColumn(name = "carta_id")
+    )
+    private List<Carta> cartes;
 
     //Creació d'un jugador
     public Jugador(Usuari usuari) {

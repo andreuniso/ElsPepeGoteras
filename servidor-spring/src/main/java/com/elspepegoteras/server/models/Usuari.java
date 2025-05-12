@@ -34,7 +34,7 @@ public class Usuari {
         setNom(nom);
         setLogin(login);
         setPassword(password);
-        setAvatar("default.png");
+        setAvatar(null);
         setWins(0);
         setGames(0);
     }
@@ -83,7 +83,7 @@ public class Usuari {
     }
     public void setAvatar(String avatar) {
         if (avatar == null || avatar.isEmpty()) {
-            this.avatar = "default_avatar.png";
+            this.avatar = "avatar_home_1.png";
         } else {
             this.avatar = avatar;
         }

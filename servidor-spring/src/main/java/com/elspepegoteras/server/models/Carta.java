@@ -2,9 +2,18 @@ package com.elspepegoteras.server.models;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Carta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "tipus")
     private TipusCarta tipusCarta;
+
+    @ManyToOne
+    @JoinColumn(name = "pais_id")
     private Pais pais;
 
     //Creació d'una carta

@@ -10,7 +10,7 @@ public class Partida {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, name = "data_inici")
+    @Column(name = "data_inici", nullable = false)
     private Date dataInici;
 
     @Column(nullable = false)
@@ -19,23 +19,19 @@ public class Partida {
     @Column(unique = true)
     private String token;
 
-    @Column(nullable = false, name = "max_jugadors")
+    @Column(name = "max_players", nullable = false)
     private int maxJugadors;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "partida_id")
-    private List<Jugador> jugadors;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "admin_id")
     private Jugador admin;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "jugador_actual_id")
+    @ManyToOne
+    @JoinColumn(name = "torn_player_id")
     private Jugador jugadorActual;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "estat_torn", nullable = false)
     private Estats estat;
 
     //Constructor per defecte
@@ -52,13 +48,12 @@ public class Partida {
     }
 
     //Recuperació d'una partida
-    public Partida(long id, Date dataInici, String nom, String token, int maxJugadors, List<Jugador> jugadors, Jugador admin, Jugador jugadorActual, Estats estat) {
+    public Partida(long id, Date dataInici, String nom, String token, int maxJugadors, Jugador admin, Jugador jugadorActual, Estats estat) {
         setId(id);
         setDataInici(dataInici);
         setNom(nom);
         setToken(token);
         setMaxJugadors(maxJugadors);
-        setJugadors(jugadors);
         setAdmin(admin);
         setJugadorActual(jugadorActual);
         setEstat(estat);
@@ -102,18 +97,6 @@ public class Partida {
 
     public void setMaxJugadors(int maxJugadors) {
         this.maxJugadors = maxJugadors;
-    }
-
-    public void addJugador(Jugador jugador) {
-        this.jugadors.add(jugador);
-    }
-
-    public List<Jugador> getJugadors() {
-        return jugadors;
-    }
-
-    public void setJugadors(List<Jugador> jugadors) {
-        this.jugadors = jugadors;
     }
 
     public Jugador getAdmin() {

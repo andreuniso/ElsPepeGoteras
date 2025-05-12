@@ -2,9 +2,15 @@ package com.elspepegoteras.server.models;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Continent {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String nom;
+
+    @Column(name = "reforc_tropes")
     private int reforcTropes;
 
     //Creació d'un continent

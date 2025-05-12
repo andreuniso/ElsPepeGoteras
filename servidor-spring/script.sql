@@ -20,7 +20,6 @@ CREATE TABLE Pais (
     id NUMBER(19) PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     continent_id NUMBER(19) NOT NULL,
-    imatge VARCHAR(255) NOT NULL,
     FOREIGN KEY (continent_id) REFERENCES Continent(id)
 );
 
@@ -124,48 +123,48 @@ INSERT INTO Continent (id, nom, reforc_tropes) VALUES (4, 'Àfrica', 3);
 INSERT INTO Continent (id, nom, reforc_tropes) VALUES (5, 'Asia', 7);
 INSERT INTO Continent (id, nom, reforc_tropes) VALUES (6, 'Australia', 2);
 
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (1, 'Alaska', 1, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (2, 'Territori del Nord-oest', 1, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (3, 'Alberta', 1, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (4, 'Ontario', 1, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (5, 'Quebec', 1, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (6, 'Oest dels Estats Units', 1, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (7, 'Est dels Estats Units', 1, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (8, 'Amèrica Central', 1, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (9, 'Grenlàndia', 1, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (10, 'Veneçuela', 2, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (11, 'Perú', 2, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (12, 'Brasil', 2, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (13, 'Argentina', 2, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (14, 'Islàndia', 3, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (15, 'Gran Bretanya', 3, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (16, 'Escandinàvia', 3, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (17, 'Europa del Nord', 3, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (18, 'Europa Occidental', 3, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (19, 'Europa Meridional', 3, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (20, 'Ucraïna', 3, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (21, 'Àfrica del Nord', 4, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (22, 'Egipte', 4, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (23, 'Àfrica Oriental', 4, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (24, 'Congo', 4, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (25, 'Sud-àfrica', 4, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (26, 'Madagascar', 4, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (27, 'Ural', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (28, 'Sibèria', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (29, 'Iakutsk', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (30, 'Kamtxatka', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (31, 'Irkutsk', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (32, 'Mongòlia', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (33, 'Japó', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (34, 'Afganistan', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (35, 'Xina', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (36, 'Pròxim Orient', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (37, 'Índia', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (38, 'Sud-est Asiàtic', 5, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (39, 'Indonèsia', 6, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (40, 'Nova Guinea', 6, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (41, 'Austràlia Occidental', 6, 'placeholder.png');
-INSERT INTO Pais (id, nom, continent_id, imatge) VALUES (42, 'Austràlia Oriental', 6, 'placeholder.png');
+INSERT INTO Pais (id, nom, continent_id) VALUES (1, 'Alaska', 1);
+INSERT INTO Pais (id, nom, continent_id) VALUES (2, 'Territori del Nord-oest', 1);
+INSERT INTO Pais (id, nom, continent_id) VALUES (3, 'Alberta', 1);
+INSERT INTO Pais (id, nom, continent_id) VALUES (4, 'Ontario', 1);
+INSERT INTO Pais (id, nom, continent_id) VALUES (5, 'Quebec', 1);
+INSERT INTO Pais (id, nom, continent_id) VALUES (6, 'Oest dels Estats Units', 1);
+INSERT INTO Pais (id, nom, continent_id) VALUES (7, 'Est dels Estats Units', 1);
+INSERT INTO Pais (id, nom, continent_id) VALUES (8, 'Amèrica Central', 1);
+INSERT INTO Pais (id, nom, continent_id) VALUES (9, 'Grenlàndia', 1);
+INSERT INTO Pais (id, nom, continent_id) VALUES (10, 'Veneçuela', 2);
+INSERT INTO Pais (id, nom, continent_id) VALUES (11, 'Perú', 2);
+INSERT INTO Pais (id, nom, continent_id) VALUES (12, 'Brasil', 2);
+INSERT INTO Pais (id, nom, continent_id) VALUES (13, 'Argentina', 2);
+INSERT INTO Pais (id, nom, continent_id) VALUES (14, 'Islàndia', 3);
+INSERT INTO Pais (id, nom, continent_id) VALUES (15, 'Gran Bretanya', 3);
+INSERT INTO Pais (id, nom, continent_id) VALUES (16, 'Escandinàvia', 3);
+INSERT INTO Pais (id, nom, continent_id) VALUES (17, 'Europa del Nord', 3);
+INSERT INTO Pais (id, nom, continent_id) VALUES (18, 'Europa Occidental', 3);
+INSERT INTO Pais (id, nom, continent_id) VALUES (19, 'Europa Meridional', 3);
+INSERT INTO Pais (id, nom, continent_id) VALUES (20, 'Ucraïna', 3);
+INSERT INTO Pais (id, nom, continent_id) VALUES (21, 'Àfrica del Nord', 4);
+INSERT INTO Pais (id, nom, continent_id) VALUES (22, 'Egipte', 4);
+INSERT INTO Pais (id, nom, continent_id) VALUES (23, 'Àfrica Oriental', 4);
+INSERT INTO Pais (id, nom, continent_id) VALUES (24, 'Congo', 4);
+INSERT INTO Pais (id, nom, continent_id) VALUES (25, 'Sud-àfrica', 4);
+INSERT INTO Pais (id, nom, continent_id) VALUES (26, 'Madagascar', 4);
+INSERT INTO Pais (id, nom, continent_id) VALUES (27, 'Ural', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (28, 'Sibèria', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (29, 'Iakutsk', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (30, 'Kamtxatka', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (31, 'Irkutsk', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (32, 'Mongòlia', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (33, 'Japó', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (34, 'Afganistan', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (35, 'Xina', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (36, 'Pròxim Orient', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (37, 'Índia', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (38, 'Sud-est Asiàtic', 5);
+INSERT INTO Pais (id, nom, continent_id) VALUES (39, 'Indonèsia', 6);
+INSERT INTO Pais (id, nom, continent_id) VALUES (40, 'Nova Guinea', 6);
+INSERT INTO Pais (id, nom, continent_id) VALUES (41, 'Austràlia Occidental', 6);
+INSERT INTO Pais (id, nom, continent_id) VALUES (42, 'Austràlia Oriental', 6);
 
 INSERT INTO Frontera (pais1_id, pais2_id) VALUES (1, 2);    
 INSERT INTO Frontera (pais1_id, pais2_id) VALUES (1, 3);
@@ -247,6 +246,8 @@ INSERT INTO Frontera (pais1_id, pais2_id) VALUES (40, 42);
 INSERT INTO Frontera (pais1_id, pais2_id) VALUES (41, 42);
 
 --For testing!
-INSERT INTO Usuari (id, nom, login, password, avatar, wins, games) VALUES (1, 'Andreu Niso', 'aniso', 'aniso', 'placeholder.png', 1000, 1000);
-INSERT INTO Usuari (id, nom, login, password, avatar, wins, games) VALUES (2, 'Elena Romeu', 'eromeu', 'eromeu', 'placeholder.png', 1000, 1000);
-INSERT INTO Usuari (id, nom, login, password, avatar, wins, games) VALUES (3, 'Ferran Morgades', 'fmorgades', 'fmorgades', 'placeholder.png', 1000, 1000);
+INSERT INTO Usuari (id, nom, login, password, avatar, wins, games) VALUES (1, 'Andreu Niso', 'aniso', 'aniso', 'avatar_home_1.png', 1000, 1000);
+INSERT INTO Usuari (id, nom, login, password, avatar, wins, games) VALUES (2, 'Elena Romeu', 'eromeu', 'eromeu', 'avatar_dona_1.png', 1000, 1000);
+INSERT INTO Usuari (id, nom, login, password, avatar, wins, games) VALUES (3, 'Ferran Morgades', 'fmorgades', 'fmorgades', 'avatar_home_2.png', 1000, 1000);
+
+COMMIT;
