@@ -77,7 +77,7 @@ CREATE TABLE Jugador (
     skfUser_id NUMBER(19) NOT NULL,
     skfPartida_id NUMBER(19) NOT NULL,
     skfNumero INT NOT NULL,
-    FOREIGN KEY (skfUser_id) REFERENCES Usuaris(id),
+    FOREIGN KEY (skfUser_id) REFERENCES Usuari(id),
     FOREIGN KEY (skfPartida_id) REFERENCES Partida(id),
     UNIQUE (skfUser_id, skfPartida_id),
     UNIQUE (skfPartida_id, skfNumero)

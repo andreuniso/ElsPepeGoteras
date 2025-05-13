@@ -39,27 +39,26 @@ Conté la gestió de connexions WebSocket en temps real.
 ### `PartidaController`
 Ruta base: `/api/partida`
 
-| Endpoint | Mètode | Descripció |
-|----------|--------|-------------|
-| `/id/{id}` | `GET` | Recupera una partida per ID |
-| `/token/{token}` | `GET` | Recupera una partida per token |
-| `/public` | `GET` | Llista totes les partides públiques (token `null`) |
-| `/crear` | `POST` | Crea una nova partida amb un `PartidaDTO` |
-| `/` | `PUT` | Actualitza una partida existent |
-| `/{id}` | `DELETE` | Elimina una partida per ID |
+| Endpoint         | Mètode   | Retorn          | Descripció                                         |
+|------------------|----------|-----------------|----------------------------------------------------|
+| `/id/{id}`       | `GET`    | `Partida`       | Recupera una partida per ID                        |
+| `/token/{token}` | `GET`    | `Partida`       | Recupera una partida per token                     |
+| `/public`        | `GET`    | `List<Partida>` | Llista totes les partides públiques (token `null`) |
+| `/crear`         | `POST`   | `Partida`       | Crea una nova partida amb un `PartidaDTO`          |
+| `/`              | `PUT`    | `Partida`       | Actualitza una partida existent                    |
+| `/{id}`          | `DELETE` | `void`          | Elimina una partida per ID                         |
 
 ### `UsuariController`
 Ruta base: `/api/usuari`
 
-| Endpoint | Mètode | Descripció |
-|----------|--------|-------------|
-| `/{login}` | `GET` | Recupera un usuari pel seu login |
-| `/{login}/avatar` | `GET` | Retorna l'avatar del usuari |
-| `/avatars` | `GET` | Retorna tots els avatars disponibles |
-| `/login` | `POST` | Valida login d'un usuari amb `LoginDTO` |
-| `/register` | `POST` | Registra un nou usuari amb `RegisterDTO` |
-| `/` | `POST` | Actualitza dades d'un usuari |
-| `/{id}` | `DELETE` | Elimina un usuari per ID |
+| Endpoint    | Mètode   | Retorn         | Descripció                               |
+|-------------|----------|----------------|------------------------------------------|
+| `/{login}`  | `GET`    | `Usuari`       | Recupera un usuari pel seu login         |
+| `/avatars`  | `GET`    | `List<String>` | Retorna tots els avatars disponibles     |
+| `/login`    | `POST`   | `boolean`      | Valida login d'un usuari amb `LoginDTO`  |
+| `/register` | `POST`   | `Usuari`       | Registra un nou usuari amb `RegisterDTO` |
+| `/`         | `POST`   | `Usuari`       | Actualitza dades d'un usuari             |
+| `/{id}`     | `DELETE` | `void`         | Elimina un usuari per ID                 |
 
 ---
 

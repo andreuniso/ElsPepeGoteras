@@ -42,7 +42,7 @@ public class UsuariController {
     }
 
     //Actualitzar un usuari
-    @PostMapping("/")
+    @PutMapping("/")
     public Usuari actualitzarUsuari(@RequestBody Usuari usuari) {
         return usuariService.actualitzarUsuari(usuari);
     }
