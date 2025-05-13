@@ -3,29 +3,30 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:RiskClient.Pagines"
       mc:Ignorable="d"
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="ConfiguracioPartida">
 
     <Page.Resources>
-        <!-- Estil general -->
+        <!-- Estils Generals -->
         <Style TargetType="TextBox">
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
 
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
 
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
 
-        <!-- Estil Switch/Toggle -->
+        <!-- Estil Switch Toggle -->
         <Style x:Key="SwitchToggleStyle" TargetType="CheckBox">
             <Setter Property="Template">
                 <Setter.Value>
@@ -52,7 +53,7 @@
 
     <Grid>
         <!-- Fons -->
-        <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_inici.jpg" Stretch="Fill"/>
+        <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\sala_creacio.png" Stretch="Fill"/>
 
         <!-- Panell Configuració -->
         <Border Margin="120,20,120,20" Background="#AAFFFFFF" CornerRadius="16" BorderBrush="#DDD" BorderThickness="1">
@@ -92,13 +93,13 @@
 
                 <!-- Switch pública/privada -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0">
-                    <CheckBox x:Name="ChkPrivada" Style="{StaticResource SwitchToggleStyle}" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                    <CheckBox x:Name="ChkPrivada" Style="{StaticResource SwitchToggleStyle}" Margin="0,0,20,0"/>
                     <TextBlock Text="Privada" VerticalAlignment="Center" Foreground="#222"/>
                 </StackPanel>
 
                 <!-- Botons Confirmar/Cancel·lar -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0">
-                    <Button Content="Crear" Width="200" Height="80" Background="#84b6f4" Foreground="#222" FontWeight="Bold" FontSize="28" BorderThickness="0">
+                    <Button x:Name="btnCrearPartida" Content="Crear" Width="200" Height="80" Background="#84b6f4" Foreground="#222" FontWeight="Bold" FontSize="28" BorderThickness="0" Click="btnCrearPartida_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" CornerRadius="40">
@@ -123,5 +124,4 @@
             </StackPanel>
         </Border>
     </Grid>
-
 </Page>

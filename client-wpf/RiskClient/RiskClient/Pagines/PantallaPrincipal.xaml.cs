@@ -18,7 +18,6 @@ namespace RiskClient.Pagines
         {
             TxtNomUsuari.Text = "Joan Garcia";
             TxtNickname.Text = "joan123";
-            TxtContrasenya.Text = "••••••";
             TxtPartidesGuanyades.Text = "3";
             TxtPartidesJugades.Text = "15";
             MostraModeVisualitzacio();
@@ -41,12 +40,10 @@ namespace RiskClient.Pagines
             // Omplim els controls d'edició
             EditNomUsuari.Text = TxtNomUsuari.Text;
             EditNickname.Text = TxtNickname.Text;
-            EditContrasenya.Password = TxtContrasenya.Text;
 
             // Amaguem els TextBlock
             TxtNomUsuari.Visibility = Visibility.Collapsed;
             TxtNickname.Visibility = Visibility.Collapsed;
-            TxtContrasenya.Visibility = Visibility.Collapsed;
 
             // Mostrem els controls d'edició
             EditNomUsuari.Visibility = Visibility.Visible;
@@ -65,12 +62,10 @@ namespace RiskClient.Pagines
             // Guardem les dades
             TxtNomUsuari.Text = EditNomUsuari.Text;
             TxtNickname.Text = EditNickname.Text;
-            TxtContrasenya.Text = EditContrasenya.Password;
 
             // Tornem a mostrar els TextBlock
             TxtNomUsuari.Visibility = Visibility.Visible;
             TxtNickname.Visibility = Visibility.Visible;
-            TxtContrasenya.Visibility = Visibility.Visible;
 
             // Amaguem els controls d'edició
             EditNomUsuari.Visibility = Visibility.Collapsed;
@@ -88,7 +83,6 @@ namespace RiskClient.Pagines
         {
             TxtNomUsuari.Visibility = Visibility.Visible;
             TxtNickname.Visibility = Visibility.Visible;
-            TxtContrasenya.Visibility = Visibility.Visible;
 
             EditNomUsuari.Visibility = Visibility.Collapsed;
             EditNickname.Visibility = Visibility.Collapsed;
@@ -110,6 +104,11 @@ namespace RiskClient.Pagines
             {
                 AvatarGran.Source = miniatura.Source;
             }
+        }
+
+        private void btnUnirse_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new LlistatPartides());
         }
     }
 }
