@@ -1,4 +1,6 @@
 <template>
+  <div class="main-container">
+    <div class="game-background"></div>
     <div class="unirse-container">
       <h2>Unir-se a una Partida</h2>
   
@@ -8,7 +10,7 @@
       </div>
 
       <div class="llistat-partides">
-        <h3>Partides Disponibles</h3>
+        <h3>Partides Disponibles:</h3>
         <div class="partides-scroll">
           <div v-for="partida in partides" :key="partida.id" class="partida-card">
             <p><strong>Nom:</strong> {{ partida.nom }}</p>
@@ -17,11 +19,22 @@
           </div>
         </div>
       </div>
+      <button class="logout-btn tamany-btn" @click="tornar">Torna al menú</button>
     </div>
-  </template>
+  </div>
+</template>
   
   <script>
+   import { useUserStore } from '@/store/user';
+  import { useRouter } from 'vue-router';
+
   export default {
+    setup() {
+      const userStore = useUserStore();
+      const router = useRouter();
+
+      return { userStore, router };
+    },
     data() {
       return {
         codiPartida: '',
@@ -29,7 +42,8 @@
       };
     },
     mounted() {
-      this.carregarPartides();
+      //this.carregarPartides(); Aqui carregarem les partides que trovem quan ens les passi el servidor
+      console.log(this.userStore.isAuthenticated);
     },
     methods: {
       carregarPartides() {
@@ -50,6 +64,9 @@
           })
           .catch(err => alert(err.message));
       },
+      tornar() {
+            this.router.push('/');
+      },
       unirPartida(idPartida) {
         fetch(`http://localhost:8080/api/partides/unir/${idPartida}`, {
           method: 'POST'
@@ -64,6 +81,6 @@
   };
   </script>
   
-
+  <style scoped src="@/assets/styles/menuinicial.css"></style>
   <style scoped src="@/assets/styles/unirsepartida.css"></style>
   

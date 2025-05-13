@@ -3,8 +3,10 @@
     padding: 2rem;
     border-radius: 15px;
     color: white;
-    max-width: 600px;
+    max-width: 1000px;
+    width: 50%;
     margin: auto;
+    
   }
   
   .unirse-codi {
@@ -56,5 +58,11 @@
     padding: 10px;
     color: white;
     border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .tamany-btn {
+    width: 100%;
+    height: 50px;
     cursor: pointer;
   }

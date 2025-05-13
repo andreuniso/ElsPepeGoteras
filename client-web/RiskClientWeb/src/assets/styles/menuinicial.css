@@ -168,6 +168,7 @@
     margin-top: 2rem;
     background-color: rgba(231, 76, 60, 0.2);
     border-color: rgba(231, 76, 60, 0.4);
+    color: white;
   }
   
   .logout-btn:hover {

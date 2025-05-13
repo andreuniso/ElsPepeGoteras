@@ -57,8 +57,12 @@
 <script>
 import { useUserStore } from '@/store/user'; 
 import { useRouter } from 'vue-router';
+import CrearPartida from '@/components/CrearPartida.vue';
 
 export default {
+  components: {
+    CrearPartida,
+  },
   data() {
     return {
       showLogin: true,
@@ -68,6 +72,7 @@ export default {
       registerUser: '',
       registerPassword: '',
       registerConfirmarPassword: '',
+      mostrantCrearPartida: false,
     }
   },
   setup() {

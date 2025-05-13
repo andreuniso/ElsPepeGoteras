@@ -60,17 +60,35 @@
       };
     },
     mounted() {
-        this.carregarAvatarsDisponibles();
+        this.carregarAvatarsDisponibles().then(() =>{
+            this.carregarAvatarUsuari();
+        });
     },
     methods: {
         carregarAvatarsDisponibles() {
-            fetch('http://localhost:8080/api/usuari/avatars')
+            return fetch('http://localhost:8080/api/usuari/avatars')
             .then(res => res.json())
             .then(data => {
                 this.avatarsDisponibles = data.map(b64 => `data:image/png;base64,${b64}`);
             })
             .catch(err => {
                 console.error('Error carregant avatars:', err);
+            });
+        },
+        carregarAvatarUsuari() {
+            fetch('http://localhost:8080/api/usuari/getAvatar')
+            .then(res => res.json)
+            .then(data => {
+                const avatarBase64 = `data:image/png;base64,${data}`;
+                const index =  this.avatarsDisponibles.indexOf(avatarBase64);
+
+                if (index != -1) {
+                  this.avatarSeleccionat = this.avatarsDisponibles[index];
+                } else {
+                  console.error("L'avatar de l'usuari no coincideix amb els dispoonibles");
+                }
+            }).catch(err => {
+                console.error("Error obtenint l'avatar de l'usuari:", err);
             });
         },
         seleccionarAvatar(index) {
