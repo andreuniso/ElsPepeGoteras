@@ -24,3 +24,8 @@ git push origin main
 
 CLONAR REPOSITORI:
 git clone https://github.com/andreuniso/ElsPepeGoteras.git
+
+RESTABLIR LA BRANCA LOCAL AL ESTAT DEL DEV DEL NÚVOL (PERDS EL QUE TENS EN LOCAL!!!):
+
+git fetch origin
+git reset --hard origin/dev

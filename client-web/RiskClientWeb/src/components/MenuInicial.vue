@@ -98,10 +98,16 @@ export default {
           password: this.loginPassword
         })
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Error en la respuesta del servidor");
+        }
+        return response.json();
+      })
       .then(data => {
-        if (data == true) {
-          this.userStore.login(this.loginUser);
+        if (data !== null) {
+          console.info(this.loginUser);
+          this.userStore.login(this.loginUser); 
         } else {
           alert("Credencials incorrectes!");
         }
