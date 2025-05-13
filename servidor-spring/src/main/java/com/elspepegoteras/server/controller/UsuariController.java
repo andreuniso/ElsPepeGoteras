@@ -17,12 +17,6 @@ public class UsuariController {
         this.usuariService = usuariService;
     }
 
-    //Recuperar un usuari per login
-    @GetMapping("/{login}")
-    public Usuari getUsuari(@PathVariable String login) {
-        return usuariService.getUsuari(login);
-    }
-
     //Recuperar tots els avatares disponibles
     @GetMapping("/avatars")
     public List<String> getAvatars() {
@@ -31,7 +25,7 @@ public class UsuariController {
 
     //Validar credencials d'usuari
     @PostMapping("/login")
-    public boolean login(@RequestBody LoginDTO loginDTO) {
+    public Usuari login(@RequestBody LoginDTO loginDTO) {
         return usuariService.login(loginDTO.getLogin(), loginDTO.getPassword());
     }
 

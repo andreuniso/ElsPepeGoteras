@@ -19,10 +19,6 @@ public class UsuariService {
         this.usuariRepository = usuariRepository;
     }
 
-    public Usuari getUsuari(String login) {
-        return usuariRepository.findByLogin(login);
-    }
-
     public List<String> getAvatars() {
         try {
             URL resource = getClass().getClassLoader().getResource("static/avatars");
@@ -41,16 +37,16 @@ public class UsuariService {
         }
     }
 
-    public boolean login(String login, String password) {
+    public Usuari login(String login, String password) {
         if (login == null || password == null) {
-            return false;
+            return null;
         }
 
         Usuari usuari = usuariRepository.findByLogin(login);
-        if (usuari != null) {
-            return usuari.getPassword().equals(password);
+        if (usuari != null && usuari.getPassword().equals(password)) {
+            return usuari;
         }
-        return false;
+        return null;
     }
 
     public Usuari register(String nom, String login, String password) {
