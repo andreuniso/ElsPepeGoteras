@@ -53,9 +53,8 @@ Ruta base: `/api/usuari`
 
 | Endpoint    | Mètode   | Retorn         | Descripció                               |
 |-------------|----------|----------------|------------------------------------------|
-| `/{login}`  | `GET`    | `Usuari`       | Recupera un usuari pel seu login         |
 | `/avatars`  | `GET`    | `List<String>` | Retorna tots els avatars disponibles     |
-| `/login`    | `POST`   | `boolean`      | Valida login d'un usuari amb `LoginDTO`  |
+| `/login`    | `POST`   | `Usuari`       | Valida login d'un usuari amb `LoginDTO`  |
 | `/register` | `POST`   | `Usuari`       | Registra un nou usuari amb `RegisterDTO` |
 | `/`         | `POST`   | `Usuari`       | Actualitza dades d'un usuari             |
 | `/{id}`     | `DELETE` | `void`         | Elimina un usuari per ID                 |
