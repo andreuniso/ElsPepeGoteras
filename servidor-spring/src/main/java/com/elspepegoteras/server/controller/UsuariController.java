@@ -23,12 +23,6 @@ public class UsuariController {
         return usuariService.getUsuari(login);
     }
 
-    //Recuperar l'avatar de l'usuari per login
-    @GetMapping("/{login}/avatar")
-    public String getAvatar(@PathVariable String login) {
-        return usuariService.getAvatar(login);
-    }
-
     //Recuperar tots els avatares disponibles
     @GetMapping("/avatars")
     public List<String> getAvatars() {
