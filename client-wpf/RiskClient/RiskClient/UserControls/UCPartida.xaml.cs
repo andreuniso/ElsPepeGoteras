@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RiskClient.Models;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RiskClient.UserControls
 {
-    /// <summary>
-    /// Lógica de interacción para UCPartida.xaml
-    /// </summary>
     public partial class UCPartida : UserControl
     {
         public UCPartida()
         {
             InitializeComponent();
         }
+
+        public Partida partida
+        {
+            get { return (Partida)GetValue(PartidaProperty); }
+            set { SetValue(PartidaProperty, value); }
+        }
+
+        public static readonly DependencyProperty PartidaProperty =
+            DependencyProperty.Register("partida", typeof(Partida), typeof(UCPartida), new PropertyMetadata(null));        
+        
     }
 }

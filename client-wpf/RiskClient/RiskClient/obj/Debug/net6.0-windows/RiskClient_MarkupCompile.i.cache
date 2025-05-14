@@ -10,19 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\M13 - PROJECTE\RiskClient\RiskClient\App.xaml
-<<<<<<< HEAD
-6513092029
+92047151860
 
-12-674730565
+211674879989
 194370617981
-MainWindow.xaml;Pagines\ConfiguracioPartida.xaml;Pagines\IniciSessioRegistre.xaml;Pagines\Mapa.xaml;Pagines\PantallaPrincipal.xaml;UserControls\UCPartida.xaml;
-=======
-3697971354
+MainWindow.xaml;Pagines\ConfiguracioPartida.xaml;Pagines\IniciSessioRegistre.xaml;Pagines\LlistatPartides.xaml;Pagines\Mapa.xaml;Pagines\PantallaPrincipal.xaml;Pagines\SalaEspera.xaml;UserControls\UCJugador.xaml;UserControls\UCPartida.xaml;
 
-81876555668
-194370617981
-MainWindow.xaml;Pagines\IniciSessioRegistre.xaml;Pagines\Mapa.xaml;
->>>>>>> 0ee73eab525e45adc4986e3b0cbe15fd89680742
-
-True
+False
 

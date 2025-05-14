@@ -17,7 +17,7 @@ namespace RiskClient.Serveis
 
             try
             {
-                await _webSocket.ConnectAsync(new Uri("ws://localhost:8080/ws"), CancellationToken.None);
+                await _webSocket.ConnectAsync(new Uri("ws://localhost:8080/risk"), CancellationToken.None);
                 MessageBox.Show("Connectat al servidor WebSocket!");
 
                 _ = EscoltarMissatgesAsync(); // Escoltem missatges automàticament
