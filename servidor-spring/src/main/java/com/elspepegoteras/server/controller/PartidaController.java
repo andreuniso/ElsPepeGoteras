@@ -25,7 +25,7 @@ public class PartidaController {
 
     //Recuperar partida per token
     @GetMapping("/token/{token}")
-    public Partida getPartida(@PathVariable String token) {
+    public Partida getPartidaByToken(@PathVariable String token) {
         return partidaService.getPartidaByToken(token);
     }
 
@@ -38,7 +38,7 @@ public class PartidaController {
     //Crear una nova partida
     @PostMapping("/crear")
     public Partida crearPartida(@RequestBody PartidaDTO partida) {
-        return partidaService.crearPartida(new Partida(partida.getNom(), partida.getToken(), partida.getMaxJugadors(), partida.getAdmin()));
+        return partidaService.crearPartida(partida);
     }
 
     //Actualitzar una partida
@@ -48,7 +48,7 @@ public class PartidaController {
     }
 
     // Eliminar una partida
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public void eliminarPartida(@PathVariable long id) {
         partidaService.eliminarPartida(id);
     }

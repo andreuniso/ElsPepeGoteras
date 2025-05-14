@@ -3,9 +3,10 @@ package com.elspepegoteras.server.models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "pais")
 public class Pais {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String nom;

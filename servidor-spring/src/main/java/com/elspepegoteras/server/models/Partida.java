@@ -1,12 +1,17 @@
 package com.elspepegoteras.server.models;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
+@Table(name = "partida")
 public class Partida {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "data_inici", nullable = false)
@@ -23,10 +28,12 @@ public class Partida {
 
     @ManyToOne
     @JoinColumn(name = "admin_id")
+    @JsonBackReference
     private Jugador admin;
 
     @ManyToOne
     @JoinColumn(name = "torn_player_id")
+    @JsonBackReference
     private Jugador jugadorActual;
 
     @Enumerated(EnumType.ORDINAL)
@@ -37,11 +44,20 @@ public class Partida {
     public Partida() {}
 
     //Creació d'una partida
-    public Partida(String nom, String token, int maxJugadors, Jugador admin) {
+    public Partida(String nom, String token, int maxJugadors) {
         setNom(nom);
         setToken(token);
         setMaxJugadors(maxJugadors);
-        setAdmin(admin);
+        setDataInici(new Date());
+        setEstat(Estats.ESPERA);
+    }
+
+    //Creació d'una partida
+    public Partida(String nom, String token, int maxJugadors, Usuari admin) {
+        setNom(nom);
+        setToken(token);
+        setMaxJugadors(maxJugadors);
+        setAdmin(new Jugador(admin));
         setDataInici(new Date());
         setEstat(Estats.ESPERA);
     }

@@ -56,7 +56,7 @@ Ruta base: `/api/usuari`
 | `/avatars`  | `GET`    | `List<String>` | Retorna tots els avatars disponibles     |
 | `/login`    | `POST`   | `Usuari`       | Valida login d'un usuari amb `LoginDTO`  |
 | `/register` | `POST`   | `Usuari`       | Registra un nou usuari amb `RegisterDTO` |
-| `/`         | `POST`   | `Usuari`       | Actualitza dades d'un usuari             |
+| `/`         | `PUT`    | `Usuari`       | Actualitza dades d'un usuari             |
 | `/{id}`     | `DELETE` | `void`         | Elimina un usuari per ID                 |
 
 ---

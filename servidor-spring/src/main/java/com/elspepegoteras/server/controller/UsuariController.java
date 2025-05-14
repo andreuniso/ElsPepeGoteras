@@ -32,12 +32,7 @@ public class UsuariController {
     //Registrar un nou usuari
     @PostMapping("/register")
     public Usuari register(@RequestBody RegisterDTO registerDTO) {
-        try {
-            return usuariService.register(registerDTO.getNom(), registerDTO.getLogin(), registerDTO.getPassword());
-        } catch (Exception e) {
-            e.printStackTrace(); // Te mostrará el error real en la consola
-            throw e;
-        }
+        return usuariService.register(registerDTO.getNom(), registerDTO.getLogin(), registerDTO.getPassword());
     }
 
     //Actualitzar un usuari
@@ -47,7 +42,7 @@ public class UsuariController {
     }
 
     //Eliminar un usuari
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public void eliminarUsuari(@PathVariable Long id) {
         usuariService.eliminarUsuari(id);
     }

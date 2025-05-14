@@ -8,5 +8,6 @@ import java.util.List;
 public interface PartidaRepository extends JpaRepository<Partida, Long> {
     Partida findById(long id);
     Partida findByToken(String token);
+    boolean existsByToken(String token);
     List<Partida> findByTokenIsNull(); //Partides públiques
 }

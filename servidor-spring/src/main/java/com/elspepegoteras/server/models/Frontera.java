@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @IdClass(FronteraId.class)
+@Table(name = "frontera")
 public class Frontera {
     @Id
     @ManyToOne

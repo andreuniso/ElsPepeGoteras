@@ -1,25 +1,28 @@
 package com.elspepegoteras.server.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "jugador")
 public class Jugador {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "skfUser_id")
+    @JoinColumn(name = "SKF_USER_ID", nullable = false)
     private Usuari usuari;
 
     @ManyToOne
-    @JoinColumn(name = "skfPartida_id")
+    @JoinColumn(name = "SKF_PARTIDA_ID", nullable = false)
+    @JsonManagedReference
     private Partida partida;
 
-    @Column(name = "skfNumero")
+    @Column(name = "SKF_NUMERO")
     private int numero;
 
     @OneToMany(mappedBy = "jugador")
@@ -32,6 +35,12 @@ public class Jugador {
             inverseJoinColumns = @JoinColumn(name = "carta_id")
     )
     private List<Carta> cartes;
+
+    //Constructor per defecte
+    public Jugador() {
+        setCartes(new ArrayList<Carta>());
+        setPaisosOkupats(new ArrayList<Okupa>());
+    }
 
     //Creació d'un jugador
     public Jugador(Usuari usuari) {
