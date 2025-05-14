@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Continent {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String nom;

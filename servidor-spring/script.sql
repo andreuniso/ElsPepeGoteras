@@ -56,7 +56,8 @@ CREATE TABLE Usuari (
     password VARCHAR(255) NOT NULL,
     avatar VARCHAR(255) NOT NULL,
     wins INT NOT NULL,
-    games INT NOT NULL
+    games INT NOT NULL,
+	CONSTRAINT uq_usuari_login UNIQUE (login)
 );
 
 CREATE TABLE Partida (

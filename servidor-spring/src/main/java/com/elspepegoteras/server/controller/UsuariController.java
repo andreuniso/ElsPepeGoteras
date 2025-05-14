@@ -32,7 +32,12 @@ public class UsuariController {
     //Registrar un nou usuari
     @PostMapping("/register")
     public Usuari register(@RequestBody RegisterDTO registerDTO) {
-        return usuariService.register(registerDTO.getNom(), registerDTO.getLogin(), registerDTO.getPassword());
+        try {
+            return usuariService.register(registerDTO.getNom(), registerDTO.getLogin(), registerDTO.getPassword());
+        } catch (Exception e) {
+            e.printStackTrace(); // Te mostrará el error real en la consola
+            throw e;
+        }
     }
 
     //Actualitzar un usuari
