@@ -69,7 +69,7 @@ namespace RiskClient.Pagines {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/RiskClient;V1.0.0.0;component/pagines/llistatpartides.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/RiskClient;component/pagines/llistatpartides.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pagines\LlistatPartides.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

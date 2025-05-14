@@ -11,6 +11,7 @@ namespace RiskClient.Pagines
     {
         public List<Partida> Partides { get; set; } = new List<Partida>();
 
+        //dades de provaaaaa 
         public LlistatPartides()
         {
             InitializeComponent();
@@ -104,7 +105,6 @@ namespace RiskClient.Pagines
             string token = txtTokenPrivada.Text.Trim();
             if (!string.IsNullOrEmpty(token))
             {
-                // Buscar una partida privada que tingui aquest token
                 Partida? partidaPrivada = Partides.FirstOrDefault(p => p.Token == token);
 
                 if (partidaPrivada != null)
@@ -124,8 +124,6 @@ namespace RiskClient.Pagines
 
         private void UnirAlaPartida(Partida partida)
         {
-            // Aquí navegues cap a la sala d'espera amb la partida escollida
-            // De moment simulem la navegació (s'hauria de passar la partida realment)
             NavigationService?.Navigate(new SalaEspera());
         }
     }

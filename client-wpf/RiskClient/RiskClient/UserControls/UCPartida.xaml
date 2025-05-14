@@ -14,12 +14,10 @@
                 <ColumnDefinition Width="1.5*" />
             </Grid.ColumnDefinitions>
 
-            <!-- Nom Partida -->
             <TextBlock Text="{Binding partida.Nom}" 
                FontSize="26" FontWeight="Bold" Foreground="#333"
                VerticalAlignment="Center" HorizontalAlignment="Left" />
 
-            <!-- Llista de Jugadors -->
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="{Binding partida.LlistaJugadorsIds.Count}" FontSize="22" Foreground="#666"/>
                 <TextBlock Text="/" FontSize="22" Foreground="#666"/>

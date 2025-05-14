@@ -5,14 +5,13 @@ namespace RiskClient.Pagines
 {
     public partial class ConfiguracioPartida : Page
     {
-        private int quantitatJugadors = 3; // Valor inicial
+        private int quantitatJugadors = 3; 
 
         public ConfiguracioPartida()
         {
             InitializeComponent();
             TxtQuantitatJugadors.Text = quantitatJugadors.ToString();
 
-            // Assignem els events als botons
             BtnDecrementa.Click += BtnDecrementa_Click;
             BtnIncrementa.Click += BtnIncrementa_Click;
         }

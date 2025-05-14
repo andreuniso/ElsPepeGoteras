@@ -17,20 +17,16 @@ namespace RiskClient.Models
         public IniciSessioRegistre()
         {
             InitializeComponent();
-            // Instanciem el servei HTTP amb la URL base del servidor
             _userService = new UserService("http://localhost:8080");
         }
 
         private async void BtnInicia_Click(object sender, RoutedEventArgs e)
         {
-            // Deshabilitem el botó per evitar múltiples clics
             BtnInicia.IsEnabled = false;
 
-            // Recollim les credencials de la UI
             string login = TxtUsuari.Text;
             string password = TxtContrasenya.Password;
 
-            // Validem que els camps no estiguin buits
             if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("El nom d'usuari i la contrasenya no poden estar buits.");
@@ -38,13 +34,15 @@ namespace RiskClient.Models
                 return;
             }
 
-            // Creem l'usuari i fem login
-            var usuari = new Usuari(login, password);
+            Usuari usuari = new Usuari(login, password);
             Usuari? usuariAutenticat;
             try
             {
-                // Comprovem si les credencials són vàlides
                 usuariAutenticat = await _userService.LoginAsync(usuari);
+                if (usuariAutenticat != null)
+                {
+                    UsuariActual.Set(usuariAutenticat); 
+                }
             }
             catch (Exception ex)
             {
@@ -60,11 +58,10 @@ namespace RiskClient.Models
                 return;
             }
 
-            // Un cop login OK, connectem via WebSocket
+            //Aixo çes per conectar amb el websockeet
             _webSocketClient = new WebSocketClient();
             await _webSocketClient.ConnectarAsync();
 
-            // Naveguem a la pantalla principal
             NavigationService?.Navigate(new RiskClient.Pagines.PantallaPrincipal());
         }
 
