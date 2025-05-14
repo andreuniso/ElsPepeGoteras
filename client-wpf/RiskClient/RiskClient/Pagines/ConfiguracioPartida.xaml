@@ -1,0 +1,127 @@
+﻿<Page x:Class="RiskClient.Pagines.ConfiguracioPartida"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:RiskClient.Pagines"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ConfiguracioPartida">
+
+    <Page.Resources>
+        <!-- Estil general -->
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="28"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="28"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="28"/>
+        </Style>
+
+        <!-- Estil Switch/Toggle -->
+        <Style x:Key="SwitchToggleStyle" TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid Width="80" Height="40">
+                            <Border x:Name="SwitchBorder" CornerRadius="20" Background="#ccc" />
+                            <Ellipse x:Name="SwitchThumb" Width="36" Height="36" Fill="White" Margin="2"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="SwitchBorder" Property="Background" Value="#84b6f4"/>
+                                <Setter TargetName="SwitchThumb" Property="Margin" Value="40,2,2,2"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="SwitchBorder" Property="Background" Value="#ccc"/>
+                                <Setter TargetName="SwitchThumb" Property="Margin" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <!-- Fons -->
+        <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_inici.jpg" Stretch="Fill"/>
+
+        <!-- Panell Configuració -->
+        <Border Margin="120,20,120,20" Background="#AAFFFFFF" CornerRadius="16" BorderBrush="#DDD" BorderThickness="1">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20">
+
+                <!-- Nom de la Partida -->
+                <TextBlock Text="Nom de la Partida" FontSize="32" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center"/>
+                <Border Background="#f7318aCC" CornerRadius="10" BorderBrush="#84b6f4" BorderThickness="1" Width="400" Padding="12,6" Margin="0,20,0,0">
+                    <TextBox x:Name="TxtNomPartida" Background="Transparent" BorderThickness="0" Foreground="White" HorizontalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Quantitat de Jugadors -->
+                <TextBlock Text="Quantitat de Jugadors" FontSize="32" FontWeight="Bold" Foreground="#222" HorizontalAlignment="Center" Margin="0,30,0,0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
+                    <Button x:Name="BtnDecrementa" Width="70" Height="70" Background="#84b6f4" BorderThickness="0" Foreground="White" FontSize="36" Content="&lt;">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="35">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <TextBlock x:Name="TxtQuantitatJugadors" Text="3" FontSize="36" VerticalAlignment="Center" Foreground="#222" Width="70" TextAlignment="Center" Margin="20,0"/>
+
+                    <Button x:Name="BtnIncrementa" Width="70" Height="70" Background="#84b6f4" BorderThickness="0" Foreground="White" FontSize="36" Content="&gt;">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="35">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+
+                <!-- Switch pública/privada -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0">
+                    <CheckBox x:Name="ChkPrivada" Style="{StaticResource SwitchToggleStyle}" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                    <TextBlock Text="Privada" VerticalAlignment="Center" Foreground="#222"/>
+                </StackPanel>
+
+                <!-- Botons Confirmar/Cancel·lar -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0">
+                    <Button Content="Crear" Width="200" Height="80" Background="#84b6f4" Foreground="#222" FontWeight="Bold" FontSize="28" BorderThickness="0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="40">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <StackPanel Margin="40"/>
+
+                    <Button Content="Cancel·lar" Width="200" Height="80" Background="#f7318aCC" Foreground="White" FontWeight="Bold" FontSize="28" BorderThickness="0" Click="BtnCancelar_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="40">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</Page>

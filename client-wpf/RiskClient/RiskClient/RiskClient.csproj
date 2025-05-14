@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Imatges\" />
+    <Folder Include="Models\" />
+    <Folder Include="Utils\" />
+<<<<<<< HEAD
+=======
+    <Folder Include="Serveis\" />
+>>>>>>> 0ee73eab525e45adc4986e3b0cbe15fd89680742
+  </ItemGroup>
+
+</Project>
