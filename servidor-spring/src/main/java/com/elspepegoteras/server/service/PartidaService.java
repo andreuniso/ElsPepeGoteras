@@ -1,5 +1,6 @@
 package com.elspepegoteras.server.service;
 
+import com.elspepegoteras.server.dto.JoinPartidaDTO;
 import com.elspepegoteras.server.dto.PartidaDTO;
 import com.elspepegoteras.server.models.Jugador;
 import com.elspepegoteras.server.models.Partida;
@@ -11,6 +12,8 @@ import com.elspepegoteras.server.security.TokenGenerator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class PartidaService {
@@ -31,7 +34,7 @@ public class PartidaService {
      * @return Retorna un objecte Partida amb l'ID especificat, o null si no existeix
      */
     public Partida getPartidaById(long id) {
-        return partidaRepository.findById(id);
+        return partidaRepository.findById(id).orElse(null);
     }
 
     /**
@@ -40,7 +43,7 @@ public class PartidaService {
      * @return Retorna un objecte Partida amb el token especificat, o null si no existeix
      */
     public Partida getPartidaByToken(String token) {
-        return partidaRepository.findByToken(token);
+        return partidaRepository.findByToken(token).orElse(null);
     }
 
     /**
@@ -89,6 +92,45 @@ public class PartidaService {
     }
 
     /**
+     * S'uneix a una partida existent.
+     * @param partida L'objecte JoinPartidaDTO que conté la informació de la partida a la qual s'unirà
+     * @return Retorna un objecte Partida amb la informació de la partida unida
+     */
+    public Partida joinPartida(JoinPartidaDTO partida) {
+        if (partida == null || (partida.getIdPartida() == null && partida.getToken() == null)) {
+            return null; //No s'ha proporcionat cap identificador
+        }
+
+        Optional<Partida> partidaExistent = Optional.empty();
+        if (partida.getIdPartida() != null) {
+            //Partida pública
+            partidaExistent = partidaRepository.findById(partida.getIdPartida());
+        } else if (partida.getToken() != null) {
+            //Partida privada
+            partidaExistent = partidaRepository.findByToken(partida.getToken());
+        }
+
+        if (partidaExistent.isPresent()) {
+            Partida p = partidaExistent.get();
+
+            List<Jugador> jugadors = jugadorRepository.findByPartida(p);
+            if (jugadors.size() >= p.getMaxJugadors()) {
+                return null; //La partida ja està plena
+            }
+
+            Usuari usuari = usuariRepository.findById(partida.getIdUsuari()).orElse(null);
+            if (usuari != null && jugadors.stream().anyMatch(j -> !Objects.equals(j.getUsuari().getId(), usuari.getId()))) {
+                Jugador jugador = new Jugador(usuari);
+                jugador.setPartida(p);
+                jugadorRepository.save(jugador);
+
+                return p;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Actualitza una partida existent.
      * @param partida L'objecte Partida que conté la informació actualitzada de la partida
      * @return Retorna un objecte Partida amb la informació actualitzada
@@ -102,17 +144,19 @@ public class PartidaService {
      * @param id L'ID de la partida a eliminar
      */
     public void eliminarPartida(long id) {
-        Partida partida = partidaRepository.findById(id);
-        partida.setAdminId(null);
-        partida.setTornPlayerId(null);
-        partidaRepository.save(partida);
+        Partida partida = partidaRepository.findById(id).orElse(null);
+        if (partida != null) {
+            partida.setAdminId(null);
+            partida.setTornPlayerId(null);
+            partidaRepository.save(partida);
 
-        List<Jugador> jugadors = jugadorRepository.findByPartida(partida);
-        for (Jugador j : jugadors) {
-            j.setPartida(null);
-            jugadorRepository.delete(j);
+            List<Jugador> jugadors = jugadorRepository.findByPartida(partida);
+            for (Jugador j : jugadors) {
+                j.setPartida(null);
+                jugadorRepository.delete(j);
+            }
+
+            partidaRepository.delete(partida);
         }
-
-        partidaRepository.delete(partida);
     }
 }

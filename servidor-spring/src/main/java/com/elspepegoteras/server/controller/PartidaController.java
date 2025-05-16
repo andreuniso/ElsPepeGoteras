@@ -1,5 +1,6 @@
 package com.elspepegoteras.server.controller;
 
+import com.elspepegoteras.server.dto.JoinPartidaDTO;
 import com.elspepegoteras.server.dto.PartidaDTO;
 import com.elspepegoteras.server.models.Partida;
 import com.elspepegoteras.server.service.PartidaService;
@@ -39,6 +40,12 @@ public class PartidaController {
     @PostMapping("/crear")
     public Partida crearPartida(@RequestBody PartidaDTO partida) {
         return partidaService.crearPartida(partida);
+    }
+
+    //Unir-se a una partida
+    @PostMapping("/join")
+    public Partida joinPartida(@RequestBody JoinPartidaDTO partida) {
+        return partidaService.joinPartida(partida);
     }
 
     //Actualitzar una partida
