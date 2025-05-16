@@ -1,18 +1,16 @@
 package com.elspepegoteras.server.dto;
 
-import com.elspepegoteras.server.models.Usuari;
-
 public class PartidaDTO {
     private String nom;
     private int maxJugadors;
     private boolean esPrivada;
-    private Usuari admin;
+    private long userAdminId;
 
-    public PartidaDTO(String nom, int maxJugadors, boolean esPrivada, Usuari admin) {
+    public PartidaDTO(String nom, int maxJugadors, boolean esPrivada, long userAdminId) {
         this.nom = nom;
         this.maxJugadors = maxJugadors;
         this.esPrivada = esPrivada;
-        this.admin = admin;
+        this.userAdminId = userAdminId;
     }
 
     public String getNom() {
@@ -39,11 +37,11 @@ public class PartidaDTO {
         this.esPrivada = esPrivada;
     }
 
-    public Usuari getAdmin() {
-        return admin;
+    public long getUserAdminId() {
+        return userAdminId;
     }
 
-    public void setAdmin(Usuari admin) {
-        this.admin = admin;
+    public void setUserAdminId(long userAdminId) {
+        this.userAdminId = userAdminId;
     }
 }

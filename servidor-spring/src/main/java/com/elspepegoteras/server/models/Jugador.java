@@ -19,7 +19,6 @@ public class Jugador {
 
     @ManyToOne
     @JoinColumn(name = "SKF_PARTIDA_ID", nullable = false)
-    @JsonManagedReference
     private Partida partida;
 
     @Column(name = "SKF_NUMERO")

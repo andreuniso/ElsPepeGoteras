@@ -1,13 +1,13 @@
 package com.elspepegoteras.server.models;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "partida")
-public class Partida {
+public class PartidaBackup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -24,21 +24,25 @@ public class Partida {
     @Column(name = "max_players", nullable = false)
     private int maxJugadors;
 
-    @Column(name = "admin_id")
-    private long adminId;
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
+    @JsonBackReference
+    private Jugador admin;
 
-    @Column (name = "torn_player_id")
-    private long tornPlayerId;
+    @ManyToOne
+    @JoinColumn(name = "torn_player_id")
+    @JsonBackReference
+    private Jugador jugadorActual;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "estat_torn", nullable = false)
     private Estats estat;
 
     //Constructor per defecte
-    public Partida() {}
+    public PartidaBackup() {}
 
     //Creació d'una partida
-    public Partida(String nom, String token, int maxJugadors) {
+    public PartidaBackup(String nom, String token, int maxJugadors) {
         setNom(nom);
         setToken(token);
         setMaxJugadors(maxJugadors);
@@ -47,24 +51,24 @@ public class Partida {
     }
 
     //Creació d'una partida
-    public Partida(String nom, String token, int maxJugadors, long adminId) {
+    public PartidaBackup(String nom, String token, int maxJugadors, Usuari admin) {
         setNom(nom);
         setToken(token);
         setMaxJugadors(maxJugadors);
-        setAdminId(adminId);
+        setAdmin(new Jugador(admin));
         setDataInici(new Date());
         setEstat(Estats.ESPERA);
     }
 
     //Recuperació d'una partida
-    public Partida(long id, Date dataInici, String nom, String token, int maxJugadors, long adminId, Jugador jugadorActual, Estats estat) {
+    public PartidaBackup(long id, Date dataInici, String nom, String token, int maxJugadors, Jugador admin, Jugador jugadorActual, Estats estat) {
         setId(id);
         setDataInici(dataInici);
         setNom(nom);
         setToken(token);
         setMaxJugadors(maxJugadors);
-        setAdminId(adminId);
-        setTornPlayerId(jugadorActual.getId());
+        setAdmin(admin);
+        setJugadorActual(jugadorActual);
         setEstat(estat);
     }
 
@@ -108,20 +112,20 @@ public class Partida {
         this.maxJugadors = maxJugadors;
     }
 
-    public long getAdminId() {
-        return adminId;
+    public Jugador getAdmin() {
+        return admin;
     }
 
-    public void setAdminId(long adminId) {
-        this.adminId = adminId;
+    public void setAdmin(Jugador admin) {
+        this.admin = admin;
     }
 
-    public long getTornPlayerId() {
-        return tornPlayerId;
+    public Jugador getJugadorActual() {
+        return jugadorActual;
     }
 
-    public void setTornPlayerId(long tornPlayerId) {
-        this.tornPlayerId = tornPlayerId;
+    public void setJugadorActual(Jugador jugadorActual) {
+        this.jugadorActual = jugadorActual;
     }
 
     public Estats getEstat() {

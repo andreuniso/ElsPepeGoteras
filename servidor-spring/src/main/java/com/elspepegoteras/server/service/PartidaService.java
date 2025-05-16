@@ -42,7 +42,7 @@ public class PartidaService {
 
     //Crear partida
     public Partida crearPartida(PartidaDTO partidaDTO) {
-        Usuari usuari = usuariRepository.findById(partidaDTO.getAdmin().getId()).orElse(null);
+        Usuari usuari = usuariRepository.findById(partidaDTO.getUserAdminId()).orElse(null);
 
         if (usuari != null) {
             //Generació d'un token únic per la partida
@@ -65,7 +65,7 @@ public class PartidaService {
 
             jugadorRepository.save(admin); //Guardem el jugador a la BD
 
-            partida.setAdmin(admin); //Assignem el jugador admin a la partida
+            partida.setAdminId(admin.getId()); //Assignem el jugador admin a la partida
             partida = partidaRepository.save(partida); //Guardem la partida amb el jugador admin
 
             return partida;
@@ -82,10 +82,6 @@ public class PartidaService {
     //Eliminar partida
     public void eliminarPartida(long id) {
         Partida partida = partidaRepository.findById(id);
-
-        //Eliminem la FK del jugador admin
-        partida.setAdmin(null);
-        partidaRepository.save(partida);
 
         List<Jugador> jugadors = jugadorRepository.findByPartida(partida);
         for (Jugador j : jugadors) {
