@@ -42,12 +42,12 @@ public class PartidaController {
     }
 
     //Actualitzar una partida
-    @PutMapping("/")
+    @PutMapping("/actualitzar")
     public Partida actualizarPartida(@RequestBody Partida partida) {
         return partidaService.actualizarPartida(partida);
     }
 
-    // Eliminar una partida
+    //Eliminar una partida
     @DeleteMapping("/eliminar/{id}")
     public void eliminarPartida(@PathVariable long id) {
         partidaService.eliminarPartida(id);

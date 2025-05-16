@@ -24,6 +24,10 @@ Conté les entitats JPA que representen les taules de la base de dades.
 Conté les interfícies que hereten de `JpaRepository`, permetent accedir a la base de dades.  
 🔍 Exemple: `UsuariRepository`, `PartidaRepository`.
 
+### `security`
+Conté la configuració de seguretat del servidor.  
+🔒 Exemple: `generació de tokens`, `encriptació`.
+
 ### `service`
 Conté la lògica de negoci.  
 ⚙️ Exemple: crear partida, validar login, afegir jugadors...
@@ -36,6 +40,13 @@ Conté la gestió de connexions WebSocket en temps real.
 
 ## 🎯 Controladors i els seus Endpoints
 
+### `JugadorController`  
+Ruta base: `/api/jugador`  
+
+| Endpoint         | Mètode   | Retorn    | Descripció                 |
+|------------------|----------|-----------|----------------------------|
+| `/id/{id}`       | `GET`    | `Jugador` | Recupera un jugador per ID |
+
 ### `PartidaController`
 Ruta base: `/api/partida`
 
@@ -45,19 +56,19 @@ Ruta base: `/api/partida`
 | `/token/{token}` | `GET`    | `Partida`       | Recupera una partida per token                     |
 | `/public`        | `GET`    | `List<Partida>` | Llista totes les partides públiques (token `null`) |
 | `/crear`         | `POST`   | `Partida`       | Crea una nova partida amb un `PartidaDTO`          |
-| `/`              | `PUT`    | `Partida`       | Actualitza una partida existent                    |
-| `/{id}`          | `DELETE` | `void`          | Elimina una partida per ID                         |
+| `/actualitzar`   | `PUT`    | `Partida`       | Actualitza una partida existent                    |
+| `/eliminar/{id}` | `DELETE` | `void`          | Elimina una partida per ID                         |
 
 ### `UsuariController`
 Ruta base: `/api/usuari`
 
-| Endpoint    | Mètode   | Retorn         | Descripció                               |
-|-------------|----------|----------------|------------------------------------------|
-| `/avatars`  | `GET`    | `List<String>` | Retorna tots els avatars disponibles     |
-| `/login`    | `POST`   | `Usuari`       | Valida login d'un usuari amb `LoginDTO`  |
-| `/register` | `POST`   | `Usuari`       | Registra un nou usuari amb `RegisterDTO` |
-| `/`         | `PUT`    | `Usuari`       | Actualitza dades d'un usuari             |
-| `/{id}`     | `DELETE` | `void`         | Elimina un usuari per ID                 |
+| Endpoint       | Mètode   | Retorn         | Descripció                               |
+|----------------|----------|----------------|------------------------------------------|
+| `/avatars`     | `GET`    | `List<String>` | Retorna tots els avatars disponibles     |
+| `/login`       | `POST`   | `Usuari`       | Valida login d'un usuari amb `LoginDTO`  |
+| `/register`    | `POST`   | `Usuari`       | Registra un nou usuari amb `RegisterDTO` |
+| `/actualitzar` | `PUT`    | `Usuari`       | Actualitza dades d'un usuari             |
+| `/{id}`        | `DELETE` | `void`         | Elimina un usuari per ID                 |
 
 ---
 
@@ -67,15 +78,6 @@ Ruta base: `/api/usuari`
 2. Llença l'app.
 3. Pots consumir els endpoints amb Postman o qualsevol client HTTP.
 4. WebSocket actiu a: `ws://localhost:8080/risk`
-
----
-
-## 📦 Dependències clau
-
-- Spring Boot Web
-- Spring Data JPA
-- Oracle JDBC
-- WebSocket
 
 ---
 

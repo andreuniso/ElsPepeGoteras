@@ -2,7 +2,6 @@ package com.elspepegoteras.server.models;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -25,10 +24,10 @@ public class Partida {
     private int maxJugadors;
 
     @Column(name = "admin_id")
-    private long adminId;
+    private Long adminId;
 
     @Column (name = "torn_player_id")
-    private long tornPlayerId;
+    private Long tornPlayerId;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "estat_torn", nullable = false)
@@ -47,7 +46,7 @@ public class Partida {
     }
 
     //Creació d'una partida
-    public Partida(String nom, String token, int maxJugadors, long adminId) {
+    public Partida(String nom, String token, int maxJugadors, Long adminId) {
         setNom(nom);
         setToken(token);
         setMaxJugadors(maxJugadors);
@@ -57,14 +56,14 @@ public class Partida {
     }
 
     //Recuperació d'una partida
-    public Partida(long id, Date dataInici, String nom, String token, int maxJugadors, long adminId, Jugador jugadorActual, Estats estat) {
+    public Partida(long id, Date dataInici, String nom, String token, int maxJugadors, Long adminId, Long tornPlayerId, Estats estat) {
         setId(id);
         setDataInici(dataInici);
         setNom(nom);
         setToken(token);
         setMaxJugadors(maxJugadors);
         setAdminId(adminId);
-        setTornPlayerId(jugadorActual.getId());
+        setTornPlayerId(tornPlayerId);
         setEstat(estat);
     }
 
@@ -108,19 +107,19 @@ public class Partida {
         this.maxJugadors = maxJugadors;
     }
 
-    public long getAdminId() {
+    public Long getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(long adminId) {
+    public void setAdminId(Long adminId) {
         this.adminId = adminId;
     }
 
-    public long getTornPlayerId() {
+    public Long getTornPlayerId() {
         return tornPlayerId;
     }
 
-    public void setTornPlayerId(long tornPlayerId) {
+    public void setTornPlayerId(Long tornPlayerId) {
         this.tornPlayerId = tornPlayerId;
     }
 

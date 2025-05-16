@@ -36,7 +36,7 @@ public class UsuariController {
     }
 
     //Actualitzar un usuari
-    @PutMapping("/")
+    @PutMapping("/actualitzar")
     public Usuari actualitzarUsuari(@RequestBody Usuari usuari) {
         return usuariService.actualitzarUsuari(usuari);
     }
