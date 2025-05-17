@@ -55,8 +55,8 @@ Ruta base: `/api/partida`
 | `/id/{id}`       | `GET`    | `Partida`       | Recupera una partida per ID                            |
 | `/token/{token}` | `GET`    | `Partida`       | Recupera una partida per token                         |
 | `/public`        | `GET`    | `List<Partida>` | Llista totes les partides públiques (token `null`)     |
-| `/crear`         | `POST`   | `Partida`       | Crea una nova partida amb un `PartidaDTO`              |
-| `/join`          | `POST`   | `Partida`       | S'uneix a una partida existent amb un `JoinPartidaDTO` |
+| `/crear`         | `POST`   | `Jugador`       | Crea una nova partida amb un `PartidaDTO`              |
+| `/join`          | `POST`   | `Jugador`       | S'uneix a una partida existent amb un `JoinPartidaDTO` |
 | `/actualitzar`   | `PUT`    | `Partida`       | Actualitza una partida existent                        |
 | `/eliminar/{id}` | `DELETE` | `void`          | Elimina una partida per ID                             |
 

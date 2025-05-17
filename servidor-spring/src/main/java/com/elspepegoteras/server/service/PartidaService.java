@@ -11,9 +11,9 @@ import com.elspepegoteras.server.repository.UsuariRepository;
 import com.elspepegoteras.server.security.TokenGenerator;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class PartidaService {
@@ -59,11 +59,11 @@ public class PartidaService {
      * @param partidaDTO L'objecte PartidaDTO que conté la informació bàsica de la partida a crear
      * @return Retorna un objecte Partida amb la informació de la partida creada
      */
-    public Partida crearPartida(PartidaDTO partidaDTO) {
+    public Jugador crearPartida(PartidaDTO partidaDTO) {
         Usuari usuari = usuariRepository.findById(partidaDTO.getUserAdminId()).orElse(null);
 
         if (usuari != null) {
-            //Generaci&oacute; d'un token &uacute;nic per la partida
+            //Generació d'un token únic per la partida
             String token = null;
             if (partidaDTO.esPrivada()) {
                 boolean tokenExists = true;
@@ -80,12 +80,13 @@ public class PartidaService {
 
             Jugador admin = new Jugador(usuari); //Creem el jugador admin
             admin.setPartida(partida); //Assignem la partida al jugador
+            admin.setNumero(new Random().nextInt(partida.getMaxJugadors()) + 1);
             admin = jugadorRepository.save(admin);
 
             partida.setAdminId(admin.getId()); //Assignem el jugador admin a la partida
-            partida = partidaRepository.save(partida); //Guardem la partida amb el jugador admin
+            partidaRepository.save(partida); //Guardem la partida amb el jugador admin
 
-            return partida;
+            return admin;
         }
 
         return null;
@@ -94,9 +95,9 @@ public class PartidaService {
     /**
      * S'uneix a una partida existent.
      * @param partida L'objecte JoinPartidaDTO que conté la informació de la partida a la qual s'unirà
-     * @return Retorna un objecte Partida amb la informació de la partida unida
+     * @return Retorna un objecte Jugador amb la informació del jugador que s'ha unit a la partida, o null si no s'ha pogut unir
      */
-    public Partida joinPartida(JoinPartidaDTO partida) {
+    public Jugador joinPartida(JoinPartidaDTO partida) {
         if (partida == null || (partida.getIdPartida() == null && partida.getToken() == null)) {
             return null; //No s'ha proporcionat cap identificador
         }
@@ -119,12 +120,21 @@ public class PartidaService {
             }
 
             Usuari usuari = usuariRepository.findById(partida.getIdUsuari()).orElse(null);
-            if (usuari != null && jugadors.stream().anyMatch(j -> !Objects.equals(j.getUsuari().getId(), usuari.getId()))) {
-                Jugador jugador = new Jugador(usuari);
-                jugador.setPartida(p);
-                jugadorRepository.save(jugador);
+            if (usuari != null && jugadors.stream().noneMatch(j -> Objects.equals(j.getUsuari().getId(), usuari.getId()))) {
+                // 💡 Assignació de número RANDOM disponible entre 1 i maxJugadors
+                Set<Integer> numerosUsats = jugadors.stream().map(Jugador::getNumero).collect(Collectors.toSet());
+                List<Integer> disponibles = IntStream.rangeClosed(1, p.getMaxJugadors()).filter(n -> !numerosUsats.contains(n)).boxed().collect(Collectors.toList());
 
-                return p;
+                if (!disponibles.isEmpty()) {
+                    int numeroJugador = disponibles.get(new Random().nextInt(disponibles.size()));
+
+                    Jugador jugador = new Jugador(usuari);
+                    jugador.setPartida(p);
+                    jugador.setNumero(numeroJugador);
+                    jugador = jugadorRepository.save(jugador);
+
+                    return jugador;
+                }
             }
         }
         return null;
