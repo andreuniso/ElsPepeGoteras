@@ -114,7 +114,7 @@ public class PartidaService {
         if (partidaExistent.isPresent()) {
             Partida p = partidaExistent.get();
 
-            List<Jugador> jugadors = jugadorRepository.findByPartida(p.getId());
+            List<Jugador> jugadors = jugadorRepository.findByPartida(p);
             if (jugadors.size() >= p.getMaxJugadors()) {
                 return null; //La partida ja està plena
             }
@@ -160,7 +160,7 @@ public class PartidaService {
             partida.setTornPlayerId(null);
             partidaRepository.save(partida);
 
-            List<Jugador> jugadors = jugadorRepository.findByPartida(partida.getId());
+            List<Jugador> jugadors = jugadorRepository.findByPartida(partida);
             for (Jugador j : jugadors) {
                 j.setPartida(null);
                 jugadorRepository.delete(j);

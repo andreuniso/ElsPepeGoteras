@@ -2,6 +2,7 @@ package com.elspepegoteras.server.service;
 
 import com.elspepegoteras.server.models.Jugador;
 import com.elspepegoteras.server.repository.JugadorRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,8 +31,16 @@ public class JugadorService {
      * @param idPartida L'ID de la partida
      * @return Retorna una llista de jugadors associats a la partida especificada
      */
+    @Transactional
     public List<Jugador> getJugadorsByPartida(Long idPartida) {
-        return jugadorRepository.findByPartida(idPartida);
+        List<Jugador> jugadores = jugadorRepository.findByPartidaId(idPartida);
+
+        jugadores.forEach(j -> {
+            j.getPaisosOkupats().size();
+            j.getCartes().size();
+        });
+
+        return jugadores;
     }
 
     /**
