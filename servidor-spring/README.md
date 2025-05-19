@@ -43,9 +43,10 @@ Conté la gestió de connexions WebSocket en temps real.
 ### `JugadorController`  
 Ruta base: `/api/jugador`  
 
-| Endpoint         | Mètode   | Retorn    | Descripció                 |
-|------------------|----------|-----------|----------------------------|
-| `/id/{id}`       | `GET`    | `Jugador` | Recupera un jugador per ID |
+| Endpoint               | Mètode   | Retorn          | Descripció                               |
+|------------------------|----------|-----------------|------------------------------------------|
+| `/id/{id}`             | `GET`    | `Jugador`       | Recupera un jugador per ID               |
+| `/partida/{idPartida}` | `GET`    | `List<Jugador>` | Recupera tots els jugadors de la partida |
 
 ### `PartidaController`
 Ruta base: `/api/partida`
