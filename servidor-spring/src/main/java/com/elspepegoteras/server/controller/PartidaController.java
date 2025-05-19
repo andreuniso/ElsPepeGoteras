@@ -54,10 +54,4 @@ public class PartidaController {
     public Partida actualizarPartida(@RequestBody Partida partida) {
         return partidaService.actualizarPartida(partida);
     }
-
-    //Eliminar una partida
-    @DeleteMapping("/eliminar/{id}")
-    public void eliminarPartida(@PathVariable long id) {
-        partidaService.eliminarPartida(id);
-    }
 }

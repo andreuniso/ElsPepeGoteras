@@ -44,16 +44,9 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 ### 📪 Tipus de missatges 
 #### (Server → Client)
 
-*   `player_joined` → Un jugador s'ha unit a la sala
+*   `reload_players` → S'ha actualitzat la llista de jugadors
 *   `data`:
-    *   `idJugador` → ID del jugador
-    *   `nom` → Nom del jugador
-    *   `numero` → Posició del jugador a la partida
-
-
-*  `player_left` → Un jugador ha abandonat la sala
-*   `data`:
-    *   `idJugador` → ID del jugador
+    *   `jugadors` → Llista de jugadors amb tots els seus camps
 
 
 #### (Server → Tots els clients)
@@ -63,7 +56,7 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
     *   `estat` → Indica la fase de la partida (COLOCACIO_INICIAL)
 
 
-#### (Client → Server)
+#### (Client Admin → Server)
 
 *   `start_game` → L'admin ha iniciat la partida
 *   `data`:

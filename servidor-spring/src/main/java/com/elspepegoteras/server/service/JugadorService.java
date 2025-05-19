@@ -4,6 +4,8 @@ import com.elspepegoteras.server.models.Jugador;
 import com.elspepegoteras.server.repository.JugadorRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class JugadorService {
     private final JugadorRepository jugadorRepository;
@@ -20,5 +22,24 @@ public class JugadorService {
      */
     public Jugador getJugadorById(long id) {
         return jugadorRepository.findById(id);
+    }
+
+    /**
+     * Recupera una llista de jugadors associats a una partida.
+     *
+     * @param idPartida L'ID de la partida
+     * @return Retorna una llista de jugadors associats a la partida especificada
+     */
+    public List<Jugador> getJugadorsByPartida(Long idPartida) {
+        return jugadorRepository.findByPartida(idPartida);
+    }
+
+    /**
+     * Esborra un jugador per ID.
+     *
+     * @param id L'ID del jugador a esborrar
+     */
+    public void eliminarJugador(long id) {
+        jugadorRepository.delete(jugadorRepository.findById(id));
     }
 }

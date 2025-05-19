@@ -58,7 +58,6 @@ Ruta base: `/api/partida`
 | `/crear`         | `POST`   | `Jugador`       | Crea una nova partida amb un `PartidaDTO`              |
 | `/join`          | `POST`   | `Jugador`       | S'uneix a una partida existent amb un `JoinPartidaDTO` |
 | `/actualitzar`   | `PUT`    | `Partida`       | Actualitza una partida existent                        |
-| `/eliminar/{id}` | `DELETE` | `void`          | Elimina una partida per ID                             |
 
 ### `UsuariController`
 Ruta base: `/api/usuari`

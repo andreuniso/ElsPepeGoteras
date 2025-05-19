@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/jugador")
 public class JugadorController {
@@ -20,5 +22,11 @@ public class JugadorController {
     @GetMapping("/id/{id}")
     public Jugador getJugadorById(@PathVariable long id) {
         return jugadorService.getJugadorById(id);
+    }
+
+    //Recuperar jugadors per partida
+    @GetMapping("/partida/{idPartida}")
+    public List<Jugador> getJugadorsByPartida(@PathVariable Long idPartida) {
+        return jugadorService.getJugadorsByPartida(idPartida);
     }
 }
