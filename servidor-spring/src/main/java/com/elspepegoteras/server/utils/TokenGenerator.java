@@ -1,4 +1,4 @@
-package com.elspepegoteras.server.security;
+package com.elspepegoteras.server.utils;
 
 import java.security.SecureRandom;
 

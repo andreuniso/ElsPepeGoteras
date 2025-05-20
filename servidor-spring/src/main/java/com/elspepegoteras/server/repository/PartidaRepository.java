@@ -10,5 +10,5 @@ public interface PartidaRepository extends JpaRepository<Partida, Long> {
     Optional<Partida> findById(Long id);
     Optional<Partida> findByToken(String token);
     boolean existsByToken(String token);
-    List<Partida> findByTokenIsNull(); //Partides públiques
+    List<Partida> findByTokenIsNullAndTornPlayerIdIsNotNull(); //Partides públiques
 }

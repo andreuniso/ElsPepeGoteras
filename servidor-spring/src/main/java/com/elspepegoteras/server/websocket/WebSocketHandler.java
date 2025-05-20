@@ -59,8 +59,11 @@ public class WebSocketHandler extends TextWebSocketHandler {
         System.out.println("📩 Missatge rebut: " + message.getPayload());
 
         switch (message.getPayload()) {
-            case "disconnect" -> {
+            case "start_game" -> {
+                //Modifiquem la partida per indicar el torn
 
+
+                //Enviem un missatge a tots els jugadors de la partida per iniciar el joc
             }
             default -> {
 

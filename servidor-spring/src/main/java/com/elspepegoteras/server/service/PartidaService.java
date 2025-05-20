@@ -8,7 +8,7 @@ import com.elspepegoteras.server.models.Usuari;
 import com.elspepegoteras.server.repository.JugadorRepository;
 import com.elspepegoteras.server.repository.PartidaRepository;
 import com.elspepegoteras.server.repository.UsuariRepository;
-import com.elspepegoteras.server.security.TokenGenerator;
+import com.elspepegoteras.server.utils.TokenGenerator;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -51,7 +51,7 @@ public class PartidaService {
      * @return Retorna una llista d'objectes Partida que tenen el token a null
      */
     public List<Partida> getPartidesPubliques() {
-        return partidaRepository.findByTokenIsNull();
+        return partidaRepository.findByTokenIsNullAndTornPlayerIdIsNotNull();
     }
 
     /**

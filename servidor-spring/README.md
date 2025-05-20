@@ -24,9 +24,9 @@ Conté les entitats JPA que representen les taules de la base de dades.
 Conté les interfícies que hereten de `JpaRepository`, permetent accedir a la base de dades.  
 🔍 Exemple: `UsuariRepository`, `PartidaRepository`.
 
-### `security`
-Conté la configuració de seguretat del servidor.  
-🔒 Exemple: `generació de tokens`, `encriptació`.
+### `utils`
+Conté diferents mètodes que ajuden a la gestió del servidor.  
+🔒 Exemple: `generació de tokens`, `encriptació`, `missatges client/servidor`.
 
 ### `service`
 Conté la lògica de negoci.  
