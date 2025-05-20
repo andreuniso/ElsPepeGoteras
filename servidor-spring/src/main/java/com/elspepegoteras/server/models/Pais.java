@@ -15,6 +15,10 @@ public class Pais {
     @JoinColumn(name = "continent_id")
     private Continent continent;
 
+    //Constructor per defecte
+    public Pais() {
+    }
+
     //Creació d'un país
     public Pais(String nom, Continent continent) {
         setNom(nom);

@@ -3,33 +3,35 @@ package com.elspepegoteras.server.models;
 import jakarta.persistence.*;
 
 @Entity
-@IdClass(OkupaId.class)
 @Table(name = "okupa")
 public class Okupa {
     @Id
-    @ManyToOne
-    @JoinColumn(name = "pais_id")
-    private Pais pais;
+    @Column(name = "pais_id")
+    private Long idPais;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "player_id")
     private Jugador jugador;
 
     private int tropes;
 
+    //Constructor per defecte
+    public Okupa() {
+    }
+
     //Creació - Recuperació d'un Okupa
-    public Okupa(Pais pais, Jugador jugador) {
-        setPais(pais);
+    public Okupa(Long idPais, Jugador jugador, int tropes) {
+        setIdPais(idPais);
         setJugador(jugador);
+        setTropes(tropes);
     }
 
-    public Pais getPais() {
-        return pais;
+    public Long getIdPais() {
+        return idPais;
     }
 
-    public void setPais(Pais pais) {
-        this.pais = pais;
+    public void setIdPais(Long idPais) {
+        this.idPais = idPais;
     }
 
     public Jugador getJugador() {
@@ -38,5 +40,13 @@ public class Okupa {
 
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
+    }
+
+    public int getTropes() {
+        return tropes;
+    }
+
+    public void setTropes(int tropes) {
+        this.tropes = tropes;
     }
 }

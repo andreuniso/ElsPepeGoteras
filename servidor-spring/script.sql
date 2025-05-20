@@ -89,7 +89,7 @@ CREATE TABLE Okupa (
     pais_id NUMBER(19) NOT NULL,
     player_id NUMBER(19) NOT NULL,
     tropes INT NOT NULL,
-    PRIMARY KEY (pais_id, player_id),
+    PRIMARY KEY (pais_id),
     FOREIGN KEY (pais_id) REFERENCES Pais(id),
     FOREIGN KEY (player_id) REFERENCES Jugador(id)
 );

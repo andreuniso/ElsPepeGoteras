@@ -32,7 +32,7 @@ public class JugadorService {
      * @return Retorna una llista de jugadors associats a la partida especificada
      */
     @Transactional
-    public List<Jugador> getJugadorsByPartida(Long idPartida) {
+    public List<Jugador> getJugadorsByPartidaId(Long idPartida) {
         List<Jugador> jugadores = jugadorRepository.findByPartidaId(idPartida);
 
         jugadores.forEach(j -> {

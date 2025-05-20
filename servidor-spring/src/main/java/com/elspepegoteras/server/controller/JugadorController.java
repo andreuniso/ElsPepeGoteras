@@ -27,6 +27,6 @@ public class JugadorController {
     //Recuperar jugadors per partida
     @GetMapping("/partida/{idPartida}")
     public List<Jugador> getJugadorsByPartida(@PathVariable Long idPartida) {
-        return jugadorService.getJugadorsByPartida(idPartida);
+        return jugadorService.getJugadorsByPartidaId(idPartida);
     }
 }

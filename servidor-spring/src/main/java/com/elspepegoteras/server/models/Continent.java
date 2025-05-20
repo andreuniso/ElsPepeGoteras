@@ -14,6 +14,10 @@ public class Continent {
     @Column(name = "reforc_tropes")
     private int reforcTropes;
 
+    //Constructor per defecte
+    public Continent() {
+    }
+
     //Creació d'un continent
     public Continent(String nom, int reforcTropes) {
         setNom(nom);

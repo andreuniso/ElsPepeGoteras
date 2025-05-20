@@ -17,6 +17,10 @@ public class Carta {
     @JoinColumn(name = "pais_id")
     private Pais pais;
 
+    //Constructor per defecte
+    public Carta() {
+    }
+
     //Creació d'una carta
     public Carta(TipusCarta tipusCarta, Pais pais) {
         setTipusCarta(tipusCarta);

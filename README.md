@@ -53,14 +53,29 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 
 *   `game_started` → La partida ha començat
 *   `data`:
-    *   `estat` → Indica la fase de la partida (COLOCACIO_INICIAL)
+    *   `partida` → Partida actualitzada amb tots els seus camps (incloent-hi el torn actual i l'estat de la partida)
+
+
+*   `country_updated` → S'ha actualitzat un pais
+*  `data`:
+    *   `pais` → Pais actualitzat amb tots els seus camps
+
+
+*   `new_turn` → Canvi de torn en la partida
+*  `data`:
+    *   `partida` → Partida actualitzada amb tots els seus camps
 
 
 #### (Client Admin → Server)
 
 *   `start_game` → L'admin ha iniciat la partida
-*   `data`:
-    *   `idPartida` → ID de la partida
+
+
+#### (Client → Server)
+
+*   `place_troop` → El jugador ha col·locat una tropa
+*  `data`:
+    *   `idPais` → Pais on s'ha col·locat la tropa
 
 ---
 

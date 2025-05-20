@@ -16,6 +16,10 @@ public class Frontera {
     @JoinColumn(name = "pais2_id")
     private Pais pais2;
 
+    //Constructor per defecte
+    public Frontera() {
+    }
+
     //Creació - Recuperació d'una frontera
     public Frontera(Pais pais1, Pais pais2) {
         setPais1(pais1);
