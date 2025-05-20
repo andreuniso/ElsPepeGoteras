@@ -47,18 +47,40 @@ public class WebSocketHandler extends TextWebSocketHandler {
         Long idJugador = Long.parseLong(params.get("idJugador"));
         Long idPartida = Long.parseLong(params.get("idPartida"));
 
-        //Guardem la sessió del jugador
-        jugadorSessions.put(idJugador, session);
+        //Comprovem que el jugador existeix
+        Jugador jugador = jugadorService.getJugadorById(idJugador);
+        if (jugador == null) {
+            System.out.println("❌ Jugador no trobat: " + idJugador);
+            return;
+        }
 
-        //Guardem la sessió de la partida
-        partidaSessions.putIfAbsent(idPartida, new HashSet<>());
-        partidaSessions.get(idPartida).add(session);
+        //Comprovem que la partida existeix
+        Partida partida = partidaService.getPartidaById(idPartida);
+        if (partida == null) {
+            System.out.println("❌ Partida no trobada: " + idPartida);
+            return;
+        }
 
-        //String userId = session.getId();
-        //sessions.put(userId, session);
-        System.out.println("🔗 Usuari connectat: " + session.getId());
+        if (partida.getEstat() == Estats.ESPERA) {
+            //Guardem la sessió del jugador
+            jugadorSessions.put(idJugador, session);
 
-        actualitzarLlistaJugadors(idPartida);
+            //Guardem la sessió de la partida
+            partidaSessions.putIfAbsent(idPartida, new HashSet<>());
+            partidaSessions.get(idPartida).add(session);
+
+            System.out.println("🔗 Usuari connectat: " + session.getId());
+
+            actualitzarLlistaJugadors(idPartida);
+        } else {
+            System.out.println("❌ Partida no disponible per a l'usuari " + jugador.getUsuari().getLogin() + ". Estat actual: " + partida.getEstat());
+            try {
+                session.sendMessage(new TextMessage("{ \"error\": \"La partida ja ha estat iniciada!\" }"));
+                session.close();
+            } catch (IOException e) {
+                System.out.println("❌ Error tancant sessió: " + e.getMessage());
+            }
+        }
     }
 
     @Override
@@ -257,7 +279,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
             if (partida != null) {
                 if (partida.getAdminId().equals(admin.getId())) {
-                    // Buscar jugador amb número 1 a la partida
+                    //Buscar jugador amb número 1 a la partida
                     List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
                     if (jugadors.size() == partida.getMaxJugadors()) {
                         if (jugadors != null && !jugadors.isEmpty()) {
@@ -321,7 +343,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             if (pais == null) return;
 
             //Verifiquem que el país NO té tropes (és a dir, no hi ha cap Okupa associat)
-            Okupa okupaExist = okupaService.getOkupaByPaisAndJugador(pais.getId(), jugador);
+            Okupa okupaExist = okupaService.getOkupaByPaisAndPartida(pais.getId(), jugador.getPartida());
             if (okupaExist != null) return;
 
             //Crear una ocupació nova
@@ -345,7 +367,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             List<Pais> totsElsPaisos = paisService.getAllPaises();
             long okupats = totsElsPaisos.stream()
             .filter(p -> jugadors.stream()
-            .anyMatch(j -> okupaService.getOkupaByPaisAndJugador(p.getId(), j) != null))
+            .anyMatch(j -> okupaService.getOkupaByPaisAndPartida(p.getId(), partida) != null))
             .count();
 
             if (okupats == totsElsPaisos.size()) {

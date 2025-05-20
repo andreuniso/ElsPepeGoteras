@@ -41,6 +41,12 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 }
 ```
 
+```json
+{
+    "error": "missatge d'error"
+}
+```
+
 ### 📪 Tipus de missatges 
 #### (Server → Client)
 
@@ -48,8 +54,6 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 *   `data`:
     *   `jugadors` → Llista de jugadors amb tots els seus camps
 
-
-#### (Server → Tots els clients)
 
 *   `game_started` → La partida ha començat
 *   `data`:
@@ -66,12 +70,10 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
     *   `partida` → Partida actualitzada amb tots els seus camps
 
 
-#### (Client Admin → Server)
+#### (Client → Server)
 
 *   `start_game` → L'admin ha iniciat la partida
 
-
-#### (Client → Server)
 
 *   `place_troop` → El jugador ha col·locat una tropa
 *  `data`:
