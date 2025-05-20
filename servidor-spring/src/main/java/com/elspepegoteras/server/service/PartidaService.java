@@ -51,7 +51,7 @@ public class PartidaService {
      * @return Retorna una llista d'objectes Partida que tenen el token a null
      */
     public List<Partida> getPartidesPubliques() {
-        return partidaRepository.findByTokenIsNullAndTornPlayerIdIsNotNull();
+        return partidaRepository.findByTokenIsNullAndTornPlayerIdIsNull();
     }
 
     /**

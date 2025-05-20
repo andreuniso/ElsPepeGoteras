@@ -5,6 +5,7 @@ import com.elspepegoteras.server.models.Okupa;
 import com.elspepegoteras.server.models.Pais;
 import com.elspepegoteras.server.models.Partida;
 import com.elspepegoteras.server.repository.OkupaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +20,11 @@ public class OkupaService {
         return okupaRepository.findByIdPaisAndJugador_Partida(idPais, partida).orElse(null);
     }
 
-    public void guardarOkupa(Okupa okupa) {
-        okupaRepository.save(okupa);
+    @Transactional
+    public Okupa guardarOkupa(Okupa okupa) {
+        Okupa okupaSaved = okupaRepository.save(okupa);
+        okupaSaved.getJugador().getPaisosOkupats().size();
+        okupaSaved.getJugador().getCartes().size();
+        return okupaSaved;
     }
 }

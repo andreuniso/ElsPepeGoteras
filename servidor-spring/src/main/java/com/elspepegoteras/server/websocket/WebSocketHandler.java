@@ -98,6 +98,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 case "PLACE_TROOP" -> {
                     placeTroop(session, message);
                 }
+                case "REINFORCE_COUNTRIES" -> {
+                    reinforceCountries(session, message);
+                }
                 default -> {
                     try {
                         session.sendMessage(new TextMessage("{ \"error\": \"Comandament desconegut\" }"));
@@ -348,7 +351,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
             //Crear una ocupació nova
             Okupa okupa = new Okupa(pais.getId(), jugador, 1);
-            okupaService.guardarOkupa(okupa);
+            okupa = okupaService.guardarOkupa(okupa);
 
             //Pas al següent jugador
             List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
@@ -377,10 +380,67 @@ public class WebSocketHandler extends TextWebSocketHandler {
             partidaService.actualizarPartida(partida);
 
             //Notifiquem a tothom
-            broadcastToPartida(partida.getId(), generarMissatgePaisActualitzat(pais));
+            broadcastToPartida(partida.getId(), generarMissatgePaisActualitzat(okupa));
             broadcastToPartida(partida.getId(), generarMissatgeNouTorn(partida));
         } catch (Exception e) {
             System.out.println("❌ Error processant el missatge de col·locació de tropa: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Reforça un país seleccionat pel jugador.
+     *
+     * @param session La sessió del WebSocket.
+     * @param message El missatge rebut del client.
+     */
+    private void reinforceCountries(WebSocketSession session, TextMessage message) {
+        try {
+            //Recuperem el jugador i la partida associada
+            JsonNode json = objectMapper.readTree(message.getPayload());
+            Jugador jugador = cercarJugador(session);
+            Long idPais = json.get("data").get("idPais").asLong();
+
+            if (jugador == null) {
+                System.out.println("❌ Jugador no trobat per id: " + jugador.getId());
+                return;
+            }
+
+            //Busquem la partida associada al jugador
+            Partida partida = jugador.getPartida();
+            if (!partida.getEstat().equals(Estats.REFORCAR_PAIS)) return;
+
+            //Verifiquem que sigui el seu torn
+            if (!partida.getTornPlayerId().equals(jugador.getId())) return;
+
+            Pais pais = paisService.getPaisById(idPais);
+            if (pais == null) return;
+
+            //Verifiquem que el país té tropes (és a dir, té un Okupa associat) i que és propietat del jugador
+            Okupa okupa = okupaService.getOkupaByPaisAndPartida(pais.getId(), jugador.getPartida());
+            if (okupa == null || okupa.getJugador() != jugador) return;
+
+            //Afegir tropa a l'okupa
+            okupa.setTropes(okupa.getTropes() + 1);
+            okupaService.guardarOkupa(okupa);
+
+            //Pas al següent jugador
+            List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
+            int nextIndex = (jugador.getNumero() % jugadors.size()) + 1;
+
+            Jugador next = jugadors.stream()
+            .filter(j -> j.getNumero() == nextIndex)
+            .findFirst()
+            .orElse(null);
+
+            if (next != null) {
+                partida.setTornPlayerId(next.getId());
+                partidaService.actualizarPartida(partida);
+                broadcastToPartida(partida.getId(), generarMissatgePaisActualitzat(okupa));
+                broadcastToPartida(partida.getId(), generarMissatgeNouTorn(partida));
+            }
+
+        } catch (Exception e) {
+            System.out.println("❌ Error processant el missatge de reforç de països: " + e.getMessage());
         }
     }
 
@@ -400,13 +460,13 @@ public class WebSocketHandler extends TextWebSocketHandler {
     /**
      * Genera un missatge JSON per indicar que un país ha estat actualitzat.
      *
-     * @param pais El país actualitzat.
+     * @param okupa El país actualitzat.
      * @return El missatge JSON com a cadena de text.
      */
-    private String generarMissatgePaisActualitzat(Pais pais) {
+    private String generarMissatgePaisActualitzat(Okupa okupa) {
         ObjectNode root = objectMapper.createObjectNode();
         root.put("type", "country_updated");
-        root.set("data", objectMapper.valueToTree(pais));
+        root.set("data", objectMapper.valueToTree(okupa));
         return root.toString();
     }
 

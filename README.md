@@ -62,7 +62,7 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 
 *   `country_updated` → S'ha actualitzat un pais
 *  `data`:
-    *   `pais` → Pais actualitzat amb tots els seus camps
+    *   `okupa` → Okupa actualitzat amb tots els seus camps
 
 
 *   `new_turn` → Canvi de torn en la partida
@@ -78,6 +78,11 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 *   `place_troop` → El jugador ha col·locat una tropa
 *  `data`:
     *   `idPais` → Pais on s'ha col·locat la tropa
+
+
+*   `reinforce_countries` → El jugador ha reforçat un pais
+*   `data`:
+    *   `idPais` → Pais que s'ha reforçat
 
 ---
 
