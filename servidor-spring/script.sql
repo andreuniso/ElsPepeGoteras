@@ -88,11 +88,14 @@ CREATE TABLE Jugador (
 CREATE TABLE Okupa (
     pais_id NUMBER(19) NOT NULL,
     player_id NUMBER(19) NOT NULL,
+    skf_partida_id NUMBER(19) NOT NULL,
     tropes INT NOT NULL,
-    PRIMARY KEY (pais_id),
+    PRIMARY KEY (pais_id, skf_partida_id),
     FOREIGN KEY (pais_id) REFERENCES Pais(id),
-    FOREIGN KEY (player_id) REFERENCES Jugador(id)
+    FOREIGN KEY (player_id) REFERENCES Jugador(id),
+    FOREIGN KEY (skf_partida_id) REFERENCES Partida(id)
 );
+
 
 CREATE TABLE MA (
     carta_id NUMBER(19) NOT NULL,
@@ -333,6 +336,56 @@ END;
 INSERT INTO Usuari (nom, login, password, avatar, wins, games) VALUES ('Andreu Niso', 'aniso', 'aniso', 'avatar_home_1.png', 1000, 1000);
 INSERT INTO Usuari (nom, login, password, avatar, wins, games) VALUES ('Elena Romeu', 'eromeu', 'eromeu', 'avatar_dona_1.png', 1000, 1000);
 INSERT INTO Usuari (nom, login, password, avatar, wins, games) VALUES ('Ferran Morgades', 'fmorgades', 'fmorgades', 'avatar_home_2.png', 1000, 1000);
+
+INSERT INTO Partida (id, data_inici, nom, token, max_players, admin_id, torn_player_id, estat_torn) VALUES (1, SYSDATE, 'ElsPepeGoteras', NULL, 3, NULL, NULL, 0);
+
+INSERT INTO Jugador (id, skf_user_id, skf_partida_id, skf_numero) VALUES (1, 1, 1, 1);
+INSERT INTO Jugador (id, skf_user_id, skf_partida_id, skf_numero) VALUES (2, 2, 1, 2);
+INSERT INTO Jugador (id, skf_user_id, skf_partida_id, skf_numero) VALUES (3, 3, 1, 3);
+
+UPDATE Partida SET admin_id = 1, torn_player_id = 1 WHERE id = 1;
+
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (1, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (2, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (3, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (4, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (5, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (6, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (7, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (8, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (9, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (10, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (11, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (12, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (13, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (14, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (15, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (16, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (17, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (18, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (19, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (20, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (21, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (22, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (23, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (24, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (25, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (26, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (27, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (28, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (29, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (30, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (31, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (32, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (33, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (34, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (35, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (36, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (37, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (38, 2, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (39, 3, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (40, 1, 1, 1);
+INSERT INTO Okupa (pais_id, player_id, skf_partida_id, tropes) VALUES (41, 2, 1, 1);
 /
 
 COMMIT;

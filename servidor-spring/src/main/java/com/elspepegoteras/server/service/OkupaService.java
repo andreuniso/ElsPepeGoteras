@@ -8,6 +8,8 @@ import com.elspepegoteras.server.repository.OkupaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OkupaService {
     private final OkupaRepository okupaRepository;
@@ -16,15 +18,15 @@ public class OkupaService {
         this.okupaRepository = okupaRepository;
     }
 
-    public Okupa getOkupaByPaisAndPartida(Long idPais, Partida partida) {
-        return okupaRepository.findByIdPaisAndJugador_Partida(idPais, partida).orElse(null);
+    public Okupa getOkupaByPaisAndPartida(Long idPais, Long idPartida) {
+        return okupaRepository.findByIdPaisAndIdPartida(idPais, idPartida).orElse(null);
     }
 
-    @Transactional
     public Okupa guardarOkupa(Okupa okupa) {
-        Okupa okupaSaved = okupaRepository.save(okupa);
-        okupaSaved.getJugador().getPaisosOkupats().size();
-        okupaSaved.getJugador().getCartes().size();
-        return okupaSaved;
+        return okupaRepository.save(okupa);
+    }
+
+    public List<Okupa> getAllByJugador(Long idJugador) {
+        return okupaRepository.findAllByIdJugador(idJugador);
     }
 }

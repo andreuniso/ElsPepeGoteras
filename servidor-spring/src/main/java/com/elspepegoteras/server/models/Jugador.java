@@ -23,9 +23,6 @@ public class Jugador {
     @Column(name = "SKF_NUMERO")
     private int numero;
 
-    @OneToMany(mappedBy = "jugador")
-    private List<Okupa> paisosOkupats;
-
     @ManyToMany
     @JoinTable(
             name = "MA",
@@ -37,24 +34,21 @@ public class Jugador {
     //Constructor per defecte
     public Jugador() {
         setCartes(new ArrayList<Carta>());
-        setPaisosOkupats(new ArrayList<Okupa>());
     }
 
     //Creació d'un jugador
     public Jugador(Usuari usuari) {
         setUsuari(usuari);
         setCartes(new ArrayList<Carta>());
-        setPaisosOkupats(new ArrayList<Okupa>());
     }
 
     //Recuperació d'un jugador
-    public Jugador(long id, Usuari usuari, Partida partida, int numero, List<Carta> cartes, List<Okupa> paisosOkupats) {
+    public Jugador(long id, Usuari usuari, Partida partida, int numero, List<Carta> cartes) {
         setId(id);
         setUsuari(usuari);
         setPartida(partida);
         setNumero(numero);
         setCartes(cartes);
-        setPaisosOkupats(paisosOkupats);
     }
 
     public long getId() {
@@ -95,13 +89,5 @@ public class Jugador {
 
     public void setCartes(List<Carta> cartes) {
         this.cartes = cartes;
-    }
-
-    public List<Okupa> getPaisosOkupats() {
-        return paisosOkupats;
-    }
-
-    public void setPaisosOkupats(List<Okupa> paisosOkupats) {
-        this.paisosOkupats = paisosOkupats;
     }
 }

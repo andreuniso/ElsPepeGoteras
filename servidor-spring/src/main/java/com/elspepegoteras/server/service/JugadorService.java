@@ -36,7 +36,6 @@ public class JugadorService {
         List<Jugador> jugadores = jugadorRepository.findByPartidaId(idPartida);
 
         jugadores.forEach(j -> {
-            j.getPaisosOkupats().size();
             j.getCartes().size();
         });
 
