@@ -19,6 +19,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
@@ -769,13 +770,24 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
         //Crear array de territoris
         ArrayNode territorisArray = objectMapper.createArrayNode();
+        List<Pais> totsElsPaisos = paisService.getAllPaises();
         List<Okupa> okupes = okupaService.getOcupacionsByPartida(partida.getId());
+        Map<Long, Okupa> mapaOkupes = okupes.stream().collect(Collectors.toMap(Okupa::getIdPais, o -> o));
 
-        for (Okupa o : okupes) {
+        for (Pais pais : totsElsPaisos) {
             ObjectNode territoriNode = objectMapper.createObjectNode();
-            territoriNode.put("idPais", o.getIdPais());
-            territoriNode.put("idJugador", o.getIdJugador());
-            territoriNode.put("tropes", o.getTropes());
+            Okupa o = mapaOkupes.get(pais.getId());
+
+            territoriNode.put("idPais", pais.getId());
+
+            if (o != null) {
+                territoriNode.put("idJugador", o.getIdJugador());
+                territoriNode.put("tropes", o.getTropes());
+            } else {
+                territoriNode.put("idJugador", 0);
+                territoriNode.put("tropes", 0);
+            }
+
             territorisArray.add(territoriNode);
         }
 
