@@ -50,4 +50,14 @@ public class JugadorService {
     public void eliminarJugador(long id) {
         jugadorRepository.delete(jugadorRepository.findById(id));
     }
+
+    /**
+     * Guarda un jugador a la base de dades.
+     *
+     * @param jugador L'objecte Jugador a guardar
+     * @return Retorna l'objecte Jugador guardat
+     */
+    public void actualizarJugador(Jugador jugador) {
+        jugadorRepository.save(jugador);
+    }
 }

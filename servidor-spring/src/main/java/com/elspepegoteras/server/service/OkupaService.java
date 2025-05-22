@@ -29,4 +29,8 @@ public class OkupaService {
     public List<Okupa> getAllByJugador(Long idJugador) {
         return okupaRepository.findAllByIdJugador(idJugador);
     }
+
+    public List<Okupa> getOcupacionsByPartida(long id) {
+        return okupaRepository.findAllByIdPartida(id);
+    }
 }

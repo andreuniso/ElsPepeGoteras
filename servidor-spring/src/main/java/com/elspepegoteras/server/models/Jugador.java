@@ -23,6 +23,9 @@ public class Jugador {
     @Column(name = "SKF_NUMERO")
     private int numero;
 
+    @Column(name = "AVAILABLE_TROOPS")
+    private int tropes;
+
     @ManyToMany
     @JoinTable(
             name = "MA",
@@ -34,21 +37,24 @@ public class Jugador {
     //Constructor per defecte
     public Jugador() {
         setCartes(new ArrayList<Carta>());
+        setTropes(0);
     }
 
     //Creació d'un jugador
     public Jugador(Usuari usuari) {
         setUsuari(usuari);
         setCartes(new ArrayList<Carta>());
+        setTropes(0);
     }
 
     //Recuperació d'un jugador
-    public Jugador(long id, Usuari usuari, Partida partida, int numero, List<Carta> cartes) {
+    public Jugador(long id, Usuari usuari, Partida partida, int numero, List<Carta> cartes, int tropes) {
         setId(id);
         setUsuari(usuari);
         setPartida(partida);
         setNumero(numero);
         setCartes(cartes);
+        setTropes(tropes);
     }
 
     public long getId() {
@@ -89,5 +95,13 @@ public class Jugador {
 
     public void setCartes(List<Carta> cartes) {
         this.cartes = cartes;
+    }
+
+    public int getTropes() {
+        return tropes;
+    }
+
+    public void setTropes(int tropes) {
+        this.tropes = tropes;
     }
 }

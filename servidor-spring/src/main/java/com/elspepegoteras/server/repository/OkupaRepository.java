@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface OkupaRepository extends JpaRepository<Okupa, Long> {
     Optional<Okupa> findByIdPaisAndIdPartida(Long idPais, Long idPartida);
     List<Okupa> findAllByIdJugador(Long idJugador);
+    List<Okupa> findAllByIdPartida(long id);
 }

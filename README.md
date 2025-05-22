@@ -55,30 +55,11 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
     *   `jugadors` → Llista de jugadors amb tots els seus camps
 
 
-*   `game_started` → La partida ha començat
+*   `game_state` → S'ha actualitzat l'estat del joc
 *   `data`:
-    *   `partida` → Partida actualitzada amb tots els seus camps (incloent-hi el torn actual i l'estat de la partida)
-
-
-*   `country_updated` → S'ha actualitzat un pais
-*  `data`:
-    *   `okupa` → Okupa actualitzat amb tots els seus camps
-
-
-*   `new_turn` → Canvi de torn en la partida
-*   `data`:
-    *   `partida` → Partida actualitzada amb tots els seus camps
-
-
-*   `available_troops` → S'informa del nombre de tropes disponibles AL JUGADOR
-*   `data`:
-    *   `qt_tropes` → Nombre de tropes disponibles per al jugador actual
-
-
-*   `change_state` → S'ha canviat l'estat de la partida
-*   `data`:
-    *   `partida` → Partida actualitzada amb tots els seus camps
-
+    *   `partida` → Llista de la partida amb tots els seus camps
+    *   `availableTroopsActualPlayer` → Nombre de tropes disponibles per al jugador actual
+    *   `territories` → Llista de territoris amb tots els seus camps
 
 #### (Client → Server)
 
@@ -99,7 +80,12 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 *   `data`:
     *   `id_pais` → Pais on s'han assignat les tropes
     *   `qt_tropes` → Nombre de tropes assignades
-    *   `qt_tropes_restants` → Nombre de tropes restants per assignar
+
+
+*   `attack` → El jugador ha atacat un pais
+*   `data`:
+    *   `id_pais_atacant` → Pais que ataca
+    *   `id_pais_defensant` → Pais que defensa
 ---
 
 ## ✅ Versions

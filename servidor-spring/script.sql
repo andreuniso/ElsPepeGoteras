@@ -79,6 +79,7 @@ CREATE TABLE Jugador (
     skf_user_id NUMBER(19) NOT NULL,
     skf_partida_id NUMBER(19) NOT NULL,
     skf_numero INT NOT NULL,
+	available_troops INT NOT NULL,
     FOREIGN KEY (skf_user_id) REFERENCES Usuari(id),
     FOREIGN KEY (skf_partida_id) REFERENCES Partida(id),
     UNIQUE (skf_user_id, skf_partida_id),
@@ -339,9 +340,9 @@ INSERT INTO Usuari (nom, login, password, avatar, wins, games) VALUES ('Ferran M
 
 INSERT INTO Partida (id, data_inici, nom, token, max_players, admin_id, torn_player_id, estat_torn) VALUES (1, SYSDATE, 'ElsPepeGoteras', NULL, 3, NULL, NULL, 0);
 
-INSERT INTO Jugador (id, skf_user_id, skf_partida_id, skf_numero) VALUES (1, 1, 1, 1);
-INSERT INTO Jugador (id, skf_user_id, skf_partida_id, skf_numero) VALUES (2, 2, 1, 2);
-INSERT INTO Jugador (id, skf_user_id, skf_partida_id, skf_numero) VALUES (3, 3, 1, 3);
+INSERT INTO Jugador (id, skf_user_id, skf_partida_id, skf_numero, available_troops) VALUES (1, 1, 1, 1, 0);
+INSERT INTO Jugador (id, skf_user_id, skf_partida_id, skf_numero, available_troops) VALUES (2, 2, 1, 2, 0);
+INSERT INTO Jugador (id, skf_user_id, skf_partida_id, skf_numero, available_troops) VALUES (3, 3, 1, 3, 0);
 
 UPDATE Partida SET admin_id = 1, torn_player_id = 1 WHERE id = 1;
 
