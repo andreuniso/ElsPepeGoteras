@@ -6,11 +6,11 @@ Servidor Java Spring Boot per a gestionar partides, usuaris i comunicació en te
 
 ### `config`
 Conté configuracions globals del servidor.  
-🔧 Exemple: configuració CORS, WebSocket, etc.
+🔧 Exemple: `configuració CORS`, `WebSocket`, `etc`.
 
 ### `controller`
 Conté els controladors REST que exposen endpoints HTTP.  
-🎮 Gestionen peticions com crear una partida, registrar un usuari, etc.
+🎮 Gestionen peticions com `crear una partida`, `registrar un usuari`, `etc`.
 
 ### `dto`
 Conté les *Data Transfer Objects* que encapsulen les dades d'entrada/sortida.  
@@ -30,11 +30,11 @@ Conté diferents mètodes que ajuden a la gestió del servidor.
 
 ### `service`
 Conté la lògica de negoci.  
-⚙️ Exemple: crear partida, validar login, afegir jugadors...
+⚙️ Exemple: `crear partida`, `validar login`, `afegir jugadors`.
 
 ### `websocket`
 Conté la gestió de connexions WebSocket en temps real.  
-💬 Exemple: rebre i enviar missatges entre clients durant una partida.
+💬 Exemple: `rebre i enviar missatges entre clients durant una partida.`
 
 ---
 
@@ -47,6 +47,13 @@ Ruta base: `/api/jugador`
 |------------------------|----------|-----------------|------------------------------------------|
 | `/id/{id}`             | `GET`    | `Jugador`       | Recupera un jugador per ID               |
 | `/partida/{idPartida}` | `GET`    | `List<Jugador>` | Recupera tots els jugadors de la partida |
+
+### `MapaController`
+Ruta base: `/api/mapa`
+
+| Mètode | Retorn               | Descripció           |
+|--------|----------------------|----------------------|
+| `GET`  | `List<ContinentDTO>` | Recupera tot el mapa |
 
 ### `PartidaController`
 Ruta base: `/api/partida`

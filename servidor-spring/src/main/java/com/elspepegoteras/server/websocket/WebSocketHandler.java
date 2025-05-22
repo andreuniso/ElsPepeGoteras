@@ -19,7 +19,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
@@ -102,8 +101,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 case "REINFORCE_COUNTRIES" -> {
                     reinforceCountries(session, message);
                 }
-                case "ASSIGN_TROPES" -> {
-                    assignTropes(session, message);
+                case "ASSIGN_TROOPS" -> {
+                    assignTroops(session, message);
                 }
                 default -> {
                     try {
@@ -338,7 +337,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 if (partida.getAdminId().equals(admin.getId())) {
                     //Buscar jugador amb número 1 a la partida
                     List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
-                    if (jugadors.size() == partida.getMaxJugadors()) {
+                    if (partidaSessions.get(partida.getId()).size() == partida.getMaxJugadors()) {
+                    //if (jugadors.size() == partida.getMaxJugadors()) {
                         if (jugadors != null && !jugadors.isEmpty()) {
                             Jugador primerJugador = jugadors.stream()
                                     .filter(j -> j.getNumero() == 1)
@@ -514,7 +514,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 }
 
                 if (totesLesTropesColocades) {
-                    partida.setEstat(Estats.COLOCACIO_INICIAL);
+                    partida.setEstat(Estats.ASSIGNAR_TROPES);
                 }
 
                 partidaService.actualizarPartida(partida);
@@ -539,7 +539,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
      * @param session La sessió del WebSocket.
      * @param message El missatge rebut del client.
      */
-    private void assignTropes(WebSocketSession session, TextMessage message) {
+    private void assignTroops(WebSocketSession session, TextMessage message) {
         try {
             //Recuperem el jugador i la partida associada
             JsonNode json = objectMapper.readTree(message.getPayload());

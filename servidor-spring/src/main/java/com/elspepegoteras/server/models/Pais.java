@@ -1,5 +1,6 @@
 package com.elspepegoteras.server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class Pais {
 
     @ManyToOne
     @JoinColumn(name = "continent_id")
+    @JsonIgnore
     private Continent continent;
 
     //Constructor per defecte

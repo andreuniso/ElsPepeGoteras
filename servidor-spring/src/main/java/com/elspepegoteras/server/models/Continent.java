@@ -2,6 +2,8 @@ package com.elspepegoteras.server.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "continent")
 public class Continent {
@@ -14,6 +16,9 @@ public class Continent {
     @Column(name = "reforc_tropes")
     private int reforcTropes;
 
+    @OneToMany(mappedBy = "continent", fetch = FetchType.LAZY)
+    private List<Pais> paisos;
+
     //Constructor per defecte
     public Continent() {
     }
@@ -25,10 +30,11 @@ public class Continent {
     }
 
     //Recuperació d'un continent
-    public Continent(long id, String nom, int reforcTropes) {
+    public Continent(long id, String nom, int reforcTropes, List<Pais> paisos) {
         setId(id);
         setNom(nom);
         setReforcTropes(reforcTropes);
+        setPaisos(paisos);
     }
 
     public long getId() {
@@ -53,6 +59,14 @@ public class Continent {
 
     public void setReforcTropes(int reforcTropes) {
         this.reforcTropes = reforcTropes;
+    }
+
+    public List<Pais> getPaisos() {
+        return paisos;
+    }
+
+    public void setPaisos(List<Pais> paisos) {
+        this.paisos = paisos;
     }
 }
    
