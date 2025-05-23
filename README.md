@@ -85,7 +85,7 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 *   `attack` → El jugador ha atacat un pais
 *   `data`:
     *   `id_pais_atacant` → Pais que ataca
-    *   `id_pais_defensant` → Pais que defensa
+    *   `id_pais_defensiu` → Pais que defensa
     *   `qt_tropes_atacant` → Nombre de tropes que ataca
 
 

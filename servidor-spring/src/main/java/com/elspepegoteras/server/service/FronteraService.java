@@ -1,7 +1,10 @@
 package com.elspepegoteras.server.service;
 
+import com.elspepegoteras.server.models.Pais;
 import com.elspepegoteras.server.repository.FronteraRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FronteraService {
     private final FronteraRepository fronteraRepository;
 
@@ -9,8 +12,8 @@ public class FronteraService {
         this.fronteraRepository = fronteraRepository;
     }
 
-    public boolean sonFrontera(Long id1, Long id2) {
-        return fronteraRepository.existsByIdPais1AndIdPais2(id1, id2) ||
-                fronteraRepository.existsByIdPais1AndIdPais2(id2, id1);
+    public boolean sonFrontera(Pais pais1, Pais pais2) {
+        return fronteraRepository.existsByPais1AndPais2(pais1, pais2) ||
+                fronteraRepository.existsByPais1AndPais2(pais2, pais1);
     }
 }

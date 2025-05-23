@@ -642,7 +642,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             Pais paisAtacant = paisService.getPaisById(idPaisAtacant);
             Pais paisDefensiu = paisService.getPaisById(idPaisDefensiu);
             if (paisAtacant == null || paisDefensiu == null) return;
-            if (!fronteraService.sonFrontera(idPaisAtacant, idPaisDefensiu)) return;
+            if (!fronteraService.sonFrontera(paisAtacant, paisDefensiu)) return;
 
             Okupa okAtacant = okupaService.getOkupaByPaisAndPartida(paisAtacant.getId(), partida.getId());
             Okupa okDefensor = okupaService.getOkupaByPaisAndPartida(paisDefensiu.getId(), partida.getId());
@@ -688,8 +688,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 if (tropesMoviment >= okAtacant.getTropes()) {
                     tropesMoviment = okAtacant.getTropes() - 1;
                 }
-                okDefensor.setTropes(tropesMoviment);
-                okAtacant.setTropes(okAtacant.getTropes() - tropesMoviment);
+
+                int tropesDesplasades = tropesMoviment / 2;
+                okDefensor.setTropes(tropesDesplasades);
+                okAtacant.setTropes(okAtacant.getTropes() - tropesDesplasades);
 
                 okupaService.guardarOkupa(okDefensor);
                 okupaService.guardarOkupa(okAtacant);
@@ -704,7 +706,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 partidaService.actualizarPartida(partida);
             }
 
-            broadcastToPartida(partida.getId(), generarMissatgeEstatPartida(partida));
+            broadcastToPartida(partida.getId(), generarMissatgeEstatPartida(partida, dausAtacant, dausDefensor));
         } catch (Exception e) {
             System.out.println("❌ Error processant atac: " + e.getMessage());
         }
@@ -733,7 +735,26 @@ public class WebSocketHandler extends TextWebSocketHandler {
             if (!partida.getTornPlayerId().equals(jugador.getId())) return;
 
             //Pas al estat de fortificació
-            partida.setEstat(Estats.REFORCAR_PAIS);
+            partida.setEstat(Estats.ASSIGNAR_TROPES);
+
+            //Pas al següent jugador
+            List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
+            int nextIndex = (jugador.getNumero() % jugadors.size()) + 1;
+            Jugador next = jugadors.stream()
+            .filter(j -> j.getNumero() == nextIndex)
+            .findFirst()
+            .orElse(null);
+
+            if (next != null) {
+                partida.setTornPlayerId(next.getId());
+
+                List<Okupa> okupacions = okupaService.getAllByJugador(next.getId());
+                int tropesDisponibles = calcularTropesDisponibles(next, okupacions);
+
+                next.setTropes(tropesDisponibles);
+                jugadorService.actualizarJugador(next);
+            }
+
             partidaService.actualizarPartida(partida);
 
             broadcastToPartida(partida.getId(), generarMissatgeEstatPartida(partida));
@@ -818,7 +839,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
      * @param partida La partida actualitzada.
      * @return El missatge JSON com a cadena de text.
      */
-    private String generarMissatgeEstatPartida(Partida partida) {
+    private String generarMissatgeEstatPartida(Partida partida, List<Integer> dausAtacant, List<Integer> dausDefensor) {
         ObjectNode root = objectMapper.createObjectNode();
         root.put("type", "game_state");
 
@@ -826,6 +847,23 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
         Jugador jugadorActual = jugadorService.getJugadorById(partida.getTornPlayerId());
         dataNode.put("availableTroopsActualPlayer", jugadorActual.getTropes());
+
+        //Si hi ha daus, afegir-los al missatge
+        if (dausAtacant != null) {
+            ArrayNode arrayDausAtacant = objectMapper.createArrayNode();
+            dausAtacant.forEach(arrayDausAtacant::add);
+            dataNode.set("dausAtacant", arrayDausAtacant);
+        } else {
+            dataNode.putNull("dausAtacant");
+        }
+
+        if (dausDefensor != null) {
+            ArrayNode arrayDausDefensor = objectMapper.createArrayNode();
+            dausDefensor.forEach(arrayDausDefensor::add);
+            dataNode.set("dausDefensor", arrayDausDefensor);
+        } else {
+            dataNode.putNull("dausDefensor");
+        }
 
         //Crear array de territoris
         ArrayNode territorisArray = objectMapper.createArrayNode();
@@ -856,7 +894,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
         return root.toString();
     }
 
-
+    private String generarMissatgeEstatPartida(Partida partida) {
+        return generarMissatgeEstatPartida(partida, null, null);
+    }
 
     /**************************************************BROADCAST**************************************************/
 
