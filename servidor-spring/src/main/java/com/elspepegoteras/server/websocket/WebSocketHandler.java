@@ -110,6 +110,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 case "FINISH_ATTACK" -> {
                     finish_attack(session, message);
                 }
+                case "FORTIFY" -> {
+                    fortify(session, message);
+                }
                 default -> {
                     try {
                         session.sendMessage(new TextMessage("{ \"error\": \"Comandament desconegut\" }"));
@@ -244,6 +247,43 @@ public class WebSocketHandler extends TextWebSocketHandler {
         return resultats;
     }
 
+    /**
+     * Comprova si existeix un camí entre dos països ocupats pel mateix jugador.
+     *
+     * @param jugador El jugador actual.
+     * @param idPais1 L'ID del primer país.
+     * @param idPais2 L'ID del segon país.
+     * @return true si existeix un camí, false en cas contrari.
+     */
+    private boolean existeixCamiEntrePaisos(Jugador jugador, Long idPais1, Long idPais2) {
+        Set<Long> visitats = new HashSet<>();
+        Queue<Long> cua = new LinkedList<>();
+        cua.add(idPais1);
+
+        while (!cua.isEmpty()) {
+            Long actual = cua.poll();
+            if (actual.equals(idPais2)) return true;
+            visitats.add(actual);
+
+            List<Frontera> fronteres = fronteraService.getFronterasByPaisId(paisService.getPaisById(actual));
+
+            for (Frontera frontera : fronteres) {
+                Long vei = frontera.getPais1().getId() == actual
+                        ? frontera.getPais2().getId()
+                        : frontera.getPais1().getId();
+
+                //Només afegim veïns ocupats pel mateix jugador i que no hem visitat
+                Okupa ok = okupaService.getOkupaByPaisAndPartida(vei, jugador.getPartida().getId());
+                if (ok != null && ok.getIdJugador().equals(jugador.getId()) && !visitats.contains(vei)) {
+                    cua.add(vei);
+                }
+            }
+        }
+
+        return false;
+    }
+
+
 
     /**
      * Recupera el jugador associat a la sessió.
@@ -316,7 +356,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
      * @param session La sessió del WebSocket a eliminar.
      */
     private void eliminarSession(WebSocketSession session) {
-        //1. Buscar idJugador en jugadorSessions
+        //Buscar idJugador en jugadorSessions
         Jugador jugador = cercarJugador(session);
 
         if (jugador == null) {
@@ -324,10 +364,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
             return;
         }
 
-        //2. Esborrar la sessió de jugadorSessions
+        //Esborrar la sessió de jugadorSessions
         jugadorSessions.remove(jugador.getId());
 
-        //3. Esborrar la sessió del set en partidaSessions
+        //Esborrar la sessió del set en partidaSessions
         Long idPartida = jugador.getPartida().getId();
         Set<WebSocketSession> sessionsPartida = partidaSessions.get(idPartida);
         if (sessionsPartida != null) {
@@ -359,19 +399,17 @@ public class WebSocketHandler extends TextWebSocketHandler {
                     //Buscar jugador amb número 1 a la partida
                     List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
                     if (partidaSessions.get(partida.getId()).size() == partida.getMaxJugadors()) {
-                    //if (jugadors.size() == partida.getMaxJugadors()) {
                         if (jugadors != null && !jugadors.isEmpty()) {
                             Jugador primerJugador = jugadors.stream()
-                                    .filter(j -> j.getNumero() == 1)
-                                    .findFirst()
-                                    .orElse(null);
+                            .filter(j -> j.getNumero() == 1)
+                            .findFirst()
+                            .orElse(null);
                             if (primerJugador != null) {
                                 partida.setEstat(Estats.COLOCACIO_INICIAL);
                                 partida.setTornPlayerId(primerJugador.getId());
                                 partidaService.actualizarPartida(partida);
 
                                 //Enviem un missatge a tots els jugadors de la partida per iniciar el joc
-                                //broadcastToPartida(partida.getId(), generarMissatgePartidaIniciada(partida));
                                 broadcastToPartida(partida.getId(), generarMissatgeEstatPartida(partida));
                             } else {
                                 System.out.println("❌ No s'ha trobat cap jugador amb número 1 a la partida " + partida.getId());
@@ -427,7 +465,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
             //Crear una ocupació nova
             Okupa okupa = new Okupa(pais.getId(), partida.getId(), jugador.getId(), 1);
-            okupa = okupaService.guardarOkupa(okupa);
+            okupaService.guardarOkupa(okupa);
 
             //Pas al següent jugador
             List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
@@ -455,9 +493,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
             partidaService.actualizarPartida(partida);
 
-            //Notifiquem a tothom
-            //broadcastToPartida(partida.getId(), generarMissatgePaisActualitzat(okupa));
-            //broadcastToPartida(partida.getId(), generarMissatgeNouTorn(partida));
             broadcastToPartida(partida.getId(), generarMissatgeEstatPartida(partida));
         } catch (Exception e) {
             System.out.println("❌ Error processant el missatge de col·locació de tropa: " + e.getMessage());
@@ -548,17 +583,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
                 partidaService.actualizarPartida(partida);
                 broadcastToPartida(partida.getId(), generarMissatgeEstatPartida(partida));
-
-                /*partidaService.actualizarPartida(partida);
-                broadcastToPartida(partida.getId(), generarMissatgePaisActualitzat(okupa));
-                broadcastToPartida(partida.getId(), generarMissatgeNouTorn(partida));
-
-                //Enviem missatge al següent jugador amb el nombre de tropes disponibles
-                if (totesLesTropesColocades) {
-                    List<Okupa> okupacions = okupaService.getAllByJugador(next.getId());
-                    int tropesDisponibles = calcularTropesDisponibles(next, okupacions);
-                    broadcastToJugador(next.getId(), generarMissatgeTropesDisponibles(tropesDisponibles));
-                }*/
             }
         } catch (Exception e) {
             System.out.println("❌ Error processant el missatge de reforç de països: " + e.getMessage());
@@ -608,12 +632,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
             if (qtTropesRestants <= 0) {
                 //Si no queden tropes per assignar, passem al següent estat
                 partida.setEstat(Estats.ATAC);
-                //broadcastToPartida(partida.getId(), generarMissatgeCanviEstat(partida));
             }
 
             partidaService.actualizarPartida(partida);
             broadcastToPartida(partida.getId(), generarMissatgeEstatPartida(partida));
-            //broadcastToPartida(partida.getId(), generarMissatgePaisActualitzat(okupa));
         } catch (Exception e) {
             System.out.println("❌ Error processant el missatge d'assignació de tropes: " + e.getMessage());
         }
@@ -763,76 +785,84 @@ public class WebSocketHandler extends TextWebSocketHandler {
         }
     }
 
+    /**
+     * Fortifica un país seleccionat pel jugador.
+     *
+     * @param session La sessió del WebSocket.
+     * @param message El missatge rebut del client.
+     */
+    private void fortify(WebSocketSession session, TextMessage message) {
+        try {
+            //Recuperem el jugador i la partida associada
+            JsonNode json = objectMapper.readTree(message.getPayload());
+            Jugador jugador = cercarJugador(session);
+            Long idPais1 = json.get("data").get("id_pais_1").asLong();
+            Long idPais2 = json.get("data").get("id_pais_2").asLong();
+            int qtTropes = json.get("data").get("qt_tropes").asInt();
+
+            if (jugador == null) {
+                System.out.println("❌ Jugador no trobat per id: " + jugador.getId());
+                return;
+            }
+
+            //Busquem la partida associada al jugador
+            Partida partida = jugador.getPartida();
+            if (!partida.getEstat().equals(Estats.FORTIFICACIO)) return;
+
+            //Verifiquem que sigui el seu torn
+            if (!partida.getTornPlayerId().equals(jugador.getId())) return;
+
+            Pais pais1 = paisService.getPaisById(idPais1);
+            Pais pais2 = paisService.getPaisById(idPais2);
+            if (pais1 == null || pais2 == null) return;
+
+            //Verifiquem que el país té tropes (és a dir, té un Okupa associat) i que és propietat del jugador
+            Okupa okupaPais1 = okupaService.getOkupaByPaisAndPartida(pais1.getId(), partida.getId());
+            Okupa okupaPais2 = okupaService.getOkupaByPaisAndPartida(pais2.getId(), partida.getId());
+            if (okupaPais1 == null || okupaPais2 == null || okupaPais1.getIdJugador() != jugador.getId() || okupaPais2.getIdJugador() != jugador.getId()) return;
+
+            //Verifiquem que existeix un cami entre els dos països de països conquistats pel jugador
+            if (existeixCamiEntrePaisos(jugador, pais1.getId(), pais2.getId())) {
+                //Verifiquem que el país 1 té tropes suficients per fer la fortificació
+                if (okupaPais1.getTropes() > qtTropes) {
+                    //Restar tropes al país 1
+                    okupaPais1.setTropes(okupaPais1.getTropes() - qtTropes);
+                    okupaService.guardarOkupa(okupaPais1);
+
+                    //Afegir tropes al país 2
+                    okupaPais2.setTropes(okupaPais2.getTropes() + qtTropes);
+                    okupaService.guardarOkupa(okupaPais2);
+
+                    //Pas al següent jugador
+                    List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
+                    int nextIndex = (jugador.getNumero() % jugadors.size()) + 1;
+
+                    Jugador next = jugadors.stream()
+                    .filter(j -> j.getNumero() == nextIndex)
+                    .findFirst()
+                    .orElse(null);
+
+                    if (next != null) {
+                        partida.setTornPlayerId(next.getId());
+                        partida.setEstat(Estats.ASSIGNAR_TROPES);
+
+                        List<Okupa> okupacions = okupaService.getAllByJugador(next.getId());
+                        int tropesDisponibles = calcularTropesDisponibles(next, okupacions);
+
+                        next.setTropes(tropesDisponibles);
+                        jugadorService.actualizarJugador(next);
+                    }
+
+                    partidaService.actualizarPartida(partida);
+                    broadcastToPartida(partida.getId(), generarMissatgeEstatPartida(partida));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("❌ Error processant el missatge de fortificació: " + e.getMessage());
+        }
+    }
+
     /*****************************************GENERACIÓ DE MISSATGES JSON*****************************************/
-
-    /**
-     * Genera un missatge JSON per indicar que la partida ha estat iniciada.
-     *
-     * @param partida La partida iniciada.
-     * @return El missatge JSON com a cadena de text.
-     */
-    /*private String generarMissatgePartidaIniciada(Partida partida) {
-        ObjectNode root = objectMapper.createObjectNode();
-        root.put("type", "game_started");
-        root.set("data", objectMapper.valueToTree(partida));
-        return root.toString();
-    }*/
-
-    /**
-     * Genera un missatge JSON per indicar que un país ha estat actualitzat.
-     *
-     * @param okupa El país actualitzat.
-     * @return El missatge JSON com a cadena de text.
-     */
-    /*private String generarMissatgePaisActualitzat(Okupa okupa) {
-        ObjectNode root = objectMapper.createObjectNode();
-        root.put("type", "country_updated");
-        root.set("data", objectMapper.valueToTree(okupa));
-        return root.toString();
-    }*/
-
-    /**
-     * Genera un missatge JSON per indicar que és el torn d'un nou jugador.
-     *
-     * @param partida La partida actualitzada.
-     * @return El missatge JSON com a cadena de text.
-     */
-    /*private String generarMissatgeNouTorn(Partida partida) {
-        ObjectNode root = objectMapper.createObjectNode();
-        root.put("type", "new_turn");
-        root.set("data", objectMapper.valueToTree(partida));
-        return root.toString();
-    }*/
-
-    /**
-     * Genera un missatge JSON per indicar que ha canviat l'estat de la partida.
-     *
-     * @param partida La partida actualitzada.
-     * @return El missatge JSON com a cadena de text.
-     */
-    /*private String generarMissatgeCanviEstat(Partida partida) {
-        ObjectNode root = objectMapper.createObjectNode();
-        root.put("type", "change_state");
-        root.set("data", objectMapper.valueToTree(partida));
-        return root.toString();
-    }*/
-
-    /**
-     * Genera un missatge JSON per indicar que hi ha tropes disponibles per reforçar.
-     *
-     * @param tropesDisponibles El nombre de tropes disponibles.
-     * @return El missatge JSON com a cadena de text.
-     */
-    /*private String generarMissatgeTropesDisponibles(int tropesDisponibles) {
-        ObjectNode root = objectMapper.createObjectNode();
-        root.put("type", "available_troops");
-
-        ObjectNode data = objectMapper.createObjectNode();
-        data.put("qt_tropes", tropesDisponibles);
-
-        root.set("data", data);
-        return root.toString();
-    }*/
 
     /**
      * Genera un missatge JSON per indicar l'estat de la partida.

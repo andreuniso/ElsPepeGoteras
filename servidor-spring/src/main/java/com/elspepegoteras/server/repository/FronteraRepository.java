@@ -1,9 +1,7 @@
 package com.elspepegoteras.server.repository;
 
 import com.elspepegoteras.server.models.Frontera;
-import com.elspepegoteras.server.models.Jugador;
 import com.elspepegoteras.server.models.Pais;
-import com.elspepegoteras.server.models.Partida;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
