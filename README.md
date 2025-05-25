@@ -59,6 +59,8 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 *   `data`:
     *   `partida` → Llista de la partida amb tots els seus camps
     *   `availableTroopsActualPlayer` → Nombre de tropes disponibles per al jugador actual
+    *   `dausAtacant` → Array amb els daus generats pel pais atacant
+    *   `dausDefensor` → Array amb els daus generats pel pais defensor
     *   `territories` → Llista de territoris amb tots els seus camps
 
 #### (Client → Server)
