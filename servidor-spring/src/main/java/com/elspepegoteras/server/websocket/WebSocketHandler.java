@@ -759,24 +759,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
             //Pas al estat de fortificació
             partida.setEstat(Estats.FORTIFICACIO);
 
-            //Pas al següent jugador
-            List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
-            int nextIndex = (jugador.getNumero() % jugadors.size()) + 1;
-            Jugador next = jugadors.stream()
-            .filter(j -> j.getNumero() == nextIndex)
-            .findFirst()
-            .orElse(null);
-
-            if (next != null) {
-                partida.setTornPlayerId(next.getId());
-
-                List<Okupa> okupacions = okupaService.getAllByJugador(next.getId());
-                int tropesDisponibles = calcularTropesDisponibles(next, okupacions);
-
-                next.setTropes(tropesDisponibles);
-                jugadorService.actualizarJugador(next);
-            }
-
             partidaService.actualizarPartida(partida);
 
             broadcastToPartida(partida.getId(), generarMissatgeEstatPartida(partida));
