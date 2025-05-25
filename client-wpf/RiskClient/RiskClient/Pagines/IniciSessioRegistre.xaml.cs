@@ -39,32 +39,27 @@ namespace RiskClient.Models
             try
             {
                 usuariAutenticat = await _userService.LoginAsync(usuari);
+
                 if (usuariAutenticat != null)
                 {
-                    UsuariActual.Set(usuariAutenticat); 
+                    // Desa l'usuari globalment per utilitzar-lo més endavant (crear/join partida)
+                    UsuariActual.Set(usuariAutenticat);
+
+                    // 🧭 Navega a la pantalla principal (crear/entrar a partida)
+                    NavigationService?.Navigate(new RiskClient.Pagines.PantallaPrincipal());
+                }
+                else
+                {
+                    MessageBox.Show("Credencials incorrectes");
+                    BtnInicia.IsEnabled = true;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error de connexió: {ex.Message}");
                 BtnInicia.IsEnabled = true;
-                return;
             }
-
-            if (usuariAutenticat == null)
-            {
-                MessageBox.Show("Credencials incorrectes");
-                BtnInicia.IsEnabled = true;
-                return;
-            }
-
-            //Aixo çes per conectar amb el websockeet
-            _webSocketClient = new WebSocketClient();
-            await _webSocketClient.ConnectarAsync();
-
-            NavigationService?.Navigate(new RiskClient.Pagines.PantallaPrincipal());
         }
-
 
         private void RegistraText_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -80,7 +75,44 @@ namespace RiskClient.Models
 
         private async void BtnRegistrar_Click(object sender, RoutedEventArgs e)
         {
-            
+            string nom = TxtNom.Text.Trim();
+            string login = TxtNickname.Text.Trim();
+            string contrasenya = TxtPasswordRegistre.Password;
+            string confirmaContrasenya = TxtConfirmaPassword.Password;
+
+            // Validació bàsica
+            if (string.IsNullOrEmpty(nom) || string.IsNullOrEmpty(login) || string.IsNullOrEmpty(contrasenya))
+            {
+                MessageBox.Show("Tots els camps són obligatoris.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (contrasenya != confirmaContrasenya)
+            {
+                MessageBox.Show("Les contrasenyes no coincideixen.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                Usuari usuari = new Usuari(nom, login, contrasenya);
+                UserService userService = new UserService("http://localhost:8080");
+
+                Usuari? usuariRegistrat = await userService.RegisterAsync(usuari);
+
+                if (usuariRegistrat != null)
+                {
+                    MessageBox.Show("Registre complet! Ja pots iniciar sessió.", "Èxit", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    RegistrePanel.Visibility = Visibility.Collapsed;
+                    LoginPanel.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error durant el registre: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+    
     }
 }

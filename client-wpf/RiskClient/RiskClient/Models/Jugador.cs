@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RiskClient.Models
 {
     public class Jugador
     {
-        public int Id { get; set; }
-        public int UsuariId { get; set; }
-        public int PartidaId { get; set; }
+        public long Id { get; set; }
+        public Usuari Usuari { get; set; }
+        public Partida Partida { get; set; }
         public int Numero { get; set; }
+        public List<Okupa> PaisosOkupats { get; set; }
+        public List<Carta> Cartes { get; set; }
     }
+
+    public class Carta
+    {
+        // afegeix camps reals quan toqui
+    }
+
+    
+
 }

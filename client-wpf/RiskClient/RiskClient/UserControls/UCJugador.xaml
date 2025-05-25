@@ -4,45 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             Width="400" Height="150"
+             Width="400" Height="85"
              x:Name="ucJugador">
 
-    <Border CornerRadius="20" Background="#EEE" Padding="10" Width="400" Height="150">
+    <Border CornerRadius="16" Background="#223B63" Padding="12" Margin="4">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <!-- Avatar -->
-            <Image Source="{Binding usuaris.Avatar, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-                   Width="100" Height="100"
-                   Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" 
+            <Image x:Name="ImgAvatar"
+                   Width="55" Height="55"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Stretch="UniformToFill" 
-                   ClipToBounds="True">
+                   Grid.Column="0"  Stretch="UniformToFill">
                 <Image.Clip>
-                    <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                    <EllipseGeometry Center="35,35" RadiusX="35" RadiusY="35" />
                 </Image.Clip>
             </Image>
 
-            <!-- Nickname (Login) -->
-            <TextBlock Text="{Binding usuaris.Login, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=Nickname}" 
-                       FontSize="30" FontWeight="Bold" 
-                       VerticalAlignment="Center" HorizontalAlignment="Left"
-                       Grid.Row="0" Grid.Column="1" 
-                       Margin="20,0,0,0"/>
+            <!-- Nom usuari -->
+            <StackPanel Orientation="Vertical" Grid.Column="1" Margin="16,0" VerticalAlignment="Center">
+                <TextBlock Text="{Binding usuaris.Login, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=Nickname}"
+                           FontSize="24" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Connectat" FontSize="14" Foreground="#CCCCCC"/>
+            </StackPanel>
 
-            <!-- Número de victories + Icona trofeu -->
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" 
-                        Grid.Row="1" Grid.Column="1" Margin="20,0,0,0">
-                <TextBlock Text="🏆" FontSize="30" Margin="0,0,5,0"/>
+            <!-- Victòries -->
+            <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,20,0">
+                <TextBlock Text="🏆" FontSize="22" Margin="0,0,5,0" Foreground="White"/>
                 <TextBlock Text="{Binding usuaris.Wins, RelativeSource={RelativeSource AncestorType=UserControl}, FallbackValue=0}" 
-                           FontSize="25" VerticalAlignment="Center"/>
+                           FontSize="20" Foreground="White"/>
             </StackPanel>
         </Grid>
     </Border>

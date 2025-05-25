@@ -34,7 +34,7 @@ namespace RiskClient.Pagines
             TxtNomUsuari.Text = usuari.Nom;
             TxtNickname.Text = usuari.Login;
             TxtPartidesGuanyades.Text = usuari.Wins.ToString();
-            TxtPartidesJugades.Text = usuari.GamesPlayed.ToString();
+            TxtPartidesJugades.Text = usuari.Games.ToString();
 
             AvatarGran.Source = new BitmapImage(new Uri($"http://localhost:8080/avatars/{usuari.Avatar}"));
 
@@ -88,6 +88,10 @@ namespace RiskClient.Pagines
 
             IconEditaDesa.Text = "✔";
             AvatarSelector.Visibility = Visibility.Visible;
+            BtnMostrarContrasenya.Visibility = Visibility.Visible;
+
+            EditContrasenya.Password = UsuariActual.Get().Password;
+            EditContrasenyaVisible.Text = UsuariActual.Get().Password;
 
             editant = true;
         }
@@ -112,10 +116,10 @@ namespace RiskClient.Pagines
                 Id = usuari.Id,
                 Nom = nouNom,
                 Login = nouLogin,
-                Contrasenya = string.IsNullOrEmpty(novaContrasenya) ? usuari.Contrasenya : novaContrasenya,
+                Password = string.IsNullOrEmpty(novaContrasenya) ? usuari.Password : novaContrasenya,
                 Avatar = nouAvatar,
                 Wins = usuari.Wins,
-                GamesPlayed = usuari.GamesPlayed
+                Games = usuari.Games
             };
 
             try
@@ -142,6 +146,33 @@ namespace RiskClient.Pagines
             }
         }
 
+        private bool contrasenyaVisible = false;
+
+        private void BtnMostrarContrasenya_Click(object sender, RoutedEventArgs e)
+        {
+            if (contrasenyaVisible)
+            {
+                // Ocultem la contrasenya (mode PasswordBox)
+                EditContrasenyaVisible.Visibility = Visibility.Collapsed;
+                EditContrasenya.Visibility = Visibility.Visible;
+
+                EditContrasenya.Password = EditContrasenyaVisible.Text;
+                BtnMostrarContrasenya.Content = "👁";
+                contrasenyaVisible = false;
+            }
+            else
+            {
+                // Mostrem la contrasenya (mode TextBox)
+                EditContrasenyaVisible.Text = EditContrasenya.Password;
+                EditContrasenyaVisible.Visibility = Visibility.Visible;
+                EditContrasenya.Visibility = Visibility.Collapsed;
+
+                BtnMostrarContrasenya.Content = "🙈";
+                contrasenyaVisible = true;
+            }
+        }
+
+
 
         private void MostraModeVisualitzacio()
         {
@@ -151,6 +182,8 @@ namespace RiskClient.Pagines
             EditNomUsuari.Visibility = Visibility.Collapsed;
             EditNickname.Visibility = Visibility.Collapsed;
             EditContrasenya.Visibility = Visibility.Collapsed;
+            BtnMostrarContrasenya.Visibility = Visibility.Collapsed;
+            EditContrasenyaVisible.Visibility = Visibility.Collapsed;
 
             IconEditaDesa.Text = "✎";
             AvatarSelector.Visibility = Visibility.Collapsed;

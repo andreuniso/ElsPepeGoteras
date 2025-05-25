@@ -27,7 +27,7 @@ namespace RiskClient.Serveis
                 var loginDTO = new
                 {
                     login = usuari.Login,
-                    password = usuari.Contrasenya
+                    password = usuari.Password
                 };
 
                 var json = JsonSerializer.Serialize(loginDTO, _jsonOptions);
@@ -62,7 +62,8 @@ namespace RiskClient.Serveis
                 var json = JsonSerializer.Serialize(usuari, _jsonOptions);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var resp = await _httpClient.PostAsync("/api/usuari", content);
+                // ✅ CORRECTE: Fem servir PUT
+                var resp = await _httpClient.PutAsync("/api/usuari/actualitzar", content);
 
                 if (!resp.IsSuccessStatusCode)
                 {
@@ -78,6 +79,7 @@ namespace RiskClient.Serveis
                 throw new Exception("No s'ha pogut actualitzar l'usuari.", ex);
             }
         }
+
 
         public async Task<List<string>> GetAvatarsAsync()
         {
@@ -97,6 +99,41 @@ namespace RiskClient.Serveis
             catch (Exception ex)
             {
                 throw new Exception("Error al carregar la llista d'avatars.", ex);
+            }
+        }
+
+        public async Task<Usuari?> RegisterAsync(Usuari usuari)
+        {
+            try
+            {
+                var registreDTO = new
+                {
+                    nom = usuari.Nom,
+                    login = usuari.Login,
+                    password = usuari.Password
+                };
+
+                var json = JsonSerializer.Serialize(registreDTO, _jsonOptions);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var resp = await _httpClient.PostAsync("/api/usuari/register", content);
+
+                if (!resp.IsSuccessStatusCode)
+                {
+                    var errorContent = await resp.Content.ReadAsStringAsync();
+                    throw new Exception($"Error al registrar l'usuari: {resp.StatusCode}. {errorContent}");
+                }
+
+                var body = await resp.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<Usuari>(body, _jsonOptions);
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception("Error de connexió amb el servidor durant el registre.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("S'ha produït un error inesperat durant el registre.", ex);
             }
         }
     }

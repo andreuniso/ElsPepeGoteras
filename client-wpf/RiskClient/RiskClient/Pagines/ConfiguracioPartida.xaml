@@ -7,17 +7,16 @@
       Title="ConfiguracioPartida">
 
     <Page.Resources>
-        <SolidColorBrush x:Key="PrimaryDarkBlue" Color="#2C3E50"/>
-        <SolidColorBrush x:Key="HighlightOrange" Color="#FF6A00"/>
-        <SolidColorBrush x:Key="LightBlue" Color="#2D5D9F"/>
+        <SolidColorBrush x:Key="DarkBlue" Color="#1B2631"/>
+        <SolidColorBrush x:Key="HighlightBlue" Color="#2D5D9F"/>
         <SolidColorBrush x:Key="BackgroundPanel" Color="#DD1A1A1A"/>
-        <SolidColorBrush x:Key="WhiteText" Color="White"/>
-        <SolidColorBrush x:Key="DimWhite" Color="#DDDDDD"/>
+        <SolidColorBrush x:Key="TextWhite" Color="White"/>
+        <SolidColorBrush x:Key="BorderDarkBlue" Color="#102030"/>
 
         <Style x:Key="FlatButton" TargetType="Button">
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="{StaticResource LightBlue}"/>
+            <Setter Property="Background" Value="{StaticResource HighlightBlue}"/>
             <Setter Property="Padding" Value="14,8"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -32,13 +31,24 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource HighlightOrange}"/>
+                    <Setter Property="Background" Value="#3A75C4"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="RedButton" BasedOn="{StaticResource FlatButton}" TargetType="Button">
-            <Setter Property="Background" Value="#c0392b"/>
+        <Style x:Key="DarkerBlueButton" BasedOn="{StaticResource FlatButton}" TargetType="Button">
+            <Setter Property="Background" Value="#1B3556"/>
+        </Style>
+
+        <Style x:Key="StyledTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="#66000000"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderDarkBlue}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
         </Style>
 
         <Style TargetType="RadioButton" x:Key="ToggleRadioStyle">
@@ -56,7 +66,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#2D5D9F"/>
+                                <Setter TargetName="Bd" Property="Background" Value="{StaticResource HighlightBlue}"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -75,27 +85,25 @@
 
                 <TextBlock Text="Configuració de la Partida" FontSize="34" FontWeight="Bold" Foreground="White" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,25"/>
 
-                <TextBlock Text="Nom de la partida" Foreground="{StaticResource DimWhite}" FontSize="18" Margin="0,0,0,6"/>
-                <TextBox x:Name="TxtNomPartida" Height="45" FontSize="20" Background="#F8F8F8" Foreground="Black" 
-                         BorderBrush="#AAA" BorderThickness="1" Padding="10" Margin="0,0,0,20" />
+                <TextBlock Text="Nom de la partida" Foreground="{StaticResource TextWhite}" FontSize="18" Margin="0,0,0,6"/>
+                <TextBox x:Name="TxtNomPartida" Style="{StaticResource StyledTextBox}" />
 
-                <TextBlock Text="Nombre de jugadors" Margin="0,0,0,6" Foreground="{StaticResource DimWhite}" FontSize="18"/>
+                <TextBlock Text="Nombre de jugadors" Margin="0,0,0,6" Foreground="{StaticResource TextWhite}" FontSize="18"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
                     <Button x:Name="BtnDecrementa" Content="−" Width="60" Height="60" Style="{StaticResource FlatButton}"/>
                     <TextBlock x:Name="TxtQuantitatJugadors" Text="3" FontSize="30" Margin="20,0" VerticalAlignment="Center" Foreground="White"/>
                     <Button x:Name="BtnIncrementa" Content="+" Width="60" Height="60" Style="{StaticResource FlatButton}"/>
                 </StackPanel>
 
-                <!-- Visibilitat -->
-                <TextBlock Text="Visibilitat de la partida" Margin="0,0,0,6" Foreground="{StaticResource DimWhite}" FontSize="18"/>
+                <TextBlock Text="Visibilitat de la partida" Margin="0,0,0,6" Foreground="{StaticResource TextWhite}" FontSize="18"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,30">
-                    <RadioButton Content="Pública" GroupName="Visibilitat" IsChecked="True" Style="{StaticResource ToggleRadioStyle}"/>
-                    <RadioButton Content="Privada" GroupName="Visibilitat" Style="{StaticResource ToggleRadioStyle}"/>
+                    <RadioButton x:Name="RbPublica" Content="Pública" GroupName="Visibilitat" IsChecked="True" Style="{StaticResource ToggleRadioStyle}"/>
+                    <RadioButton x:Name="RbPrivada" Content="Privada" GroupName="Visibilitat" Style="{StaticResource ToggleRadioStyle}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
                     <Button x:Name="btnCrearPartida" Content="CREAR" Width="180" Height="55" Margin="0,0,20,0" Style="{StaticResource FlatButton}" Click="btnCrearPartida_Click"/>
-                    <Button Content="CANCEL·LAR" Width="180" Height="55" Style="{StaticResource RedButton}" Click="BtnCancelar_Click"/>
+                    <Button Content="CANCEL·LAR" Width="180" Height="55" Style="{StaticResource DarkerBlueButton}" Click="BtnCancelar_Click"/>
                 </StackPanel>
 
             </StackPanel>

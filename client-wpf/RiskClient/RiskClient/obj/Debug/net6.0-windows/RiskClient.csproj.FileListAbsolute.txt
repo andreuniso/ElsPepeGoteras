@@ -55,3 +55,5 @@ E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\UserControls\UC
 E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\LlistatPartides.g.cs
 E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\Pagines\LlistatPartides.baml
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\UserControls\UCJugadorPartida.g.cs
+E:\M13 - PROJECTE\RiskClient\RiskClient\obj\Debug\net6.0-windows\UserControls\UCJugadorPartida.baml

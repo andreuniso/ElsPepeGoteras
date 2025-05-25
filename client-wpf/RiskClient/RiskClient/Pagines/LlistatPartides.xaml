@@ -10,9 +10,11 @@
       Loaded="Page_Loaded">
 
     <Grid>
+        <!-- Fons -->
         <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\sala_unirse.png" Stretch="Fill"/>
 
-        <Border Margin="80,40,80,40" Background="#AAFFFFFF" CornerRadius="16" BorderBrush="#DDD" BorderThickness="1" Padding="20">
+        <!-- Marc fosquet -->
+        <Border Margin="250,100,250,100" Background="#CC1A1A1A" CornerRadius="16" BorderBrush="#444" BorderThickness="1" Padding="30">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -21,31 +23,48 @@
                 </Grid.RowDefinitions>
 
                 <!-- Títol -->
-                <TextBlock Text="LLISTAT DE PARTIDES" Grid.Row="0" HorizontalAlignment="Center" FontSize="40"
-                           FontWeight="Bold" Foreground="#004797" FontFamily="Comic Sans MS" Margin="0,0,0,20"/>
+                <TextBlock Text="LLISTAT DE PARTIDES" Grid.Row="0" HorizontalAlignment="Center"
+                           FontSize="36" FontWeight="Bold" Foreground="White" Margin="0,0,0,20"/>
 
                 <!-- Llistat de partides públiques -->
-                <ListView x:Name="lvPartides" Grid.Row="1" Background="Transparent" BorderThickness="0"
-                  HorizontalAlignment="Center" Width="950" Height="600"
-                  MouseDoubleClick="lvPartides_MouseDoubleClick"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                  ItemsSource="{Binding Partides}"> 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border Width="800" Height="100" Background="White" CornerRadius="10" BorderBrush="#DDD" BorderThickness="1" Padding="10">
-                                <uc:UCPartida partida="{Binding}" />
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <StackPanel HorizontalAlignment="Center" Width="413">
+                        <ListView x:Name="lvPartides" ItemsSource="{Binding Partides}" 
+                              Background="Transparent" BorderThickness="0"
+                              SelectionMode="Single" 
+                              MouseDoubleClick="lvPartides_MouseDoubleClick">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <uc:UCPartida partida="{Binding}" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
 
-
-                <!-- Unir-se a partida privada -->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top">
-                    <TextBox x:Name="txtTokenPrivada" Width="300" Height="40" FontSize="18"
-                              Margin="0,0,10,0"/>
-                    <Button Content="Unir-se a partida privada" Width="250" Height="40" FontSize="18"
-                            Background="#004797" Foreground="White" Click="btnUnirPrivada_Click"/>
+                <!-- Secció per unir-se a una partida privada -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <TextBox x:Name="txtTokenPrivada" Width="280" Height="40" FontSize="18"
+                             Padding="10,5" Background="#333" Foreground="White" BorderBrush="#84b6f4" BorderThickness="1"
+                             Margin="0,0,10,0"/>
+                    <Button Content="UNIR-SE" Width="180" Height="40" FontSize="18"
+        Background="#84b6f4" Foreground="#222" BorderThickness="0"
+        Click="btnUnirPrivada_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  TextElement.Foreground="{TemplateBinding Foreground}" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#ff6a00"/>
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
             </Grid>
         </Border>
