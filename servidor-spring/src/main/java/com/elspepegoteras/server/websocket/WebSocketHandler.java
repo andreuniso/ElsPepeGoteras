@@ -757,7 +757,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             if (!partida.getTornPlayerId().equals(jugador.getId())) return;
 
             //Pas al estat de fortificació
-            partida.setEstat(Estats.ASSIGNAR_TROPES);
+            partida.setEstat(Estats.FORTIFICACIO);
 
             //Pas al següent jugador
             List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
