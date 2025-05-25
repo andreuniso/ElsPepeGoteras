@@ -1,21 +1,10 @@
 package com.elspepegoteras.server.service;
 
-import com.elspepegoteras.server.dto.JoinPartidaDTO;
-import com.elspepegoteras.server.dto.PartidaDTO;
-import com.elspepegoteras.server.models.Jugador;
 import com.elspepegoteras.server.models.Pais;
-import com.elspepegoteras.server.models.Partida;
-import com.elspepegoteras.server.models.Usuari;
-import com.elspepegoteras.server.repository.JugadorRepository;
 import com.elspepegoteras.server.repository.PaisRepository;
-import com.elspepegoteras.server.repository.PartidaRepository;
-import com.elspepegoteras.server.repository.UsuariRepository;
-import com.elspepegoteras.server.utils.TokenGenerator;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Service
 public class PaisService {
