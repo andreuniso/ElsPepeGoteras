@@ -721,8 +721,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 //Comprovem si tot el mapa ha estat conquerit
                 if (okupaService.getAllByJugador(jugador.getId()).size() == paisService.getAllPaises().size()) {
                     partida.setEstat(Estats.FINAL);
-                } else {
-                    partida.setEstat(Estats.FORTIFICACIO);
                 }
 
                 partidaService.actualizarPartida(partida);
