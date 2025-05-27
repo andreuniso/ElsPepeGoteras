@@ -711,9 +711,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
                     tropesMoviment = okAtacant.getTropes() - 1;
                 }
 
-                int tropesDesplasades = tropesMoviment / 2;
-                okDefensor.setTropes(tropesDesplasades);
-                okAtacant.setTropes(okAtacant.getTropes() - tropesDesplasades);
+                okDefensor.setTropes(tropesMoviment);
+                okAtacant.setTropes(okAtacant.getTropes() - tropesMoviment);
 
                 okupaService.guardarOkupa(okDefensor);
                 okupaService.guardarOkupa(okAtacant);
@@ -721,6 +720,16 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 //Comprovem si tot el mapa ha estat conquerit
                 if (okupaService.getAllByJugador(jugador.getId()).size() == paisService.getAllPaises().size()) {
                     partida.setEstat(Estats.FINAL);
+
+                    //Modifiquem la quantitat de partides guanyades pel jugador
+                    jugador.getUsuari().setWins(jugador.getUsuari().getWins() + 1);
+
+                    //Afegim a tots els jugadors la partida finalitzada
+                    List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
+                    for (Jugador j : jugadors) {
+                        j.getUsuari().setGames(j.getUsuari().getGames() + 1);
+                        jugadorService.actualizarJugador(j);
+                    }
                 }
 
                 partidaService.actualizarPartida(partida);
