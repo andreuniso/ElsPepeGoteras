@@ -99,6 +99,9 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
      *   `id_pais_1` → Pais d'on es treuen les tropes
      *   `id_pais_2` → Pais on es posen les tropes
      *   `qt_tropes` → Nombre de tropes que es desplacen
+
+
+*   `finish_fortify` → El jugador no vol fortificar
 ---
 
 ## ✅ Versions

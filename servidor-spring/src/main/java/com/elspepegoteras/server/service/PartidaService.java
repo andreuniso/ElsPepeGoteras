@@ -2,6 +2,7 @@ package com.elspepegoteras.server.service;
 
 import com.elspepegoteras.server.dto.JoinPartidaDTO;
 import com.elspepegoteras.server.dto.PartidaDTO;
+import com.elspepegoteras.server.models.Estats;
 import com.elspepegoteras.server.models.Jugador;
 import com.elspepegoteras.server.models.Partida;
 import com.elspepegoteras.server.models.Usuari;
@@ -51,7 +52,7 @@ public class PartidaService {
      * @return Retorna una llista d'objectes Partida que tenen el token a null
      */
     public List<Partida> getPartidesPubliques() {
-        return partidaRepository.findByTokenIsNullAndTornPlayerIdIsNull();
+        return partidaRepository.findByTokenIsNullAndEstat(Estats.ESPERA);
     }
 
     /**

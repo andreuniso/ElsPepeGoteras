@@ -1,5 +1,6 @@
 package com.elspepegoteras.server.repository;
 
+import com.elspepegoteras.server.models.Estats;
 import com.elspepegoteras.server.models.Partida;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,5 +11,5 @@ public interface PartidaRepository extends JpaRepository<Partida, Long> {
     Optional<Partida> findById(Long id);
     Optional<Partida> findByToken(String token);
     boolean existsByToken(String token);
-    List<Partida> findByTokenIsNullAndTornPlayerIdIsNull(); //Partides públiques
+    List<Partida> findByTokenIsNullAndEstat(Estats estat); //Partides públiques
 }

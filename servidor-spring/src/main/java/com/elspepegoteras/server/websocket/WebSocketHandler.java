@@ -113,6 +113,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 case "FORTIFY" -> {
                     fortify(session, message);
                 }
+                case "FINISH_FORTIFY" -> {
+                    finish_fortify(session, message);
+                }
                 default -> {
                     try {
                         session.sendMessage(new TextMessage("{ \"error\": \"Comandament desconegut\" }"));
@@ -848,6 +851,56 @@ public class WebSocketHandler extends TextWebSocketHandler {
             }
         } catch (Exception e) {
             System.out.println("❌ Error processant el missatge de fortificació: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Finalitza la fase de fortificació i passa al següent jugador.
+     *
+     * @param session La sessió del WebSocket.
+     * @param message El missatge rebut del client.
+     */
+    private void finish_fortify(WebSocketSession session, TextMessage message) {
+        try {
+            Jugador jugador = cercarJugador(session);
+
+            if (jugador == null) {
+                System.out.println("❌ Jugador no trobat per id: " + jugador.getId());
+                return;
+            }
+
+            //Busquem la partida associada al jugador
+            Partida partida = jugador.getPartida();
+            if (!partida.getEstat().equals(Estats.FORTIFICACIO)) return;
+
+            //Verifiquem que sigui el seu torn
+            if (!partida.getTornPlayerId().equals(jugador.getId())) return;
+
+            //Pas al següent jugador
+            List<Jugador> jugadors = jugadorService.getJugadorsByPartidaId(partida.getId());
+            int nextIndex = (jugador.getNumero() % jugadors.size()) + 1;
+
+            Jugador next = jugadors.stream()
+                    .filter(j -> j.getNumero() == nextIndex)
+                    .findFirst()
+                    .orElse(null);
+
+            if (next != null) {
+                partida.setTornPlayerId(next.getId());
+                partida.setEstat(Estats.ASSIGNAR_TROPES);
+
+                List<Okupa> okupacions = okupaService.getAllByJugador(next.getId());
+                int tropesDisponibles = calcularTropesDisponibles(next, okupacions);
+
+                next.setTropes(tropesDisponibles);
+                jugadorService.actualizarJugador(next);
+            }
+
+            partidaService.actualizarPartida(partida);
+
+            broadcastToPartida(partida.getId(), generarMissatgeEstatPartida(partida));
+        } catch (Exception e) {
+            System.out.println("❌ Error processant el missatge de finalització d'atac: " + e.getMessage());
         }
     }
 
