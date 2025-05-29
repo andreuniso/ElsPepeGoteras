@@ -33,7 +33,7 @@ public class FronteraService {
      * @param pais Pais del que es volen recuperar les fronteres
      * @return Llista de fronteres del país
      */
-    public List<Frontera> getFronterasByPaisId(Pais pais) {
+    public List<Frontera> getFronterasByPais(Pais pais) {
         return fronteraRepository.findFronterasByPais(pais);
     }
 }

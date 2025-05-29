@@ -22,9 +22,10 @@ import java.util.stream.Collectors;
 public class WebSocketHandler extends TextWebSocketHandler {
     private JugadorService jugadorService;
     private PartidaService partidaService;
-    private PaisService paisService;
+    //private PaisService paisService;
     private OkupaService okupaService;
     private FronteraService fronteraService;
+    private DadesGeografia dadesGeografia;
 
     private final Map<Long, WebSocketSession> jugadorSessions = new ConcurrentHashMap<>();
     private final Map<Long, Set<WebSocketSession>> partidaSessions = new ConcurrentHashMap<>();
@@ -35,9 +36,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
     public WebSocketHandler(JugadorService jugadorService, PartidaService partidaService, PaisService paisService, OkupaService okupaService, FronteraService fronteraService) {
         this.jugadorService = jugadorService;
         this.partidaService = partidaService;
-        this.paisService = paisService;
+        //this.paisService = paisService;
         this.okupaService = okupaService;
         this.fronteraService = fronteraService;
+        this.dadesGeografia = new DadesGeografia(paisService, fronteraService);
     }
 
     @Override
@@ -203,7 +205,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
             if (ok.getIdJugador() == jugador.getId()) {
                 territorisJugador++;
 
-                Pais pais = paisService.getPaisById(ok.getIdPais());
+                Pais pais = dadesGeografia.getPais(ok.getIdPais());
+                //Pais pais = paisService.getPaisById(ok.getIdPais());
                 if (pais != null && pais.getContinent() != null) {
                     long idContinent = pais.getContinent().getId();
 
@@ -211,10 +214,14 @@ public class WebSocketHandler extends TextWebSocketHandler {
                     paisosControlatsPerContinent.merge(idContinent, 1, Integer::sum);
 
                     //Comptar total països del continent si no estava ja comptat
+                    /*totalPaisosPerContinent.putIfAbsent(idContinent,
+                    (int) paisService.getAllPaises().stream()
+                    .filter(p -> p.getContinent().getId() == idContinent)
+                    .count());*/
                     totalPaisosPerContinent.putIfAbsent(idContinent,
-                            (int) paisService.getAllPaises().stream()
-                                    .filter(p -> p.getContinent().getId() == idContinent)
-                                    .count());
+                    (int) dadesGeografia.getTotsElsPaisos().stream()
+                    .filter(p -> p.getContinent().getId() == idContinent)
+                    .count());
 
                     //Guardar reforç per continent
                     reforcPerContinent.putIfAbsent(idContinent, pais.getContinent().getReforcTropes());
@@ -268,7 +275,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
             if (actual.equals(idPais2)) return true;
             visitats.add(actual);
 
-            List<Frontera> fronteres = fronteraService.getFronterasByPaisId(paisService.getPaisById(actual));
+            List<Frontera> fronteres = dadesGeografia.getFronteres(dadesGeografia.getPais(actual).getId());
+            //List<Frontera> fronteres = fronteraService.getFronterasByPais(paisService.getPaisById(actual));
 
             for (Frontera frontera : fronteres) {
                 Long vei = frontera.getPais1().getId() == actual
@@ -459,7 +467,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
             //Verifiquem que sigui el seu torn
             if (!partida.getTornPlayerId().equals(jugador.getId())) return;
 
-            Pais pais = paisService.getPaisById(idPais);
+            Pais pais = dadesGeografia.getPais(idPais);
+            //Pais pais = paisService.getPaisById(idPais);
             if (pais == null) return;
 
             //Verifiquem que el país NO té tropes (és a dir, no hi ha cap Okupa associat)
@@ -484,7 +493,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
             }
 
             //Comprovem si tots els països tenen tropes (és a dir, tenen un okupa)
-            List<Pais> totsElsPaisos = paisService.getAllPaises();
+            //List<Pais> totsElsPaisos = paisService.getAllPaises();
+            List<Pais> totsElsPaisos = dadesGeografia.getTotsElsPaisos().stream().toList();
             long okupats = totsElsPaisos.stream()
             .filter(p -> jugadors.stream()
             .anyMatch(j -> okupaService.getOkupaByPaisAndPartida(p.getId(), partida.getId()) != null))
@@ -539,7 +549,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
             //Verifiquem que sigui el seu torn
             if (!partida.getTornPlayerId().equals(jugador.getId())) return;
 
-            Pais pais = paisService.getPaisById(idPais);
+            Pais pais = dadesGeografia.getPais(idPais);
+            //Pais pais = paisService.getPaisById(idPais);
             if (pais == null) return;
 
             //Verifiquem que el país té tropes (és a dir, té un Okupa associat) i que és propietat del jugador
@@ -619,7 +630,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
             //Verifiquem que sigui el seu torn
             if (!partida.getTornPlayerId().equals(jugador.getId())) return;
 
-            Pais pais = paisService.getPaisById(idPais);
+            Pais pais = dadesGeografia.getPais(idPais);
+            //Pais pais = paisService.getPaisById(idPais);
             if (pais == null) return;
 
             //Verifiquem que el país té tropes (és a dir, té un Okupa associat) i que és propietat del jugador
@@ -664,8 +676,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
             if (!partida.getEstat().equals(Estats.ATAC)) return;
             if (!partida.getTornPlayerId().equals(jugador.getId())) return;
 
-            Pais paisAtacant = paisService.getPaisById(idPaisAtacant);
-            Pais paisDefensiu = paisService.getPaisById(idPaisDefensiu);
+            Pais paisAtacant = dadesGeografia.getPais(idPaisAtacant);
+            Pais paisDefensiu = dadesGeografia.getPais(idPaisDefensiu);
+            /*Pais paisAtacant = paisService.getPaisById(idPaisAtacant);
+            Pais paisDefensiu = paisService.getPaisById(idPaisDefensiu);*/
             if (paisAtacant == null || paisDefensiu == null) return;
             if (!fronteraService.sonFrontera(paisAtacant, paisDefensiu)) return;
 
@@ -721,7 +735,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 okupaService.guardarOkupa(okAtacant);
 
                 //Comprovem si tot el mapa ha estat conquerit
-                if (okupaService.getAllByJugador(jugador.getId()).size() == paisService.getAllPaises().size()) {
+                //if (okupaService.getAllByJugador(jugador.getId()).size() == paisService.getAllPaises().size()) {
+                if (okupaService.getAllByJugador(jugador.getId()).size() == dadesGeografia.getTotsElsPaisos().size()) {
                     partida.setEstat(Estats.FINAL);
 
                     //Modifiquem la quantitat de partides guanyades pel jugador
@@ -804,8 +819,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
             //Verifiquem que sigui el seu torn
             if (!partida.getTornPlayerId().equals(jugador.getId())) return;
 
-            Pais pais1 = paisService.getPaisById(idPais1);
-            Pais pais2 = paisService.getPaisById(idPais2);
+            /*Pais pais1 = paisService.getPaisById(idPais1);
+            Pais pais2 = paisService.getPaisById(idPais2);*/
+            Pais pais1 = dadesGeografia.getPais(idPais1);
+            Pais pais2 = dadesGeografia.getPais(idPais2);
             if (pais1 == null || pais2 == null) return;
 
             //Verifiquem que el país té tropes (és a dir, té un Okupa associat) i que és propietat del jugador
@@ -939,7 +956,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
         //Crear array de territoris
         ArrayNode territorisArray = objectMapper.createArrayNode();
-        List<Pais> totsElsPaisos = paisService.getAllPaises();
+        //List<Pais> totsElsPaisos = paisService.getAllPaises();
+        List<Pais> totsElsPaisos = dadesGeografia.getTotsElsPaisos().stream().toList();
         List<Okupa> okupes = okupaService.getOcupacionsByPartida(partida.getId());
         Map<Long, Okupa> mapaOkupes = okupes.stream().collect(Collectors.toMap(Okupa::getIdPais, o -> o));
 

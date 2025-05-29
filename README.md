@@ -37,13 +37,9 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 ```json
 {
     "type": "event_type",
-    "data": { /* contingut específic per cada tipus */ }
-}
-```
-
-```json
-{
-    "error": "missatge d'error"
+    "data": { 
+      "codi": "contingut específic"
+    }
 }
 ```
 
@@ -106,4 +102,4 @@ El protocol WebSockets es basa en missatges JSON. Aquest es el format de missatg
 
 ## ✅ Versions
 
-Les versions estables es marcaran amb etiquetes com v1.0, v1.1, etc.
+Les versions estables publicades al main es marquen amb etiquetes com v1.0, v1.1, etc.
