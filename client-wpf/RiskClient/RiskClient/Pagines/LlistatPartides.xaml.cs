@@ -1,7 +1,7 @@
 ﻿using RiskClient.Models;
 using RiskClient.Serveis;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,8 +13,11 @@ namespace RiskClient.Pagines
 {
     public partial class LlistatPartides : Page
     {
-        private readonly PartidaService partidaService = new PartidaService("http://localhost:8080"); // Canvia URL si cal
-        public List<Partida> Partides { get; set; } = new();
+        private readonly PartidaService partidaService
+            = new PartidaService("http://localhost:8080");
+
+        public ObservableCollection<Partida> Partides { get; }
+            = new ObservableCollection<Partida>();
 
         public LlistatPartides()
         {
@@ -31,40 +34,47 @@ namespace RiskClient.Pagines
         {
             try
             {
-                Partides = await partidaService.GetPartidesPubliquesAsync() ?? new List<Partida>();
-                lvPartides.ItemsSource = Partides;
+                // carrega una llista de les partides públiques 
+                List<Partida>? llista = await partidaService.GetPartidesPubliquesAsync()
+                            ?? new List<Partida>();
+
+                Partides.Clear();
+                foreach (var p in llista)
+                    Partides.Add(p);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en carregar les partides: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Error en carregar les partides: " + ex.Message, "Error", MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
             }
         }
 
         private async void lvPartides_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (lvPartides.SelectedItem is Partida partidaSeleccionada)
-            {
                 await UnirAlaPartidaPublica(partidaSeleccionada);
-            }
         }
 
         private async void btnUnirPrivada_Click(object sender, RoutedEventArgs e)
         {
-            string token = txtTokenPrivada.Text.Trim();
+            string token = txtTokenPrivada.Text.Trim().ToUpper();
             if (string.IsNullOrEmpty(token))
             {
-                MessageBox.Show("Has d'introduir un token.", "Advertència", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Has d'introduir un token.",
+                                "Advertència", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            var usuari = UsuariActual.Get();
+            Usuari usuari = UsuariActual.Get();
             if (usuari == null)
             {
                 MessageBox.Show("No s'ha trobat l'usuari actiu.");
                 return;
             }
 
-            var joinDto = new JoinPartidaDTO
+            JoinPartidaDTO joinDto = new JoinPartidaDTO
             {
                 IdPartida = null,
                 Token = token,
@@ -73,37 +83,38 @@ namespace RiskClient.Pagines
 
             try
             {
-                var jugador = await partidaService.JoinPartidaAsync(joinDto);
+                Jugador? jugador = await partidaService.JoinPartidaAsync(joinDto);
                 if (jugador != null)
                 {
-                    var webSocketClient = new WebSocketClient();
-                    await webSocketClient.ConnectarAsync(jugador.Id, jugador.Partida.Id);
-
-                    // Navega a la sala d'espera
-                    var salaEspera = new SalaEspera(jugador, webSocketClient);
-                    NavigationService?.Navigate(salaEspera);
+                    WebSocketClient ws = new WebSocketClient();
+                    await ws.ConnectarAsync(jugador.Id, jugador.Partida.Id);
+                    NavigationService?.Navigate(new SalaEspera(jugador, ws));
                 }
                 else
                 {
-                    MessageBox.Show("No s'ha pogut unir a la partida privada. Verifica el token.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Token invàlid o partida no trobada.",
+                                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en unir-se a la partida privada: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Error en unir-se a la partida privada: " + ex.Message,
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error
+                );
             }
         }
 
         private async Task UnirAlaPartidaPublica(Partida partida)
         {
-            var usuari = UsuariActual.Get();
+            Usuari usuari = UsuariActual.Get();
             if (usuari == null)
             {
                 MessageBox.Show("No s'ha trobat l'usuari actiu.");
                 return;
             }
 
-            var joinDto = new JoinPartidaDTO
+            JoinPartidaDTO joinDto = new JoinPartidaDTO
             {
                 IdPartida = partida.Id,
                 Token = null,
@@ -112,25 +123,35 @@ namespace RiskClient.Pagines
 
             try
             {
-                var jugador = await partidaService.JoinPartidaAsync(joinDto);
+                Jugador? jugador = await partidaService.JoinPartidaAsync(joinDto);
                 if (jugador != null)
                 {
-                    var webSocketClient = new WebSocketClient();
-                    await webSocketClient.ConnectarAsync(jugador.Id, jugador.Partida.Id);
-
-                    // Navega a la sala d'espera
-                    var salaEspera = new SalaEspera(jugador, webSocketClient);
-                    NavigationService?.Navigate(salaEspera);
+                    WebSocketClient ws = new WebSocketClient();
+                    await ws.ConnectarAsync(jugador.Id, jugador.Partida.Id);
+                    NavigationService?.Navigate(new SalaEspera(jugador, ws));
                 }
                 else
                 {
-                    MessageBox.Show("No s'ha pogut unir a la partida.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("No s'ha pogut unir a la partida.",
+                                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en unir-se a la partida: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    "Error en unir-se a la partida: " + ex.Message,
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error
+                );
             }
         }
+
+        private void btnEnrere_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService?.CanGoBack == true)
+                NavigationService.GoBack();
+            else
+                NavigationService?.Navigate(new PantallaPrincipal());
+        }
+
     }
 }

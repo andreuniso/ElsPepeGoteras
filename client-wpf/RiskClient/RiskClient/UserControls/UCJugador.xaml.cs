@@ -47,5 +47,8 @@ namespace RiskClient.UserControls
                 ImgAvatar.Source = null;
             }
         }
+
+
     }
+
 }

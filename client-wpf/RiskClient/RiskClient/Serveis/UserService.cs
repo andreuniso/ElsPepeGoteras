@@ -35,6 +35,12 @@ namespace RiskClient.Serveis
 
                 var resp = await _httpClient.PostAsync("/api/usuari/login", content);
 
+                if (resp.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    // Credencials incorrectes
+                    return null;
+                }
+
                 if (!resp.IsSuccessStatusCode)
                 {
                     var errorContent = await resp.Content.ReadAsStringAsync();
@@ -54,6 +60,7 @@ namespace RiskClient.Serveis
                 throw new Exception("S'ha produït un error inesperat.", ex);
             }
         }
+
 
         public async Task<Usuari?> ActualitzarUsuariAsync(Usuari usuari)
         {

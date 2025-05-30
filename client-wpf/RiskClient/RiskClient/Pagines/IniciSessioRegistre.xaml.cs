@@ -11,13 +11,12 @@ namespace RiskClient.Models
     /// </summary>
     public partial class IniciSessioRegistre : Page
     {
-        private WebSocketClient _webSocketClient;
-        private readonly UserService _userService;
+        private readonly UserService userService;
 
         public IniciSessioRegistre()
         {
             InitializeComponent();
-            _userService = new UserService("http://localhost:8080");
+            userService = new UserService("http://localhost:8080");
         }
 
         private async void BtnInicia_Click(object sender, RoutedEventArgs e)
@@ -38,14 +37,12 @@ namespace RiskClient.Models
             Usuari? usuariAutenticat;
             try
             {
-                usuariAutenticat = await _userService.LoginAsync(usuari);
+                usuariAutenticat = await userService.LoginAsync(usuari);
 
                 if (usuariAutenticat != null)
                 {
-                    // Desa l'usuari globalment per utilitzar-lo més endavant (crear/join partida)
                     UsuariActual.Set(usuariAutenticat);
 
-                    // 🧭 Navega a la pantalla principal (crear/entrar a partida)
                     NavigationService?.Navigate(new RiskClient.Pagines.PantallaPrincipal());
                 }
                 else
@@ -80,7 +77,6 @@ namespace RiskClient.Models
             string contrasenya = TxtPasswordRegistre.Password;
             string confirmaContrasenya = TxtConfirmaPassword.Password;
 
-            // Validació bàsica
             if (string.IsNullOrEmpty(nom) || string.IsNullOrEmpty(login) || string.IsNullOrEmpty(contrasenya))
             {
                 MessageBox.Show("Tots els camps són obligatoris.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -96,7 +92,6 @@ namespace RiskClient.Models
             try
             {
                 Usuari usuari = new Usuari(nom, login, contrasenya);
-                UserService userService = new UserService("http://localhost:8080");
 
                 Usuari? usuariRegistrat = await userService.RegisterAsync(usuari);
 
@@ -113,6 +108,5 @@ namespace RiskClient.Models
                 MessageBox.Show($"Error durant el registre: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-    
     }
 }

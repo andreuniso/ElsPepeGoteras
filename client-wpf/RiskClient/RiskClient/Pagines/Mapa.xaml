@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:RiskClient.Models"
+      xmlns:local="clr-namespace:RiskClient.Models" xmlns:UserControls="clr-namespace:RiskClient.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Mapa">
@@ -30,7 +30,7 @@
                         </Path.Data>
                     </Path>
                     <TextBlock x:Name="txt_39" Text="1" FontSize="15" FontWeight="Bold" Foreground="White"
-                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="781" Canvas.Top="471" Height="50" Width="31" />
+                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="775" Canvas.Top="471" Height="50" Width="31" HorizontalAlignment="Left" VerticalAlignment="Center" />
 
                     <Path Fill="LightGray" MouseLeftButtonDown="country_MouseLeftButtonDown" MouseEnter="country_MouseEnter" MouseLeave="country_MouseLeave" Tag="40" x:Name="p_nueva_guinea" Stroke="#95000000" StrokeThickness="1.20000005" StrokeDashCap="Flat" StrokeDashArray="">
                         <Path.Data>
@@ -38,7 +38,7 @@
                         </Path.Data>
                     </Path>
                     <TextBlock x:Name="txt_40" Text="1" FontSize="15" FontWeight="Bold" Foreground="White"
-                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="842" Canvas.Top="455" Height="50" Width="31" />
+                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="839" Canvas.Top="456" Height="50" Width="31" />
 
 
                     <Path Fill="LightGray" MouseLeftButtonDown="country_MouseLeftButtonDown" MouseEnter="country_MouseEnter" MouseLeave="country_MouseLeave" Tag="1" x:Name="p_alaska" Stroke="#95000000" StrokeThickness="1.20000005" StrokeDashCap="Flat" StrokeDashArray="">
@@ -79,7 +79,7 @@
                         </Path.Data>
                     </Path>
                     <TextBlock x:Name="txt_26" Text="1" FontSize="15" FontWeight="Bold" Foreground="White"
-                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="640" Canvas.Top="548" Height="22" Width="28" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="634" Canvas.Top="550" Height="22" Width="28" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
                     <Path Fill="LightGray" MouseLeftButtonDown="country_MouseLeftButtonDown" MouseEnter="country_MouseEnter" MouseLeave="country_MouseLeave" Tag="21" x:Name="p_africa_nord" Stroke="#95000000" StrokeThickness="1.20000005" StrokeDashCap="Flat" StrokeDashArray="">
                         <Path.Data>
@@ -111,7 +111,7 @@
                         </Path.Data>
                     </Path>
                     <TextBlock x:Name="txt_15" Text="1" FontSize="15" FontWeight="Bold" Foreground="White"
-                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="480" Canvas.Top="280" Height="22" Width="27" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="477" Canvas.Top="282" Height="22" Width="27" HorizontalAlignment="Left" VerticalAlignment="Center" />
 
                     <Path Fill="LightGray" MouseLeftButtonDown="country_MouseLeftButtonDown" MouseEnter="country_MouseEnter" MouseLeave="country_MouseLeave" Tag="16" x:Name="p_escandinavia" Stroke="#95000000" StrokeThickness="1.20000005" StrokeDashCap="Flat" StrokeDashArray="">
                         <Path.Data>
@@ -127,7 +127,7 @@
                         </Path.Data>
                     </Path>
                     <TextBlock x:Name="txt_33" Text="1" FontSize="15" FontWeight="Bold" Foreground="White"
-                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="846" Canvas.Top="292" Height="50" Width="31" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="838" Canvas.Top="295" Height="50" Width="31" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
                     <Path Fill="LightGray" MouseLeftButtonDown="country_MouseLeftButtonDown" MouseEnter="country_MouseEnter" MouseLeave="country_MouseLeave" Tag="29" x:Name="p_yakutsk" Stroke="#95000000" StrokeThickness="1.20000005" StrokeDashCap="Flat" StrokeDashArray="">
                         <Path.Data>
@@ -329,7 +329,7 @@
                         </Path.Data>
                     </Path>
                     <TextBlock x:Name="txt_8" Text="1" FontSize="15" FontWeight="Bold" Foreground="White"
-                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="288" Canvas.Top="338" Height="22" Width="35" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False" Canvas.Left="277" Canvas.Top="330" Height="22" Width="35" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
                     <Path Fill="LightGray" MouseLeftButtonDown="country_MouseLeftButtonDown" MouseEnter="country_MouseEnter" MouseLeave="country_MouseLeave" Tag="11" x:Name="p_peru" Stroke="#95000000" StrokeThickness="1.20000005" StrokeDashCap="Flat" StrokeDashArray="">
                         <Path.Data>
@@ -365,6 +365,198 @@
                 Margin="10"
                 Width="220">
         </StackPanel>
+
+        <Border x:Name="AssignOverlay"
+        Background="#CC000000"  
+            Visibility="Collapsed"
+        Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Border Width="250" Height="180"
+            Background="#1E1E1E" 
+                CornerRadius="8"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Padding="16">
+                <StackPanel>
+                    <TextBlock x:Name="TxtAssignInfo"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="Assigna tropes" />
+                    <TextBlock x:Name="TxtAssignAvailable"
+                       Margin="0,8,0,0"
+                       Foreground="#CCCCCC"
+                       Text="Disponibles: 0" />
+
+                    <!-- Quantitat -->
+                    <StackPanel Orientation="Horizontal"
+                        Margin="0,12,0,0"
+                        HorizontalAlignment="Center">
+
+                        <TextBlock Text="⟨"
+                           x:Name="BtnQtyDec"
+                           MouseDown="BtnQtyDec_Click"
+                           Cursor="Hand"
+                           FontSize="26"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+
+                        <TextBlock x:Name="TxtQtyDisplay"
+                           Width="55"
+                           Margin="8,0"
+                           FontSize="18"
+                           Foreground="White"
+                           FontWeight="Bold"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+                        <TextBlock Text="⟩"
+                           x:Name="BtnQtyInc"
+                           MouseDown="BtnQtyInc_Click"
+                           Cursor="Hand"
+                           FontSize="26"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Margin="0,20,0,0"
+            >
+                        <StackPanel Margin="20"/>
+                        <Button x:Name="BtnAssignCancel"
+            Content="Cancel·la"
+            Width="90" Height="36"
+            Background="#333"
+            Foreground="White"
+            FontWeight="Bold"
+            Cursor="Hand"
+            BorderThickness="0"
+            Padding="4,2"
+            Click="BtnAssignCancel_Click"/>
+
+                        <Button x:Name="BtnAssignOk"
+            Content="Confirma"
+            Width="90" Height="36"
+            Background="#444"
+            Foreground="White"
+            FontWeight="Bold"
+            Cursor="Hand"
+            BorderThickness="0"
+            Padding="4,2"
+            Click="BtnAssignOk_Click"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+        </Border>
+
+
+        <Button x:Name="btnFinishAttack"
+        Content="FINALITZAR ATAC"
+        Width="180" Height="50"
+        FontSize="18" FontWeight="Bold"
+        Background="#84b6f4" Foreground="#222"
+        BorderThickness="0"
+        Visibility="Collapsed"
+                VerticalAlignment="Bottom"
+        Click="btnFinishAttack_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#ff6a00"/>
+                            <Setter TargetName="border" Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+
+        <Border x:Name="OverlayFase"
+        Background="#AA000000"
+        Visibility="Collapsed"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Panel.ZIndex="999">
+            <TextBlock x:Name="OverlayFaseText"
+               Text="Esperant el teu torn..."
+               Foreground="White"
+               FontSize="28"
+               FontWeight="Bold"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               TextAlignment="Center"/>
+        </Border>
+
+        <StackPanel x:Name="PanelDaus" Orientation="Vertical" HorizontalAlignment="Right"
+            VerticalAlignment="Center" Margin="0,20,20,20" Visibility="Collapsed" >
+            <!-- Atacant -->
+            <StackPanel x:Name="PanelDausAtacant" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+            <Separator Height="20"/>
+            <!-- Defensor -->
+            <StackPanel x:Name="PanelDausDefensor" Orientation="Horizontal" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <Grid x:Name="FinalOverlay" Visibility="Collapsed" Background="#80000000" Panel.ZIndex="10">
+
+            <!-- Imatge de fons que omple tota la pantalla -->
+            <Image 
+        x:Name="ImgFinalResult"
+        Stretch="Fill"
+        VerticalAlignment="Stretch"
+        HorizontalAlignment="Stretch"
+    />
+
+            <!-- Botó flotant sobre la imatge -->
+            <Button x:Name="BtnFinalitzarPartida"
+        Content="Tornar al menú principal"
+        Click="BtnFinalitzarPartida_Click"
+        Width="240" Height="50"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Bottom"
+        Margin="0,0,0,40"
+        FontSize="16" FontWeight="SemiBold"
+        Background="#1A1A40"
+        Foreground="White"
+        BorderBrush="#1A1A40"
+        BorderThickness="2"
+        Cursor="Hand"
+        Padding="10,5"
+        >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="20">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2C2C7A"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#000022"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+        </Grid>
+
+
 
     </Grid>
 </Page>

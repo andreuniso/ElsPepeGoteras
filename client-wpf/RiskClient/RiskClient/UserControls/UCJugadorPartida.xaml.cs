@@ -47,18 +47,12 @@ namespace RiskClient.UserControls
         {
             if (esTorn)
             {
-                // Badge visible
-                TurnBadge.Visibility = Visibility.Visible;
-
-                // Sobresortit cap a la dreta
-                MainBorder.Margin = new Thickness(20, 4, 4, 4);
-
                 // Glow entorn
-                MainBorder.BorderBrush = Brushes.White;
+                MainBorder.BorderBrush = Brushes.Black;
                 MainBorder.BorderThickness = new Thickness(4);
                 MainBorder.Effect = new DropShadowEffect
                 {
-                    Color = Colors.White,
+                    Color = Colors.Black,
                     Direction = 0,
                     ShadowDepth = 0,
                     BlurRadius = 10,
@@ -75,13 +69,5 @@ namespace RiskClient.UserControls
                 MainBorder.Effect = null;
             }
         }
-
-        public void MostrarBadge(bool esTorn)
-        {
-            TurnBadge.Visibility = esTorn
-                ? Visibility.Collapsed
-                : Visibility.Visible;
-        }
-
     }
 }

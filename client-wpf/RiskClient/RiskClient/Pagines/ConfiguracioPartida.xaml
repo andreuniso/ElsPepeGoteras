@@ -77,7 +77,7 @@
     </Page.Resources>
 
     <Grid>
-        <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\sala_crear.png" Stretch="Fill"/>
+        <Image Source="\Imatges\sala_crear.png" Stretch="Fill"/>
 
         <Border Width="550" Background="{StaticResource BackgroundPanel}" CornerRadius="30" Padding="40"
                 HorizontalAlignment="Center" VerticalAlignment="Center">
