@@ -444,7 +444,7 @@ namespace RiskClient.Models
                             var tropesOrigen = gameState.territories
                                                        .First(t => t.IdPais == origenAtac).Tropes;
                            
-                            tropesDisponibles = Math.Min(3, tropesOrigen - 1);
+                            tropesDisponibles = tropesOrigen - 1;
 
                             TxtAssignInfo.Text = $"Ataca {origenAtac} → {destiAtac}";
                             TxtAssignAvailable.Text = $"Màxim: {tropesDisponibles}";
