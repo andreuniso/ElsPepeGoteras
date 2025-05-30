@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -62,32 +63,21 @@ namespace RiskClient.Serveis
             }
         }
 
+        // PartidaService.cs
         public async Task<List<Partida>?> GetPartidesPubliquesAsync()
         {
             try
             {
-                var resp = await _httpClient.GetAsync("/api/partida/public");
-
-                var body = await resp.Content.ReadAsStringAsync();
-                Debug.WriteLine("📥 JSON rebut de /public:");
-                Debug.WriteLine(body);
-
-                if (!resp.IsSuccessStatusCode)
-                {
-                    throw new Exception($"❌ Error HTTP {resp.StatusCode}: {body}");
-                }
-
-                var partides = JsonSerializer.Deserialize<List<Partida>>(body, _jsonOptions);
-                return partides;
+                // Simplifiquem: el GetFromJsonAsync ja fa el GET i el Deserialize
+                return await _httpClient.GetFromJsonAsync<List<Partida>>("/api/partida/public", _jsonOptions);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("❌ EXCEPCIÓ a GetPartidesPubliquesAsync:");
-                Debug.WriteLine(ex.Message);
-                Debug.WriteLine(ex.StackTrace);
+                Debug.WriteLine("❌ EXCEPCIÓ a GetPartidesPubliquesAsync: " + ex);
                 return null;
             }
         }
+
 
         public async Task<Jugador?> JoinPartidaAsync(JoinPartidaDTO joinDto)
         {

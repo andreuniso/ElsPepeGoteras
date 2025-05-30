@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using RiskClient.UserControls;
 using System.Diagnostics;
+using System.Windows.Navigation;
 
 namespace RiskClient.Pagines
 {
@@ -17,10 +18,8 @@ namespace RiskClient.Pagines
         private readonly List<Usuari> usuarisActuals = new();
         private readonly WebSocketClient webSocketClient;
 
-        // Per desar l'últim JsonElement de jugadors
         private JsonElement? jugadorsJsonLast = null;
 
-        // CancellationTokenSource per aturar el bucle d'escolta
         private readonly CancellationTokenSource _cts = new();
 
         public SalaEspera(Jugador jugador, WebSocketClient webSocketClient)
@@ -45,13 +44,12 @@ namespace RiskClient.Pagines
                 ? Visibility.Visible
                 : Visibility.Collapsed;
 
-            // Iniciem escolta del WebSocket amb token de cancel·lació
             _ = EscoltarMissatgesAsync(_cts.Token);
         }
 
         private async Task EscoltarMissatgesAsync(CancellationToken token)
         {
-            var buffer = new byte[2048];
+            Byte[] buffer = new byte[2048];
 
             while (webSocketClient.IsConnected && !token.IsCancellationRequested)
             {
@@ -123,7 +121,7 @@ namespace RiskClient.Pagines
 
                             foreach (var jJson in jugadorsJson.EnumerateArray())
                             {
-                                var jInfo = JsonSerializer.Deserialize<Jugador>(jJson.GetRawText(), opts);
+                                Jugador? jInfo = JsonSerializer.Deserialize<Jugador>(jJson.GetRawText(), opts);
                                 if (jInfo?.Usuari == null) continue;
                                 int idx = jInfo.Numero - 1;
                                 if (idx >= 0 && idx < maxJugadors)
@@ -135,7 +133,7 @@ namespace RiskClient.Pagines
 
                             for (int i = 0; i < maxJugadors; i++)
                             {
-                                var u = slots[i] ?? new Usuari { Login = "Esperant...", Wins = 0, Avatar = "" };
+                                Usuari u = slots[i] ?? new Usuari { Login = "Esperant...", Wins = 0, Avatar = "" };
                                 PlayerPanel.Children.Add(new UCJugador { usuaris = u });
                             }
 
@@ -147,25 +145,22 @@ namespace RiskClient.Pagines
                 case "game_state":
                     Debug.WriteLine("🎮 Rebut primer game_state; navegant al Mapa");
 
-                    // 1) Aturem SalaEspera
                     _cts.Cancel();
 
-                    // 2) Reconstruïm la llista de Jugador a passar
                     var opts2 = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                    var jugadorsReals = new List<Jugador>();
+                    List<Jugador> jugadorsReals = new List<Jugador>();
                     if (jugadorsJsonLast.HasValue)
                     {
                         foreach (var jJson in jugadorsJsonLast.Value.EnumerateArray())
                         {
-                            var jInfo = JsonSerializer.Deserialize<Jugador>(jJson.GetRawText(), opts2);
+                            Jugador? jInfo = JsonSerializer.Deserialize<Jugador>(jJson.GetRawText(), opts2);
                             if (jInfo != null) jugadorsReals.Add(jInfo);
                         }
                     }
 
-                    // 3) Naveguem al Mapa amb el JSON sencer (wrapper)
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        var mapa = new Mapa(jugadorsReals, json, webSocketClient);
+                        Mapa mapa = new Mapa(jugadorsReals, json, webSocketClient);
                         NavigationService?.Navigate(mapa);
                     });
                     break;
@@ -201,30 +196,29 @@ namespace RiskClient.Pagines
                 return;
             }
 
-            // Enviem start_game i esperem que el servidor ens retorni un game_state
             _ = webSocketClient.EnviarMissatgeAsync("{\"type\":\"start_game\"}");
             Debug.WriteLine("📤 Enviat start_game, esperant game_state...");
         }
 
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        private async Task SortirISortirAsync()
         {
-            NavigationService?.GoBack();
-        }
-
-        // Aquest mètode es pot cridar des del WebSocket quan s'afegeixi un jugador nou
-        public void AfegirJugador(Usuari nouUsuari)
-        {
-            if (usuarisActuals.Any(u => u.Id == nouUsuari.Id)) return;
-
-            usuarisActuals.Add(nouUsuari);
-
-            var control = new UCJugador
+            try
             {
-                usuaris = nouUsuari
-            };
+                _cts.Cancel();
 
-            PlayerPanel.Children.Add(control);
-            ActualitzaComptadorIControls();
+                await webSocketClient.TancarAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"❌ Error sortint de la sala: {ex.Message}");
+            }
         }
+
+        private async void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            await SortirISortirAsync();
+            NavigationService?.GoBack();       
+        }
+
     }
 }

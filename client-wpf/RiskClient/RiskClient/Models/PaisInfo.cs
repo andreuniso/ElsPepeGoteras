@@ -9,9 +9,9 @@ namespace RiskClient.Models
 {
     public class PaisInfo
     {
-        public string Nom { get; set; }
-        public int Tropes { get; set; }
-        public string JugadorId { get; set; } // Ex: "J1", "J2", etc.
+        public int id { get; set; }
+        public string nom { get; set; }
+        public List<int> fronteres { get; set; }
     }
 
 }

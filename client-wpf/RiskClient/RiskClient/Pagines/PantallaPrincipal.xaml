@@ -9,7 +9,7 @@
     Title="PantallaPrincipal">
 
     <Grid>
-        <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_personatge.png" Stretch="Fill" />
+        <Image Source="\Imatges\imatge_personatge.png" Stretch="Fill" />
 
         <Grid>
             <Grid.ColumnDefinitions>

@@ -12,19 +12,19 @@ namespace RiskClient.Pagines
     public partial class PantallaPrincipal : Page
     {
         private bool editant = false;
-        private readonly UserService _userService;
-        private List<string> _avatars = new();
+        private readonly UserService userService;
+        private List<string> avatars = new();
 
         public PantallaPrincipal()
         {
             InitializeComponent();
-            _userService = new UserService("http://localhost:8080");
+            userService = new UserService("http://localhost:8080");
             InicialitzaDades();
         }
 
         private async void InicialitzaDades()
         {
-            var usuari = UsuariActual.Get();
+            Usuari usuari = UsuariActual.Get();
             if (usuari == null)
             {
                 MessageBox.Show("Error: no hi ha usuari actiu");
@@ -46,21 +46,20 @@ namespace RiskClient.Pagines
         {
             try
             {
-                _avatars = await _userService.GetAvatarsAsync();
+                avatars = await userService.GetAvatarsAsync();
 
-                if (_avatars.Count < 4) return;
+                if (avatars.Count < 4) return;
 
-                AvatarMini0.Source = new BitmapImage(new Uri($"http://localhost:8080/avatars/{_avatars[0]}", UriKind.Absolute));
-                AvatarMini1.Source = new BitmapImage(new Uri($"http://localhost:8080/avatars/{_avatars[1]}", UriKind.Absolute));
-                AvatarMini2.Source = new BitmapImage(new Uri($"http://localhost:8080/avatars/{_avatars[2]}", UriKind.Absolute));
-                AvatarMini3.Source = new BitmapImage(new Uri($"http://localhost:8080/avatars/{_avatars[3]}", UriKind.Absolute));
+                AvatarMini0.Source = new BitmapImage(new Uri($"http://localhost:8080/avatars/{avatars[0]}", UriKind.Absolute));
+                AvatarMini1.Source = new BitmapImage(new Uri($"http://localhost:8080/avatars/{avatars[1]}", UriKind.Absolute));
+                AvatarMini2.Source = new BitmapImage(new Uri($"http://localhost:8080/avatars/{avatars[2]}", UriKind.Absolute));
+                AvatarMini3.Source = new BitmapImage(new Uri($"http://localhost:8080/avatars/{avatars[3]}", UriKind.Absolute));
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al carregar avatars: {ex.Message}");
             }
         }
-
 
         private void BtnEditaDesa_Click(object sender, RoutedEventArgs e)
         {
@@ -98,7 +97,7 @@ namespace RiskClient.Pagines
 
         private async void DesaCanvis()
         {
-            var usuari = UsuariActual.Get();
+            Usuari usuari = UsuariActual.Get();
             if (usuari == null)
             {
                 MessageBox.Show("No hi ha cap usuari actiu.");
@@ -108,10 +107,9 @@ namespace RiskClient.Pagines
             string nouNom = EditNomUsuari.Text.Trim();
             string nouLogin = EditNickname.Text.Trim();
             string novaContrasenya = EditContrasenya.Password.Trim();
+            string nouAvatar = avatars.FirstOrDefault(a => AvatarGran.Source?.ToString().EndsWith(a) == true) ?? usuari.Avatar;
 
-            string nouAvatar = _avatars.FirstOrDefault(a => AvatarGran.Source?.ToString().EndsWith(a) == true) ?? usuari.Avatar;
-
-            var usuariActualitzat = new Usuari
+            Usuari usuariActualitzat = new Usuari
             {
                 Id = usuari.Id,
                 Nom = nouNom,
@@ -124,7 +122,7 @@ namespace RiskClient.Pagines
 
             try
             {
-                var usuariRes = await _userService.ActualitzarUsuariAsync(usuariActualitzat);
+                Usuari? usuariRes = await userService.ActualitzarUsuariAsync(usuariActualitzat);
                 if (usuariRes == null)
                 {
                     MessageBox.Show("⚠️ No s'han pogut desar els canvis.");
@@ -172,8 +170,6 @@ namespace RiskClient.Pagines
             }
         }
 
-
-
         private void MostraModeVisualitzacio()
         {
             TxtNomUsuari.Visibility = Visibility.Visible;
@@ -202,7 +198,6 @@ namespace RiskClient.Pagines
                 AvatarGran.Source = miniatura.Source;
             }
         }
-
 
         private void btnUnirse_Click(object sender, RoutedEventArgs e)
         {

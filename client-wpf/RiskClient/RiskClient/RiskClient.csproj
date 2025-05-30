@@ -9,8 +9,41 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Imatges\" />
+    <None Remove="Imatges\derrota.png" />
+    <None Remove="Imatges\imatge_personatge.png" />
+    <None Remove="Imatges\imatge_portada.png" />
+    <None Remove="Imatges\sala.png" />
+    <None Remove="Imatges\sala_crear.png" />
+    <None Remove="Imatges\sala_espera.png" />
+    <None Remove="Imatges\sala_unirse.png" />
+    <None Remove="Imatges\victoria.png" />
+    <None Remove="Recursos\Daus\dau1.PNG" />
+    <None Remove="Recursos\Daus\dau2.PNG" />
+    <None Remove="Recursos\Daus\dau3.PNG" />
+    <None Remove="Recursos\Daus\dau4.PNG" />
+    <None Remove="Recursos\Daus\dau5.PNG" />
+    <None Remove="Recursos\Daus\dau6.PNG" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Utils\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Imatges\derrota.png" />
+    <Resource Include="Imatges\imatge_personatge.png" />
+    <Resource Include="Imatges\imatge_portada.png" />
+    <Resource Include="Imatges\sala.png" />
+    <Resource Include="Imatges\sala_crear.png" />
+    <Resource Include="Imatges\sala_espera.png" />
+    <Resource Include="Imatges\sala_unirse.png" />
+    <Resource Include="Imatges\victoria.png" />
+    <Resource Include="Recursos\Daus\dau1.PNG" />
+    <Resource Include="Recursos\Daus\dau2.PNG" />
+    <Resource Include="Recursos\Daus\dau3.PNG" />
+    <Resource Include="Recursos\Daus\dau4.PNG" />
+    <Resource Include="Recursos\Daus\dau5.PNG" />
+    <Resource Include="Recursos\Daus\dau6.PNG" />
   </ItemGroup>
 
 </Project>

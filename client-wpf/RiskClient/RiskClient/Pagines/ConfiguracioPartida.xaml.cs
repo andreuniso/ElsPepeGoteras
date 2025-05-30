@@ -54,7 +54,7 @@ namespace RiskClient.Pagines
                 return;
             }
 
-            var usuari = UsuariActual.Get();
+            Usuari usuari = UsuariActual.Get();
             if (usuari == null)
             {
                 MessageBox.Show("No s'ha trobat l'usuari actiu.");
@@ -63,30 +63,27 @@ namespace RiskClient.Pagines
 
             bool privada = RbPrivada.IsChecked == true;
 
-            var partidaDTO = new PartidaDTO(nom, quantitatJugadors, privada, usuari.Id);
+            PartidaDTO partidaDTO = new PartidaDTO(nom, quantitatJugadors, privada, usuari.Id);
 
             try
             {
-                var servei = new PartidaService("http://localhost:8080");
-                var jugador = await servei.CrearPartidaAsync(partidaDTO);
+                PartidaService servei = new PartidaService("http://localhost:8080");
+                Jugador? jugador = await servei.CrearPartidaAsync(partidaDTO);
 
                 if (jugador != null)
                 {
-                    var webSocketClient = new WebSocketClient();
+                    WebSocketClient webSocketClient = new WebSocketClient();
 
                     try
                     {
-                        // Connectar al WebSocket
                         await webSocketClient.ConnectarAsync(jugador.Id, jugador.Partida.Id);
 
-                        // Navegar a la sala d'espera (el client ara ja estarà escoltant)
-                        var salaEspera = new SalaEspera(jugador, webSocketClient);
+                        SalaEspera salaEspera = new SalaEspera(jugador, webSocketClient);
                         NavigationService?.Navigate(salaEspera);
                     }
                     catch (Exception wsEx)
                     {
                         MessageBox.Show($"Error connectant al WebSocket: {wsEx.Message}");
-                        // Aquí podries fer cleanup si cal
                     }
                 }
                 else
@@ -99,6 +96,5 @@ namespace RiskClient.Pagines
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
-
     }
 }

@@ -9,7 +9,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\sala.png" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="\Imatges\sala.png" Stretch="UniformToFill"/>
         </Grid.Background>
 
         <Border Margin="200,60,200,60" Background="#AA1A1A1A" CornerRadius="16" Padding="30">

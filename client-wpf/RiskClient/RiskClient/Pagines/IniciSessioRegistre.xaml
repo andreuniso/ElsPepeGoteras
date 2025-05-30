@@ -10,7 +10,7 @@
       Title="IniciSessioRegistre">
 
     <Grid>
-        <Image Source="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\imatge_portada.png" 
+        <Image Source="\Imatges\imatge_portada.png" 
             Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         
         <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="20,20,20,100">

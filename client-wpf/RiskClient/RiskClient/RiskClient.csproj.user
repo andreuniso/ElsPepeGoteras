@@ -25,6 +25,9 @@
     <Compile Update="Pagines\SalaEspera.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\UCDaus.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\UCJugador.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -55,6 +58,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pagines\SalaEspera.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\UCDaus.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UCJugador.xaml">
