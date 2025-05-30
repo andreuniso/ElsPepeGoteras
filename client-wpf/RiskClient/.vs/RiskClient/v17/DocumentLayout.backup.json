@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "E:\\M13 - PROJECTE\\RiskClient\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\pagines\\mapa.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\pagines\\mapa.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\pagines\\inicisessioregistre.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\pagines\\inicisessioregistre.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\pagines\\configuraciopartida.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\pagines\\configuraciopartida.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\pagines\\pantallaprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\pagines\\pantallaprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -23,20 +35,12 @@
       "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\pagines\\inicisessioregistre.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\pagines\\configuraciopartida.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\pagines\\configuraciopartida.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\pagines\\configuraciopartida.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\pagines\\configuraciopartida.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\models\\partidadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\models\\partidadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\pagines\\mapa.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\pagines\\mapa.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\pagines\\salaespera.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -57,10 +61,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\usercontrols\\ucjugador.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\usercontrols\\ucjugador.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\pagines\\inicisessioregistre.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|solutionrelative:riskclient\\pagines\\inicisessioregistre.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{627FF0EF-B989-4B4D-84DA-45EAD51E6249}|RiskClient\\RiskClient.csproj|e:\\m13 - projecte\\riskclient\\riskclient\\usercontrols\\ucdaus.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -172,7 +172,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 283,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -216,40 +216,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "Mapa.xaml.cs",
+              "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\Mapa.xaml.cs",
+              "RelativeDocumentMoniker": "RiskClient\\Pagines\\Mapa.xaml.cs",
+              "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\Mapa.xaml.cs",
+              "RelativeToolTip": "RiskClient\\Pagines\\Mapa.xaml.cs",
+              "ViewState": "AgIAALIBAAAAAAAAAAD4v7oBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T16:28:36.087Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ConfiguracioPartida.xaml",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\ConfiguracioPartida.xaml",
               "RelativeDocumentMoniker": "RiskClient\\Pagines\\ConfiguracioPartida.xaml",
               "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\ConfiguracioPartida.xaml",
               "RelativeToolTip": "RiskClient\\Pagines\\ConfiguracioPartida.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-04T09:13:45.458Z"
+              "WhenOpened": "2025-05-04T09:13:45.458Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IniciSessioRegistre.xaml",
-              "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\IniciSessioRegistre.xaml",
-              "RelativeDocumentMoniker": "RiskClient\\Pagines\\IniciSessioRegistre.xaml",
-              "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\IniciSessioRegistre.xaml",
-              "RelativeToolTip": "RiskClient\\Pagines\\IniciSessioRegistre.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-02T16:27:50.202Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LlistatPartides.xaml",
-              "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\LlistatPartides.xaml",
-              "RelativeDocumentMoniker": "RiskClient\\Pagines\\LlistatPartides.xaml",
-              "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\LlistatPartides.xaml",
-              "RelativeToolTip": "RiskClient\\Pagines\\LlistatPartides.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-12T16:35:44.202Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Mapa.xaml",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\Mapa.xaml",
               "RelativeDocumentMoniker": "RiskClient\\Pagines\\Mapa.xaml",
@@ -260,7 +252,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "PantallaPrincipal.xaml",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\PantallaPrincipal.xaml",
               "RelativeDocumentMoniker": "RiskClient\\Pagines\\PantallaPrincipal.xaml",
@@ -272,7 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "SalaEspera.xaml",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\SalaEspera.xaml",
               "RelativeDocumentMoniker": "RiskClient\\Pagines\\SalaEspera.xaml",
@@ -283,7 +275,42 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IniciSessioRegistre.xaml.cs",
+              "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\IniciSessioRegistre.xaml.cs",
+              "RelativeDocumentMoniker": "RiskClient\\Pagines\\IniciSessioRegistre.xaml.cs",
+              "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\IniciSessioRegistre.xaml.cs",
+              "RelativeToolTip": "RiskClient\\Pagines\\IniciSessioRegistre.xaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T16:36:08.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "LlistatPartides.xaml",
+              "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\LlistatPartides.xaml",
+              "RelativeDocumentMoniker": "RiskClient\\Pagines\\LlistatPartides.xaml",
+              "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\LlistatPartides.xaml",
+              "RelativeToolTip": "RiskClient\\Pagines\\LlistatPartides.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-12T16:35:44.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IniciSessioRegistre.xaml",
+              "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\IniciSessioRegistre.xaml",
+              "RelativeDocumentMoniker": "RiskClient\\Pagines\\IniciSessioRegistre.xaml",
+              "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\IniciSessioRegistre.xaml",
+              "RelativeToolTip": "RiskClient\\Pagines\\IniciSessioRegistre.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-02T16:27:50.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "ConfiguracioPartida.xaml.cs",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\ConfiguracioPartida.xaml.cs",
               "RelativeDocumentMoniker": "RiskClient\\Pagines\\ConfiguracioPartida.xaml.cs",
@@ -295,7 +322,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "PartidaDTO.cs",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Models\\PartidaDTO.cs",
               "RelativeDocumentMoniker": "RiskClient\\Models\\PartidaDTO.cs",
@@ -307,19 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Mapa.xaml.cs",
-              "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\Mapa.xaml.cs",
-              "RelativeDocumentMoniker": "RiskClient\\Pagines\\Mapa.xaml.cs",
-              "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\Mapa.xaml.cs",
-              "RelativeToolTip": "RiskClient\\Pagines\\Mapa.xaml.cs",
-              "ViewState": "AgIAABsAAACAMzMzMzMvwFYAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T16:28:36.087Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "SalaEspera.xaml.cs",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\SalaEspera.xaml.cs",
               "RelativeDocumentMoniker": "RiskClient\\Pagines\\SalaEspera.xaml.cs",
@@ -331,7 +346,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "WebSocketClient.cs",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Serveis\\WebSocketClient.cs",
               "RelativeDocumentMoniker": "RiskClient\\Serveis\\WebSocketClient.cs",
@@ -343,7 +358,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Estats.cs",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Models\\Estats.cs",
               "RelativeDocumentMoniker": "RiskClient\\Models\\Estats.cs",
@@ -355,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "GameState.cs",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Models\\GameState.cs",
               "RelativeDocumentMoniker": "RiskClient\\Models\\GameState.cs",
@@ -367,7 +382,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "UCJugador.xaml.cs",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\UserControls\\UCJugador.xaml.cs",
               "RelativeDocumentMoniker": "RiskClient\\UserControls\\UCJugador.xaml.cs",
@@ -388,18 +403,6 @@
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAD4AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-29T22:46:08.182Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "IniciSessioRegistre.xaml.cs",
-              "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\IniciSessioRegistre.xaml.cs",
-              "RelativeDocumentMoniker": "RiskClient\\Pagines\\IniciSessioRegistre.xaml.cs",
-              "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\IniciSessioRegistre.xaml.cs",
-              "RelativeToolTip": "RiskClient\\Pagines\\IniciSessioRegistre.xaml.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA8AAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T16:36:08.665Z"
             },
             {
               "$type": "Document",
