@@ -1,18 +1,25 @@
 package com.elspepegoteras.server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "pais")
 public class Pais {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String nom;
 
     @ManyToOne
     @JoinColumn(name = "continent_id")
+    @JsonIgnore
     private Continent continent;
+
+    //Constructor per defecte
+    public Pais() {
+    }
 
     //Creació d'un país
     public Pais(String nom, Continent continent) {

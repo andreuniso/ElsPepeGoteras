@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="RiskClient.UserControls.UCJugadorPartida"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="90" Width="200">
+    <Border x:Name="MainBorder"
+            CornerRadius="12"
+            Padding="8"
+            Margin="4"
+            Background="White"
+            SnapsToDevicePixels="True">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Avatar -->
+            <Image x:Name="ImgAvatar"
+                   Width="50" Height="50"
+                   VerticalAlignment="Center"
+                   Grid.Column="0"
+                   Stretch="UniformToFill"
+                   Margin="0,0,10,0">
+                <Image.Clip>
+                    <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
+                </Image.Clip>
+            </Image>
+
+            <!-- Nom -->
+            <TextBlock x:Name="TxtNom"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"
+                       FontSize="20"
+                       Foreground="Black"/>
+
+            <!-- Badge de torn -->
+            <Grid x:Name="TurnBadge"
+                  Grid.Column="2"
+                  Width="24" Height="24"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Center"
+                  Visibility="Collapsed"
+                  Margin="0,0,4,0">
+                <Ellipse Fill="Gold"
+                         Stroke="DarkGoldenrod"
+                         StrokeThickness="1"/>
+                <TextBlock Text="⏱"
+                           FontSize="14"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           RenderTransformOrigin="0.5,0.5">
+                    <TextBlock.RenderTransform>
+                        <!-- Rota 180º -->
+                        <RotateTransform Angle="180"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

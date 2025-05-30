@@ -4,38 +4,62 @@ import jakarta.persistence.*;
 
 @Entity
 @IdClass(OkupaId.class)
+@Table(name = "okupa")
 public class Okupa {
     @Id
-    @ManyToOne
-    @JoinColumn(name = "pais_id")
-    private Pais pais;
+    @Column(name = "pais_id")
+    private Long idPais;
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "player_id")
-    private Jugador jugador;
+    @Column(name = "skf_partida_id")
+    private Long idPartida;
+
+    @Column(name = "player_id")
+    private Long idJugador;
 
     private int tropes;
 
+    //Constructor per defecte
+    public Okupa() {
+    }
+
     //Creació - Recuperació d'un Okupa
-    public Okupa(Pais pais, Jugador jugador) {
-        setPais(pais);
-        setJugador(jugador);
+    public Okupa(Long idPais, Long idPartida, Long idJugador, int tropes) {
+        setIdPais(idPais);
+        setIdPartida(idPartida);
+        setIdJugador(idJugador);
+        setTropes(tropes);
     }
 
-    public Pais getPais() {
-        return pais;
+    public Long getIdPais() {
+        return idPais;
     }
 
-    public void setPais(Pais pais) {
-        this.pais = pais;
+    public void setIdPais(Long idPais) {
+        this.idPais = idPais;
     }
 
-    public Jugador getJugador() {
-        return jugador;
+    public Long getIdPartida() {
+        return idPartida;
     }
 
-    public void setJugador(Jugador jugador) {
-        this.jugador = jugador;
+    public void setIdPartida(Long idPartida) {
+        this.idPartida = idPartida;
+    }
+
+    public Long getIdJugador() {
+        return idJugador;
+    }
+
+    public void setIdJugador(Long idJugador) {
+        this.idJugador = idJugador;
+    }
+
+    public int getTropes() {
+        return tropes;
+    }
+
+    public void setTropes(int tropes) {
+        this.tropes = tropes;
     }
 }

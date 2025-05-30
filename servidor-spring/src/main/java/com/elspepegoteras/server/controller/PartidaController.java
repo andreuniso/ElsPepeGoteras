@@ -1,6 +1,8 @@
 package com.elspepegoteras.server.controller;
 
+import com.elspepegoteras.server.dto.JoinPartidaDTO;
 import com.elspepegoteras.server.dto.PartidaDTO;
+import com.elspepegoteras.server.models.Jugador;
 import com.elspepegoteras.server.models.Partida;
 import com.elspepegoteras.server.service.PartidaService;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +27,7 @@ public class PartidaController {
 
     //Recuperar partida per token
     @GetMapping("/token/{token}")
-    public Partida getPartida(@PathVariable String token) {
+    public Partida getPartidaByToken(@PathVariable String token) {
         return partidaService.getPartidaByToken(token);
     }
 
@@ -37,19 +39,19 @@ public class PartidaController {
 
     //Crear una nova partida
     @PostMapping("/crear")
-    public Partida crearPartida(@RequestBody PartidaDTO partida) {
-        return partidaService.crearPartida(new Partida(partida.getNom(), partida.getToken(), partida.getMaxJugadors(), partida.getAdmin()));
+    public Jugador crearPartida(@RequestBody PartidaDTO partida) {
+        return partidaService.crearPartida(partida);
+    }
+
+    //Unir-se a una partida
+    @PostMapping("/join")
+    public Jugador joinPartida(@RequestBody JoinPartidaDTO partida) {
+        return partidaService.joinPartida(partida);
     }
 
     //Actualitzar una partida
-    @PutMapping("/")
+    @PutMapping("/actualitzar")
     public Partida actualizarPartida(@RequestBody Partida partida) {
         return partidaService.actualizarPartida(partida);
-    }
-
-    // Eliminar una partida
-    @DeleteMapping("/{id}")
-    public void eliminarPartida(@PathVariable long id) {
-        partidaService.eliminarPartida(id);
     }
 }

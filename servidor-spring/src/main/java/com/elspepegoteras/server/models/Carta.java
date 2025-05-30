@@ -3,9 +3,10 @@ package com.elspepegoteras.server.models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "carta")
 public class Carta {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Enumerated(EnumType.ORDINAL)
@@ -15,6 +16,10 @@ public class Carta {
     @ManyToOne
     @JoinColumn(name = "pais_id")
     private Pais pais;
+
+    //Constructor per defecte
+    public Carta() {
+    }
 
     //Creació d'una carta
     public Carta(TipusCarta tipusCarta, Pais pais) {

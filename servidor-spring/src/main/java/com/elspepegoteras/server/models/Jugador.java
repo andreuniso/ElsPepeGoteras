@@ -6,24 +6,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "jugador")
 public class Jugador {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "skfUser_id")
+    @JoinColumn(name = "SKF_USER_ID", nullable = false)
     private Usuari usuari;
 
     @ManyToOne
-    @JoinColumn(name = "skfPartida_id")
+    @JoinColumn(name = "SKF_PARTIDA_ID", nullable = false)
     private Partida partida;
 
-    @Column(name = "skfNumero")
+    @Column(name = "SKF_NUMERO")
     private int numero;
 
-    @OneToMany(mappedBy = "jugador")
-    private List<Okupa> paisosOkupats;
+    @Column(name = "AVAILABLE_TROOPS")
+    private int tropes;
 
     @ManyToMany
     @JoinTable(
@@ -33,21 +34,27 @@ public class Jugador {
     )
     private List<Carta> cartes;
 
+    //Constructor per defecte
+    public Jugador() {
+        setCartes(new ArrayList<Carta>());
+        setTropes(0);
+    }
+
     //Creació d'un jugador
     public Jugador(Usuari usuari) {
         setUsuari(usuari);
         setCartes(new ArrayList<Carta>());
-        setPaisosOkupats(new ArrayList<Okupa>());
+        setTropes(0);
     }
 
     //Recuperació d'un jugador
-    public Jugador(long id, Usuari usuari, Partida partida, int numero, List<Carta> cartes, List<Okupa> paisosOkupats) {
+    public Jugador(long id, Usuari usuari, Partida partida, int numero, List<Carta> cartes, int tropes) {
         setId(id);
         setUsuari(usuari);
         setPartida(partida);
         setNumero(numero);
         setCartes(cartes);
-        setPaisosOkupats(paisosOkupats);
+        setTropes(tropes);
     }
 
     public long getId() {
@@ -90,11 +97,11 @@ public class Jugador {
         this.cartes = cartes;
     }
 
-    public List<Okupa> getPaisosOkupats() {
-        return paisosOkupats;
+    public int getTropes() {
+        return tropes;
     }
 
-    public void setPaisosOkupats(List<Okupa> paisosOkupats) {
-        this.paisosOkupats = paisosOkupats;
+    public void setTropes(int tropes) {
+        this.tropes = tropes;
     }
 }

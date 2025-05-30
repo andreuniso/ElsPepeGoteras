@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @IdClass(FronteraId.class)
+@Table(name = "frontera")
 public class Frontera {
     @Id
     @ManyToOne
@@ -14,6 +15,10 @@ public class Frontera {
     @ManyToOne
     @JoinColumn(name = "pais2_id")
     private Pais pais2;
+
+    //Constructor per defecte
+    public Frontera() {
+    }
 
     //Creació - Recuperació d'una frontera
     public Frontera(Pais pais1, Pais pais2) {

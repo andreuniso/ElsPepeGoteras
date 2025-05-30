@@ -19,6 +19,10 @@ public class UsuariService {
         this.usuariRepository = usuariRepository;
     }
 
+    /**
+     * Recupera una llista d'avatars disponibles.
+     * @return Retorna una llista de noms d'avatars disponibles
+     */
     public List<String> getAvatars() {
         try {
             URL resource = getClass().getClassLoader().getResource("static/avatars");
@@ -37,6 +41,12 @@ public class UsuariService {
         }
     }
 
+    /**
+     * Recupera un usuari per ID.
+     * @param login Nickname de l'usuari a recuperar
+     * @param password La contrasenya de l'usuari a recuperar
+     * @return Retorna un objecte Usuari si s'ha pogut verificar les credencials, o null si no existeix o les credencials són incorrectes
+     */
     public Usuari login(String login, String password) {
         if (login == null || password == null) {
             return null;
@@ -49,15 +59,31 @@ public class UsuariService {
         return null;
     }
 
+    /**
+     * Registra un nou usuari.
+     * @param nom Nom de l'usuari a registrar
+     * @param login Nickname de l'usuari a registrar
+     * @param password La contrasenya de l'usuari a registrar
+     * @return Retorna un objecte Usuari amb la informació de l'usuari registrat
+     */
     public Usuari register(String nom, String login, String password) {
         Usuari usuari = new Usuari(nom, login, password);
         return usuariRepository.save(usuari);
     }
 
+    /**
+     * Actualitza un usuari.
+     * @param usuari L'objecte Usuari amb la informació actualitzada
+     * @return Retorna l'objecte Usuari actualitzat
+     */
     public Usuari actualitzarUsuari(Usuari usuari) {
         return usuariRepository.save(usuari);
     }
 
+    /**
+     * Elimina un usuari per ID.
+     * @param id L'ID de l'usuari a eliminar
+     */
     public void eliminarUsuari(Long id) {
         usuariRepository.deleteById(id);
     }

@@ -5,24 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="700"
+             Height="70" Width="400" 
              x:Name="ucPartida">
 
-    <Border CornerRadius="15" Background="#EEE" Padding="10" Margin="5">
+    <Border CornerRadius="12" Background="#223B63" Padding="12" Margin="5" BorderBrush="#84b6f4" BorderThickness="1">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="1.5*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="{Binding partida.Nom}" 
-               FontSize="26" FontWeight="Bold" Foreground="#333"
-               VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <!-- Nom de la partida -->
+            <TextBlock Text="{Binding partida.Nom, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                       FontSize="26" FontWeight="Bold" Foreground="White"
+                       VerticalAlignment="Center" HorizontalAlignment="Left" />
 
-            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="{Binding partida.LlistaJugadorsIds.Count}" FontSize="22" Foreground="#666"/>
-                <TextBlock Text="/" FontSize="22" Foreground="#666"/>
-                <TextBlock Text="{Binding partida.MaxJugadors}" FontSize="22" Foreground="#666"/>
-            </StackPanel>
+            <!-- Max jugadors -->
+            <TextBlock Text="{Binding partida.MaxJugadors, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                       Grid.Column="1" FontSize="24" Foreground="White"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
     </Border>
 </UserControl>

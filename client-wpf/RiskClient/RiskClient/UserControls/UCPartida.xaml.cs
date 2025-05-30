@@ -13,11 +13,11 @@ namespace RiskClient.UserControls
 
         public Partida partida
         {
-            get { return (Partida)GetValue(PartidaProperty); }
-            set { SetValue(PartidaProperty, value); }
+            get { return (Partida)GetValue(partidaProperty); }
+            set { SetValue(partidaProperty, value); }
         }
 
-        public static readonly DependencyProperty PartidaProperty =
+        public static readonly DependencyProperty partidaProperty =
             DependencyProperty.Register("partida", typeof(Partida), typeof(UCPartida), new PropertyMetadata(null));        
         
     }

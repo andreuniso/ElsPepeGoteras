@@ -5,74 +5,123 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:uc="clr-namespace:RiskClient.UserControls"
       mc:Ignorable="d"
-      d:DesignHeight="800" d:DesignWidth="1200"
       Title="SalaEspera">
 
     <Grid>
-        <!-- Fons de pantalla -->
         <Grid.Background>
-            <ImageBrush ImageSource="E:\M13 - PROJECTE\RiskClient\RiskClient\Imatges\sala_espera.png" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="\Imatges\sala.png" Stretch="UniformToFill"/>
         </Grid.Background>
-        <Border Margin="80,40,80,40" Background="#AAFFFFFF" CornerRadius="16" BorderBrush="#DDD" BorderThickness="1" Padding="20">
+
+        <Border Margin="200,60,200,60" Background="#AA1A1A1A" CornerRadius="16" Padding="30">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <!-- Títol -->
+                    <!-- Nom partida -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Llistat jugadors -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Comptador -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Barra de càrrega -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Token partida -->
                     <RowDefinition Height="*"/>
-                    <!-- Llista jugadors -->
+                    <!-- Espai -->
                     <RowDefinition Height="Auto"/>
                     <!-- Botons -->
                 </Grid.RowDefinitions>
 
-                <!-- Títol -->
-                <TextBlock Text="ESPERANT JUGADORS..." Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,20"
-                           FontSize="40" FontWeight="Bold" Foreground="#004797" FontFamily="Comic Sans MS" TextWrapping="Wrap"/>
+                <!-- Nom de la partida -->
+                <TextBlock x:Name="TxtNomPartida"
+                           Text="NomPartida"
+                           FontSize="36" FontWeight="Bold"
+                           Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-                <!-- Llistat d'usuaris -->
-                <ListView x:Name="lvPlayers" Grid.Row="1" ItemsSource="{Binding Usuaris}" Background="Transparent" BorderThickness="0"
-                          HorizontalAlignment="Center" VerticalAlignment="Top" Width="950" Height="680"
-                          ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="2" Rows="3" Margin="10"/>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Margin" Value="10"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                            <Setter Property="VerticalContentAlignment" Value="Center"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <uc:UCJugador usuaris="{Binding}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <!-- Llistat jugadors -->
+                <!-- Llistat jugadors -->
+                <ScrollViewer Grid.Row="1"
+              Width="850" Height="320" HorizontalAlignment="Center"
+              VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+              Background="Transparent" BorderThickness="0">
+                    <WrapPanel x:Name="PlayerPanel"
+               Orientation="Horizontal"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Top"
+               Margin="10"
+               ItemHeight="85"
+               ItemWidth="400"/>
+                </ScrollViewer>
+
+
+                <!-- Comptador de jugadors -->
+                <TextBlock x:Name="TxtComptadorJugadors"
+                           Grid.Row="2"
+                           Text="1 / 3"
+                           FontSize="24" FontWeight="SemiBold"
+                           Foreground="White" HorizontalAlignment="Center" Margin="0,10"/>
+
+                <!-- Barra de càrrega -->
+                <ProgressBar x:Name="ProgressBarCarrega" Grid.Row="3" Width="400" Height="20"
+                             HorizontalAlignment="Center" Margin="0,10"
+                             IsIndeterminate="True"
+                             Foreground="#FFA500" Background="#333"/>
+
+                <!-- TOKEN DE PARTIDA (NOMÉS SI ÉS PRIVADA) -->
+                <TextBlock x:Name="TxtTokenPartida"
+                           Grid.Row="4"
+                           Text="Token: ABC123"
+                           FontSize="20" FontWeight="Normal"
+                           Foreground="White" HorizontalAlignment="Center" Margin="0,15,0,0"
+                           Visibility="Collapsed" />
 
                 <!-- Botons -->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
-                    <Button x:Name="btnIniciar" Content="INICIAR" Width="220" Height="60" FontSize="24" Background="#004797" Foreground="White"
-                            BorderThickness="0" Padding="10" Cursor="Hand" Margin="0,0,20,0" Click="btnIniciar_Click">
+                <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
+                    <!-- INICIAR -->
+                    <Button x:Name="btnIniciar" Content="INICIAR" Width="200" Height="55" FontSize="22"
+                            Background="#004797" Foreground="White" Cursor="Hand" Margin="10,0" Click="btnIniciar_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="30" Padding="{TemplateBinding Padding}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                                <Border Background="{TemplateBinding Background}" CornerRadius="25" Padding="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" Value="#004797"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FFA500"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                     </Button>
 
-                    <Button x:Name="btnCancelar" Content="Cancel·lar" Width="220" Height="60" FontSize="24" Background="White" Foreground="Black"
-                            BorderThickness="0" Padding="10" Cursor="Hand" Click="btnCancelar_Click">
+                    <!-- CANCEL·LAR -->
+                    <Button x:Name="btnCancelar" Content="CANCEL·LAR" Width="200" Height="55" FontSize="22"
+                            Background="#223B63" Foreground="White" Cursor="Hand" Margin="10,0" Click="btnCancelar_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="30" Padding="{TemplateBinding Padding}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                                <Border Background="{TemplateBinding Background}" CornerRadius="25" Padding="10">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" Value="#223B63"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FFA500"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                     </Button>
                 </StackPanel>
             </Grid>
