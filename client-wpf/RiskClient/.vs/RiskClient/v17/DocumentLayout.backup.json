@@ -220,9 +220,9 @@
               "Title": "Mapa.xaml.cs",
               "DocumentMoniker": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\Mapa.xaml.cs",
               "RelativeDocumentMoniker": "RiskClient\\Pagines\\Mapa.xaml.cs",
-              "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\Mapa.xaml.cs",
-              "RelativeToolTip": "RiskClient\\Pagines\\Mapa.xaml.cs",
-              "ViewState": "AgIAALIBAAAAAAAAAAD4v7oBAAAAAAAAAAAAAA==",
+              "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\Mapa.xaml.cs*",
+              "RelativeToolTip": "RiskClient\\Pagines\\Mapa.xaml.cs*",
+              "ViewState": "AgIAALEAAAAA0szMzMwwwMQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T16:28:36.087Z",
               "EditorCaption": ""
@@ -236,8 +236,7 @@
               "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\ConfiguracioPartida.xaml",
               "RelativeToolTip": "RiskClient\\Pagines\\ConfiguracioPartida.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-04T09:13:45.458Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T09:13:45.458Z"
             },
             {
               "$type": "Document",
@@ -259,8 +258,7 @@
               "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\Pagines\\PantallaPrincipal.xaml",
               "RelativeToolTip": "RiskClient\\Pagines\\PantallaPrincipal.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-03T09:07:48.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T09:07:48.606Z"
             },
             {
               "$type": "Document",
@@ -283,8 +281,7 @@
               "RelativeToolTip": "RiskClient\\Pagines\\IniciSessioRegistre.xaml.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T16:36:08.665Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T16:36:08.665Z"
             },
             {
               "$type": "Document",
@@ -661,8 +658,7 @@
               "ToolTip": "E:\\M13 - PROJECTE\\RiskClient\\RiskClient\\App.xaml",
               "RelativeToolTip": "RiskClient\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-15T08:28:19.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-15T08:28:19.185Z"
             },
             {
               "$type": "Document",

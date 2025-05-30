@@ -178,13 +178,23 @@ namespace RiskClient.Models
                     MostrarDaus(at, def);
                 }
 
-                ActualitzarOverlayFase(); 
+                ActualitzarOverlayFase();
 
                 if (AssignOverlay.Visibility == Visibility.Visible)
                 {
-                    tropesDisponibles = gameState.availableTroopsActualPlayer;
-                    TxtAssignAvailable.Text = $"Disponibles: {tropesDisponibles}";
+                    if (gameState.estat == Estats.ASSIGNAR_TROPES)
+                    {
+                        tropesDisponibles = gameState.availableTroopsActualPlayer;
+                        TxtAssignAvailable.Text = $"Disponibles: {tropesDisponibles}";
+                    }
+                    else if (gameState.estat == Estats.ATAC && origenAtac.HasValue)
+                    {
+                        var tropesOrigen = gameState.territories.First(t => t.IdPais == origenAtac.Value).Tropes;
+                        tropesDisponibles = tropesOrigen - 1;
+                        TxtAssignAvailable.Text = $"Màxim: {tropesDisponibles}";
+                    }
                 }
+
 
                 if (gameState.estat == Estats.FINAL)
                 {
@@ -441,9 +451,7 @@ namespace RiskClient.Models
                             destiAtac = idPais;
                             HighlightPath(veinsAtac, false);
 
-                            var tropesOrigen = gameState.territories
-                                                       .First(t => t.IdPais == origenAtac).Tropes;
-
+                            var tropesOrigen = gameState.territories.First(t => t.IdPais == origenAtac).Tropes;
                             tropesDisponibles = tropesOrigen - 1;
 
 
